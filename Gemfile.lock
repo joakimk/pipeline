@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/joakimk/rspec-roles.git
+  revision: cb2889362a75d4e98707209308fffdf9b6629626
+  specs:
+    rspec-roles (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,6 +158,7 @@ DEPENDENCIES
   jquery-rails
   rails (= 3.2.8)
   rspec-rails
+  rspec-roles!
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

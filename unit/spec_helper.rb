@@ -4,6 +4,7 @@ $: << File.join(RAILS_ROOT, "lib")
 $: << File.join(RAILS_ROOT, "unit")
 
 require 'support/load_path_optimizations'
+require 'support/roles'
 require 'active_support/core_ext'
 require 'active_model'
 require 'rspec/rails/extensions'

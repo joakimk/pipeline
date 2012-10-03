@@ -9,3 +9,5 @@ rails_version = File.readlines(File.join(File.dirname(__FILE__), "../../Gemfile"
 
 add_load_path "gems/activesupport-#{rails_version}/lib"
 add_load_path "gems/activemodel-#{rails_version}/lib"
+add_load_path "bundler/gems/rspec-roles-cb2889362a75/lib"
+
