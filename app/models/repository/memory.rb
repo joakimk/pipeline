@@ -8,13 +8,20 @@ class Repository::Memory
   end
 
   class Base
+    def initialize
+      @list = []
+    end
+
     def add(entity)
-      @list ||= []
       @list << entity
     end
 
     def last
       @list.last
+    end
+
+    def all
+      @list.dup
     end
   end
 

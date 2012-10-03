@@ -1,3 +1,5 @@
+require 'add_project'
+
 class ProjectsController < ActionController::Base
   def new
     @project = Entity::Project.new
@@ -12,6 +14,7 @@ class ProjectsController < ActionController::Base
   end
 
   def index
+    @projects = repository.projects.all
   end
 
   private
