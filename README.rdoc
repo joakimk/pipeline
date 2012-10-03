@@ -1,5 +1,0 @@
-This is an app to manage deploys.
-
-It's work in progress.
-
-It's also a lab for coding techniques for use in large rails projects :), so that's why it has UseCases and Repository's.
