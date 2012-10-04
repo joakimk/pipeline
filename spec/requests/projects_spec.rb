@@ -27,5 +27,6 @@ describe "Adding projects" do
 
   def repository
     Repository::Memory.instance
+    #Repository::PG.instance
   end
 end
