@@ -8,6 +8,13 @@ This will be an app to manage deploys. I plan to import some of the internal dep
 
 I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) for larger rails apps, so I'm using this as a playground. Because of this, there might be things in this app that are architectural overkill for such a small app.
 
+# Structure
+
+* Postgres adapter: app/models/repository/pg
+* Memory adapter: app/models/repository/memory
+* Entity classes (domain models): app/models/entity
+* Use cases (actions you can take with the app): app/use_cases
+
 ## Running the tests
 
 You need postgres installed.
