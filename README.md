@@ -1,3 +1,5 @@
+![Build status](https://secure.travis-ci.org/joakimk/deployer.png)
+
 ## Work in progress
 
 This will be an app to manage deploys. I plan to import some of the internal deployment tools from [barsoom](http://barsoom.se) into this app.
