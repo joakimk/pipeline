@@ -3,4 +3,4 @@ rvm:
   - "1.9.3"
 before_script:
   - psql -c 'create database deployer_test;' -U postgres
-script: "export TRAVIS=true && bundle exec rake spec:unit && RAILS_ENV=test bundle exec rake db:schema:load spec && DB=true bundle exec rake spec"
+script: "export TRAVIS=true && bundle exec rake spec:unit && bundle exec rake db:migrate spec && DB=true bundle exec rake spec"
