@@ -4,3 +4,16 @@ namespace :spec do
     system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
   end
 end
+
+def lines_for(type)
+  `cat $(find app/models/repository/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip
+end
+
+desc "Some code stats"
+namespace :deployer do
+  task :code_stats do
+    puts "Number of lines in the memory repository:\t #{lines_for("memory")}"
+    puts "Number of lines in the pg repository:\t\t #{lines_for("pg")}"
+    puts "Number of lines shared between repositories:\t #{lines_for("common")}"
+  end
+end
