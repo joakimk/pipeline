@@ -12,8 +12,8 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 
 * Entity classes (domain models): app/models/entity
 * Use cases (actions you can take with the app): app/use_cases
-* Memory adapter: app/models/repository/memory
-* Postgres adapter: app/models/repository/pg
+* Memory storage: app/models/repository/memory
+* Postgres storage: app/models/repository/pg
 
 ## Running the tests
 
