@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Very simple bootstrap script. It should probably check if it
+# needs to do all these things.
+bundle
+rake db:create db:migrate db:test:prepare

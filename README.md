@@ -8,6 +8,9 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 
 ## Running the tests
 
-    bundle
+You need postgres installed.
+
+    script/bootstrap
+
     rake
     rake spec:unit # only unit tests
