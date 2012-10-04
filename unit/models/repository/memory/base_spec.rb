@@ -6,7 +6,7 @@ describe Repository::Memory::Base do
 end
 
 class TestEntity < Entity::Base
-  attribute :name, String
+  attr_accessor :name
 end
 
 describe Repository::Memory::Base, "add" do

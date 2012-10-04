@@ -1,8 +1,8 @@
-require 'form_object'
+require 'informal'
 
 module Entity
   class Base
-    include FormObject
-    attribute :id, Integer
+    include Informal::Model
+    attr_accessor :id
   end
 end
