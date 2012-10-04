@@ -13,6 +13,18 @@ describe "Adding projects" do
     repository.projects.last.github_url.should == "https://github.com/barsoom/deployer"
   end
 
+  it "reports errors" do
+    visit root_path
+    click_link "Add project"
+    click_button "Save"
+    page.should have_content("Name can't be blank")
+    repository.projects.last.should be_nil
+  end
+
+  before(:each) do
+    repository.projects.delete_all
+  end
+
   def repository
     Repository::Memory.instance
   end

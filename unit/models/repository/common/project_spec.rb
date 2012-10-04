@@ -21,7 +21,7 @@ describe Repository::Common::Project, "add_by_attributes" do
 
   it "tells the client a project was added when adding was successful" do
     client.should_receive(:project_added).with(instance_of(Entity::Project))
-    project_repo.add_by_attributes({}, client)
+    project_repo.add_by_attributes({ name: "Deployer" }, client)
   end
 
   it "tells the client a project could not be added when adding fails" do

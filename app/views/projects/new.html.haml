@@ -1,4 +1,7 @@
 = form_for(@project, url: projects_path) do |f|
+  - if @project.errors.any?
+    = @project.errors.full_messages.each do |error|
+      %p{style: 'color: red'}= error
   = f.label :name
   = f.text_field :name
   = f.label :github_url

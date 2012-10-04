@@ -13,6 +13,11 @@ class ProjectsController < ActionController::Base
     redirect_to root_path, notice: "Project added."
   end
 
+  def project_could_not_be_added(project)
+    @project = project
+    render :new
+  end
+
   def index
     @projects = repository.projects.all
   end

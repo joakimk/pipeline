@@ -7,6 +7,7 @@ end
 
 class TestEntity < Entity::Base
   attr_accessor :name
+  validates :name, presence: true
 end
 
 describe Repository::Memory::Base, "add" do
@@ -32,6 +33,21 @@ describe Repository::Memory::Base, "add" do
     repository.add(entity)
     repository.last.object_id.should_not == entity.object_id
     repository.last.name.should == "Test"
+  end
+
+  it "validates the record before saving" do
+    entity = TestEntity.new
+    repository.add(entity).should be_false
+  end
+end
+
+describe Repository::Memory::Base, "delete_all" do
+  let(:repository) { described_class.new }
+
+  it "empties the repository" do
+    repository.add(Entity::Base.new)
+    repository.delete_all
+    repository.all.should == []
   end
 end
 

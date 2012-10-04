@@ -8,9 +8,13 @@ module Repository
     end
 
     def add(entity)
-      entity.id = next_id
-      store.push(entity.dup)
-      last_id
+      if entity.valid?
+        entity.id = next_id
+        store.push(entity.dup)
+        last_id
+      else
+        false
+      end
     end
 
     def last
@@ -19,6 +23,10 @@ module Repository
 
     def all
       store.dup
+    end
+
+    def delete_all
+      store.clear
     end
 
     private
