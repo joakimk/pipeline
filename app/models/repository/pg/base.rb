@@ -39,10 +39,6 @@ module Repository
       Record.delete_all
     end
 
-    def inherited(subklass)
-      p subklass
-    end
-
     private
 
     class_attribute :_entity_klass
