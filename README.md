@@ -10,10 +10,10 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 
 ## Structure
 
-* Entity classes (domain models): app/models/entity
-* Use cases (actions you can take with the app): app/use_cases
-* Memory storage: app/models/repository/memory
-* Postgres storage: app/models/repository/pg
+* Entity classes (domain models): [app/models/entity](https://github.com/joakimk/deployer/tree/master/app/models/entity)
+* Use cases (actions you can take with the app): [app/use_cases](https://github.com/joakimk/deployer/tree/master/app/use_cases)
+* Memory storage: [app/models/repository/memory](https://github.com/joakimk/deployer/tree/master/app/models/repository/memory)
+* Postgres storage: [app/models/repository/pg](https://github.com/joakimk/deployer/tree/master/app/models/repository/pg)
 
 ## Running the tests
 
