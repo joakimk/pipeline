@@ -7,8 +7,14 @@ require 'support/load_path_optimizations'
 require 'support/roles'
 require 'active_support/core_ext'
 
+# Stub AR in unit tests
 module ActiveRecord
   class Base
+    def self.table_name=(name)
+    end
+
+    def self.attr_accessible(*opts)
+    end
   end
 end
 

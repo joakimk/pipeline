@@ -6,7 +6,7 @@ describe Repository::Memory::Base do
 end
 
 class TestEntity < Entity::Base
-  attr_accessor :name
+  attributes :name
   validates :name, presence: true
 end
 

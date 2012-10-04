@@ -25,6 +25,10 @@ class ProjectsController < ActionController::Base
   private
 
   def repository
-    Repository::Memory.instance
+    if ENV['DB']
+      Repository::PG.instance
+    else
+      Repository::Memory.instance
+    end
   end
 end

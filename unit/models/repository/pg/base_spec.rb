@@ -6,12 +6,12 @@ describe Repository::PG::Base do
 end
 
 class TestEntity < Entity::Base
-  attr_accessor :name
+  attributes :name
   validates :name, presence: true
 end
 
 class TestRepo < Repository::PG::Base
-  entity_type TestEntity
+  entity_klass TestEntity
 end
 
 describe Repository::PG::Base, "add" do
@@ -38,6 +38,12 @@ describe Repository::PG::Base, "add" do
     entity = TestEntity.new
     repository.add(entity).should be_false
   end
+
+  it "creates the record" do
+    TestRepo::Record.should_receive(:create).with(name: "Test").and_return(mock(id: 1))
+    entity = TestEntity.new(name: "Test")
+    repository.add(entity)
+  end
 end
 
 describe Repository::PG::Base, "delete_all" do
@@ -54,14 +60,17 @@ describe Repository::PG::Base, "last" do
 
   it "returns the last entity" do
     record = mock(attributes: { id: 22, name: "Test" })
-    TestRepo::Record.should_receive(:last_by_id).and_return(record)
+    TestRepo::Record.stub(last: record)
     entity = repository.last
     entity.id.should == 22
     entity.should be_kind_of(TestEntity)
     entity.name.should == "Test"
   end
 
-  it "it needs a db test for last_by_id"
+  it "returns nil when there is no last record" do
+    TestRepo::Record.stub(last: nil)
+    repository.last.should be_nil
+  end
 end
 
 describe Repository::PG::Base, "all" do
