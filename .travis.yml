@@ -1,6 +1,11 @@
 language: ruby
 rvm:
-  - "1.9.3"
+  - 1.9.3
+  - 1.9.2
+  - jruby-19mode
+  - rbx-19mode
+  - ruby-head
+  - jruby-head
 before_script:
   - psql -c 'create database deployer_test;' -U postgres
 script: "export TRAVIS=true && bundle exec rake spec:unit && bundle exec rake db:migrate spec && DB=true bundle exec rake spec"
