@@ -15,6 +15,10 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 * Memory storage: [app/models/repository/memory](https://github.com/joakimk/deployer/tree/master/app/models/repository/memory)
 * Postgres storage: [app/models/repository/pg](https://github.com/joakimk/deployer/tree/master/app/models/repository/pg)
 
+## Fun stuff
+
+* With this setup you can [test a validation in 1 ms](https://github.com/joakimk/deployer/blob/master/unit/models/entity/project_spec.rb)...
+
 ## Running the tests
 
 You need postgres installed.
