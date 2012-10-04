@@ -117,6 +117,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.11.0)
+    ruby-prof (0.11.2)
     rubyzip (0.9.9)
     sass (3.2.1)
     sass-rails (3.2.5)
@@ -159,6 +160,7 @@ DEPENDENCIES
   rails (= 3.2.8)
   rspec-rails
   rspec-roles!
+  ruby-prof
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

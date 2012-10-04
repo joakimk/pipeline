@@ -1,5 +1,25 @@
+module Kernel
+  alias :oldold :require
+
+  def require(*opts)
+    t = Time.now
+    ret = oldold(*opts)
+    if Time.now - t > 0.1
+      p [ opts, Time.now - t ]
+    end
+    ret
+  end
+end
 silence_warnings do
+  require 'ruby-prof'
+  result = RubyProf.profile do
   require "virtus"
+  end
+  printer = RubyProf::GraphHtmlPrinter.new(result)
+  f = File.open("output.html", 'wb')
+  printer.print(f, :min_percent=>0)
+  printer.print(f)
+  f.close
 end
 
 module FormObject

@@ -25,6 +25,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :development do
+  gem 'ruby-prof'
+end
+
 group :test do
   gem 'capybara'
   gem 'factory_girl'
