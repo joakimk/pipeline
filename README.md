@@ -17,7 +17,10 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 
 ## Fun stuff
 
-* With this setup you can [test a validation in 1 ms](https://github.com/joakimk/deployer/blob/master/unit/models/entity/project_spec.rb)...
+With this setup you can [test validations like you usually do](https://github.com/joakimk/deployer/blob/master/unit/models/entity/project_spec.rb), and still have very fast tests.
+
+    Finished in 1.47 seconds
+    1000 examples, 0 failures
 
 ## Running the tests
 
