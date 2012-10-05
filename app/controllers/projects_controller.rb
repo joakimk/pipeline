@@ -25,10 +25,10 @@ class ProjectsController < ApplicationController
   private
 
   def repository
-    if ENV['DB']
-      Repository::PG.instance
-    else
+    if Rails.env.test? && !ENV['DB']
       Repository::Memory.instance
+    else
+      Repository::PG.instance
     end
   end
 end
