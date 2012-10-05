@@ -18,7 +18,7 @@ describe Repository::PG::Base, "add" do
   let(:repository) { described_class.new }
 
   it "sets an id on the entity" do
-    TestRepo::Record.stub(create: mock(id: 22))
+    TestRepo::Record.stub(create!: mock(id: 22))
 
     entity = Entity::Base.new
     entity.id.should be_nil
@@ -28,19 +28,19 @@ describe Repository::PG::Base, "add" do
   end
 
   it "returns the id" do
-    TestRepo::Record.stub(create: mock(id: 55))
+    TestRepo::Record.stub(create!: mock(id: 55))
     entity = Entity::Base.new
     repository.add(entity).should == 55
   end
 
   it "validates the record before saving" do
-    TestRepo::Record.should_not_receive(:create)
+    TestRepo::Record.should_not_receive(:create!)
     entity = TestEntity.new
     repository.add(entity).should be_false
   end
 
   it "creates the record" do
-    TestRepo::Record.should_receive(:create).with(name: "Test").and_return(mock(id: 1))
+    TestRepo::Record.should_receive(:create!).with(name: "Test").and_return(mock(id: 1))
     entity = TestEntity.new(name: "Test")
     repository.add(entity)
   end

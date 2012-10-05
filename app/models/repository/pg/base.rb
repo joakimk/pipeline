@@ -16,7 +16,7 @@ module Repository
 
     def add(entity)
       if entity.valid?
-        entity.id = Record.create(entity.attributes).id
+        entity.id = Record.create!(entity.attributes).id
       else
         false
       end
