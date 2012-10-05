@@ -1,4 +1,4 @@
-![Build status](https://secure.travis-ci.org/joakimk/deployer.png)
+![Build status](https://secure.travis-ci.org/joakimk/deployer.png) | [CI](https://travis-ci.org/#!/joakimk/deployer)
 
 ## Work in progress
 
