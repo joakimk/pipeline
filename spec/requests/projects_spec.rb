@@ -13,8 +13,7 @@ describe "Adding projects" do
     fill_in "Name", with: "Deployer"
     fill_in "Github URL", with: "https://github.com/barsoom/deployer"
     click_button "Save"
-    # hm, layout somehow not rendering
-    #page.should have_content("Project added.")
+    page.should have_content("Project added.")
     current_path.should == root_path
     repository.projects.last.github_url.should == "https://github.com/barsoom/deployer"
   end
