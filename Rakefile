@@ -1,4 +1,5 @@
 #!/usr/bin/env rake
+require File.expand_path('../lib/tasks/no_rails.rb', __FILE__)
 require File.expand_path('../lib/tasks/no_rails_rake_tasks.rb', __FILE__)
 
 class Rake::Application

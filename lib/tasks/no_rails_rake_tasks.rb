@@ -1,5 +1,3 @@
-require File.expand_path('../no_rails.rb', __FILE__)
-
 module NoRailsRakeTasks
   def self.load_rails_when_needed_with(load_proc)
     @load_proc = load_proc
