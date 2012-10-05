@@ -6,15 +6,33 @@ class Rake::Application
   include Rake::DSL
 end
 
-# Try to run no-rails rake tasks first and fallback to rails when none is found.
+# Try to run no-rails tasks first. Fallback to rails if none is found.
+module LoadRailsTasks
+  def self.load
+    require File.expand_path('../config/application', __FILE__)
+    Deployer::Application.load_tasks
+  end
+end
+
 Rake.application.instance_eval do
+  module Rake
+    class Task
+      alias :old_lookup_prerequisite :lookup_prerequisite
+
+      def lookup_prerequisite(prerequisite_name)
+        if prerequisite_name == "environment" && !Rake.application.lookup(prerequisite_name)
+          LoadRailsTasks.load
+        end
+        old_lookup_prerequisite(prerequisite_name)
+      end
+    end
+  end
+
   def top_level
     if running_a_task? && requested_tasks_exist?
       super
     else
-      require File.expand_path('../config/application', __FILE__)
-      Deployer::Application.load_tasks
-      task :default => [ :"spec:unit", :spec ]
+      LoadRailsTasks.load
       super
     end
   end
