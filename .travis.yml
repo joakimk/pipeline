@@ -6,4 +6,4 @@ rvm:
   #- jruby-19mode # needs jruby compatible deps
 before_script:
   - psql -c 'create database deployer_test;' -U postgres
-script: "script/travis_ci"
+script: "script/ci"
