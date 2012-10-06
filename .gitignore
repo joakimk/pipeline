@@ -14,3 +14,5 @@
 /log/*.log
 /tmp
 todo.txt
+
+script/deploy
