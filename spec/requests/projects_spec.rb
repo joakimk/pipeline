@@ -3,7 +3,9 @@ require 'spec_helper'
 describe "Adding projects" do
   it "can be done" do
     visit root_path
+    page.find(".active").should have_content("Projects")
     click_link "Add project"
+    page.find(".active").should have_content("Add project")
     fill_in "Name", with: "Deployer"
     fill_in "Github URL", with: "https://github.com/barsoom/deployer"
     click_button "Save"
