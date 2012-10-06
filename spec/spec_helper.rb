@@ -24,4 +24,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+
+  running_a_single_file = (ARGV.count == 1)
+  if App.repository.is_a?(Repository::Memory) && !running_a_single_file
+    config.filter_run_excluding :pg
+  end
 end
