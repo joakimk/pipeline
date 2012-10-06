@@ -4,7 +4,7 @@ def add_load_path(path)
   $: << full_path
 end
 
-unless ENV['TRAVIS']
+unless ENV['CI']
   rails_version = File.readlines(File.join(File.dirname(__FILE__), "../../Gemfile")).
                        find { |line| line.include?("'rails'") }.split.last.gsub("'",'')
 

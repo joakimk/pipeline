@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-export TRAVIS=true
+export CI=true
 
 echo "Running unit tests."
 bundle exec rake spec:unit
