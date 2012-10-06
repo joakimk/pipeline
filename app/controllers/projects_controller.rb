@@ -21,4 +21,14 @@ class ProjectsController < ApplicationController
   def index
     @projects = repository.projects.all
   end
+
+  private
+
+  def setup_menu
+    if [ "new", "create" ].include?(params[:action])
+      active_menu_item_name :new_project
+    else
+      active_menu_item_name :projects
+    end
+  end
 end

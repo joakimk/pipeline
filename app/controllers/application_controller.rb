@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :temporary_security
+  before_filter :setup_menu
 
   force_ssl if: :production?
 
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def production?
     Rails.env.production?
+  end
+
+  def active_menu_item_name(name)
+    @active_menu_item_name = name
   end
 
   def temporary_security
