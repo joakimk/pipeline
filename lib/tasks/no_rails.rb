@@ -1,9 +1,15 @@
+task :spec do
+  system("rspec", *Dir["spec/**/*_spec.rb"]) || exit(1)
+end
+
 namespace :spec do
   task :unit do
     spec_helper_path = File.expand_path("unit/spec_helper.rb")
     system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
   end
 end
+
+task :default => [ :"spec:unit", :spec ]
 
 def lines_for(type)
   `cat $(find app/models/repository/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip

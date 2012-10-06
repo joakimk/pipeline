@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-if ENV['DB']
-  puts "\nUsing the database for request tests.\n\n"
-else
-  puts "\nUsing the in-memory store for request tests. Specify DB=true to use the database.\n\n"
-end
-
 describe "Adding projects" do
   it "can be done" do
     visit root_path
@@ -31,10 +25,6 @@ describe "Adding projects" do
   end
 
   def repository
-    if ENV['DB']
-      Repository::PG.instance
-    else
-      Repository::Memory.instance
-    end
+    App.repository
   end
 end

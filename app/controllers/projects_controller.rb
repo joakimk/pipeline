@@ -21,14 +21,4 @@ class ProjectsController < ApplicationController
   def index
     @projects = repository.projects.all
   end
-
-  private
-
-  def repository
-    if Rails.env.test? && !ENV['DB']
-      Repository::Memory.instance
-    else
-      Repository::PG.instance
-    end
-  end
 end

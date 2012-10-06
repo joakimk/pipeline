@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   force_ssl if: :production?
 
+  def repository
+    App.repository
+  end
+
+  private
+
   def production?
     Rails.env.production?
   end
