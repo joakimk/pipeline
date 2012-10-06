@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+export TRAVIS=true
+bundle exec rake spec:unit
+bundle exec rake db:migrate db:test:prepare
+bundle exec rake spec
+bundle exec rake spec DB=true
