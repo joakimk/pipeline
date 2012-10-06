@@ -1,7 +1,18 @@
 #!/bin/bash
 set -e
 export TRAVIS=true
+
+echo "Running unit tests."
 bundle exec rake spec:unit
+
+echo
+echo "Preparing database."
 bundle exec rake db:migrate db:test:prepare
+
+echo
+echo "Running integrated tests with the memory store."
 bundle exec rake spec
+
+echo
+echo "Running integrated tests with the postgres store."
 bundle exec rake spec DB=true
