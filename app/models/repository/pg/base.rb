@@ -36,6 +36,10 @@ module Repository
       end
     end
 
+    def delete(entity)
+      Record.find(entity.id).delete
+    end
+
     def first
       entity_for(Record.first)
     end

@@ -84,6 +84,37 @@ shared_examples :repository do
     end
   end
 
+  describe "last" do
+    it "returns the last entity" do
+      last_added_entity = build_valid_entity
+      repository.add(build_valid_entity)
+      repository.add(last_added_entity)
+      repository.last.id.should == last_added_entity.id
+      repository.last.should be_kind_of(entity_klass)
+    end
+  end
+
+  describe "count" do
+    it "returns the number of entities" do
+      repository.add(build_valid_entity)
+      repository.add(build_valid_entity)
+      repository.count.should == 2
+    end
+  end
+
+  describe "delete" do
+    it "removes the entity" do
+      entity = build_valid_entity
+      repository.add(entity)
+      repository.add(build_valid_entity)
+      repository.delete(entity)
+      repository.all.size.should == 1
+      repository.first.id.should_not == entity.id
+    end
+
+    it "todo: should define what happens when the entity has no id and when the record does not exist"
+  end
+
   private
 
   def build_valid_entity
