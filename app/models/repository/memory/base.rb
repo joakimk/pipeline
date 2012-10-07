@@ -17,6 +17,20 @@ module Repository
       end
     end
 
+    def update(entity)
+      if entity.id
+        stored_entity = store.find { |e| e.id == entity.id }
+        if stored_entity
+          stored_entity.attributes = entity.attributes
+          true
+        else
+          raise Common::CanNotFindEntity, id: entity.id
+        end
+      else
+        raise Common::CanNotUpdateEntityWithoutId, entity.inspect
+      end
+    end
+
     def last
       store.last
     end
