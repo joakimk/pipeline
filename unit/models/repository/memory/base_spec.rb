@@ -15,40 +15,6 @@ describe Repository::Memory::Base do
   implements_role :base_repository
 end
 
-describe Repository::Memory::Base, "update" do
-  let(:repository) { described_class.new }
-
-  it "updates" do
-    entity = TestEntity.new(name: "Test")
-    repository.add(entity)
-
-    entity.name = "Updated"
-    repository.last.name.should == "Test"
-
-    repository.update(entity)
-    repository.last.id.should == entity.id
-    repository.last.name.should == "Updated"
-  end
-
-  it "returns true" do
-    entity = TestEntity.new(name: "Test")
-    repository.add(entity)
-    repository.update(entity).should == true
-  end
-
-  it "fails when the entity does not have an id" do
-    entity = TestEntity.new(name: "Test")
-    -> { repository.update(entity) }.should raise_error(Repository::Common::CanNotUpdateEntityWithoutId)
-  end
-
-  it "fails when the entity no longer exists" do
-    entity = TestEntity.new(name: "Test")
-    repository.add(entity)
-    repository.delete_all
-    -> { repository.update(entity) }.should raise_error(Repository::Common::CanNotFindEntity)
-  end
-end
-
 describe Repository::Memory::Base, "delete_all" do
   let(:repository) { described_class.new }
 

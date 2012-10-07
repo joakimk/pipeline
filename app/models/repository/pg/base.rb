@@ -22,6 +22,20 @@ module Repository
       end
     end
 
+    def update(entity)
+      if entity.id
+        record = Record.find_by_id(entity.id)
+        if record
+          record.update_attributes!(entity.attributes)
+          true
+        else
+          raise Common::CanNotFindEntity, id: entity.id
+        end
+      else
+        raise Common::CanNotUpdateEntityWithoutId, entity.inspect
+      end
+    end
+
     def last
       record = Record.last
       if record
