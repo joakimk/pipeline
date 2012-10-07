@@ -8,6 +8,13 @@ require 'support/load_path_optimizations'
 require 'support/roles'
 require 'active_support/core_ext'
 
+# Stub app config in unit tests
+module App
+  def self.builds_to_keep
+    1000
+  end
+end
+
 # Stub AR in unit tests
 module ActiveRecord
   class Base

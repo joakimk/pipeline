@@ -34,4 +34,14 @@ describe UseCase::UpdateStatus do
       builds.first.status.should == 'successful'
     end
   end
+
+  context "when there are more than App.builds_to_keep builds" do
+    it "removes the oldest build" do
+      App.stub(builds_to_keep: 2)
+      update_status.with({ project: 'app', step: 'tests', revision: '123', status: 'successful' })
+      update_status.with({ project: 'app', step: 'tests', revision: '456', status: 'successful' })
+      update_status.with({ project: 'app', step: 'tests', revision: '789', status: 'successful' })
+      repository.builds.all.map(&:revision).should == [ '456', '789' ]
+    end
+  end
 end

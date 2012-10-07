@@ -31,8 +31,20 @@ module Repository
       end
     end
 
+    def delete(entity)
+      store.delete_if { |e| e.id == entity.id }
+    end
+
+    def first
+      store.first
+    end
+
     def last
       store.last
+    end
+
+    def count
+      all.size
     end
 
     def all

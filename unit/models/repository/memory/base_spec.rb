@@ -86,6 +86,40 @@ describe Repository::Memory::Base, "delete_all" do
   end
 end
 
+describe Repository::Memory::Base, "first" do
+  let(:repository) { described_class.new }
+
+  it "returns the first entity" do
+    first_added_entity = Entity::Base.new
+    repository.add(first_added_entity)
+    repository.add(Entity::Base.new)
+    repository.first.id.should == first_added_entity.id
+  end
+end
+
+describe Repository::Memory::Base, "count" do
+  let(:repository) { described_class.new }
+
+  it "returns the number of entities" do
+    repository.add(Entity::Base.new)
+    repository.add(Entity::Base.new)
+    repository.count.should == 2
+  end
+end
+
+describe Repository::Memory::Base, "delete" do
+  let(:repository) { described_class.new }
+
+  it "removes the entity" do
+    entity = Entity::Base.new
+    repository.add(entity)
+    repository.add(Entity::Base.new)
+    repository.delete(entity)
+    repository.all.size.should == 1
+    repository.first.id.should_not == entity.id
+  end
+end
+
 describe Repository::Memory::Base, "last" do
   let(:repository) { described_class.new }
 
