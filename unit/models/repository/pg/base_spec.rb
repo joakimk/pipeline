@@ -73,6 +73,15 @@ describe Repository::PG::Base, "last" do
   end
 end
 
+describe Repository::PG::Base, "count" do
+  let(:repository) { TestRepo.new }
+
+  it "returns the number of entities" do
+    TestRepo::Record.stub(count: 2)
+    repository.count.should == 2
+  end
+end
+
 describe Repository::PG::Base, "all" do
   let(:repository) { TestRepo.new }
 

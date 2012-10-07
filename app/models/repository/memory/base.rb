@@ -35,6 +35,10 @@ module Repository
       store.delete_if { |e| e.id == entity.id }
     end
 
+    def delete_all
+      store.clear
+    end
+
     def first
       store.first
     end
@@ -49,10 +53,6 @@ module Repository
 
     def all
       store.dup
-    end
-
-    def delete_all
-      store.clear
     end
 
     private

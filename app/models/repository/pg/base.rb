@@ -39,6 +39,10 @@ module Repository
       Record.delete_all
     end
 
+    def count
+      Record.count
+    end
+
     private
 
     class_attribute :_entity_klass
