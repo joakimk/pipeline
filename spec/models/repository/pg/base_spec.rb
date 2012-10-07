@@ -11,10 +11,9 @@ class TestRepo < Repository::PG::Base
   attr_accessible :name
 end
 
-describe Repository::PG::Base, "integration", :pg do
-  it "can add a record and get it back" do
-    repository = TestRepo.new
-    repository.add(TestEntity.new(name: "test1"))
-    repository.last.name.should == "test1"
-  end
+describe Repository::PG::Base, :pg do
+  let(:repository) { TestRepo.new }
+  let(:entity_klass) { TestEntity }
+
+  include_examples :repository
 end

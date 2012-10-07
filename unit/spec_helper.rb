@@ -30,5 +30,7 @@ require 'factory_girl'
 FactoryGirl.definition_file_paths = [ "#{RAILS_ROOT}/spec/factories" ]
 FactoryGirl.find_definitions
 
+Dir[File.join(RAILS_ROOT, "spec/support/shared_examples/*.rb")].each { |f| require f }
+
 RSpec.configure do |config|
 end
