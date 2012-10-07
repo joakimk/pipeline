@@ -74,6 +74,16 @@ shared_examples :repository do
     end
   end
 
+  describe "first" do
+    it "returns the first entity" do
+      first_added_entity = build_valid_entity
+      repository.add(first_added_entity)
+      repository.add(build_valid_entity)
+      repository.first.id.should == first_added_entity.id
+      repository.first.should be_kind_of(entity_klass)
+    end
+  end
+
   private
 
   def build_valid_entity

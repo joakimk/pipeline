@@ -36,13 +36,12 @@ module Repository
       end
     end
 
+    def first
+      entity_for(Record.first)
+    end
+
     def last
-      record = Record.last
-      if record
-        _entity_klass.new(Record.last.attributes)
-      else
-        nil
-      end
+      entity_for(Record.last)
     end
 
     def all
@@ -58,6 +57,14 @@ module Repository
     end
 
     private
+
+    def entity_for(record)
+      if record
+        _entity_klass.new(record.attributes)
+      else
+        nil
+      end
+    end
 
     class_attribute :_entity_klass
 

@@ -15,17 +15,6 @@ describe Repository::Memory::Base do
   implements_role :base_repository
 end
 
-describe Repository::Memory::Base, "first" do
-  let(:repository) { described_class.new }
-
-  it "returns the first entity" do
-    first_added_entity = Entity::Base.new
-    repository.add(first_added_entity)
-    repository.add(Entity::Base.new)
-    repository.first.id.should == first_added_entity.id
-  end
-end
-
 describe Repository::Memory::Base, "count" do
   let(:repository) { described_class.new }
 
