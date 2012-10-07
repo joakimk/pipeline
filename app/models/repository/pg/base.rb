@@ -6,17 +6,9 @@ module Repository
       self._entity_klass = klass
     end
 
-    def self.attr_accessible(*attributes)
-      Record.attr_accessible(*attributes)
-    end
-
-    def self.table_name(table_name)
-      Record.table_name = table_name
-    end
-
     def add(entity)
       if entity.valid?
-        entity.id = Record.create!(entity.attributes).id
+        entity.id = record_klass.create!(entity.attributes).id
       else
         false
       end
@@ -24,7 +16,7 @@ module Repository
 
     def update(entity)
       if entity.id
-        record = Record.find_by_id(entity.id)
+        record = record_klass.find_by_id(entity.id)
         if record
           record.update_attributes!(entity.attributes)
           true
@@ -37,27 +29,27 @@ module Repository
     end
 
     def delete(entity)
-      Record.find(entity.id).delete
+      record_klass.find(entity.id).delete
     end
 
     def first
-      entity_for(Record.first)
+      entity_for(record_klass.first)
     end
 
     def last
-      entity_for(Record.last)
+      entity_for(record_klass.last)
     end
 
     def all
-      Record.all.map { |record| _entity_klass.new(record.attributes) }
+      record_klass.all.map { |record| _entity_klass.new(record.attributes) }
     end
 
     def delete_all
-      Record.delete_all
+      record_klass.delete_all
     end
 
     def count
-      Record.count
+      record_klass.count
     end
 
     private
@@ -71,8 +63,5 @@ module Repository
     end
 
     class_attribute :_entity_klass
-
-    class Record < ActiveRecord::Base
-    end
   end
 end

@@ -7,8 +7,15 @@ end
 
 class TestRepo < Repository::PG::Base
   entity_klass TestEntity
-  table_name :projects
-  attr_accessible :name
+
+  def record_klass
+    Record
+  end
+
+  class Record < ActiveRecord::Base
+    attr_accessible :name
+    self.table_name = :projects
+  end
 end
 
 describe Repository::PG::Base, :pg do

@@ -6,7 +6,7 @@ describe UseCase::UpdateStatus do
   let(:repository) { Repository::Memory.instance }
   let(:update_status) { described_class.new(repository) }
 
-  after do
+  before do
     repository.builds.delete_all
   end
 
