@@ -1,6 +1,6 @@
 require 'add_project'
 
-class ProjectsController < ApplicationController
+class ProjectsController < WebController
   def new
     @project = Entity::Project.new
   end

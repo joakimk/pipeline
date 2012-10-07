@@ -28,7 +28,12 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
 
   running_a_single_file = (ARGV.count == 1)
-  if App.repository.is_a?(Repository::Memory) && !running_a_single_file
-    config.filter_run_excluding :pg
+  using_memory_repository = App.repository.is_a?(Repository::Memory)
+  if using_memory_repository
+    unless running_a_single_file
+      config.filter_run_excluding :pg
+    end
+  else
+    config.filter_run_excluding :memory_only
   end
 end

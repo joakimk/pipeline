@@ -6,4 +6,12 @@ class App
   else
     self.repository = Repository::PG.instance
   end
+
+  def self.api_token
+    if Rails.env.test? || Rails.env.development?
+      'test-api-token'
+    else
+      ENV['API_TOKEN'] || raise("Missing API_TOKEN")
+    end
+  end
 end
