@@ -14,8 +14,9 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 * Use cases (actions you can take with the app): [app/use_cases](https://github.com/joakimk/deployer/tree/master/app/use_cases)
 * Memory storage: [app/models/repository/memory](https://github.com/joakimk/deployer/tree/master/app/models/repository/memory)
 * Postgres storage: [app/models/repository/pg](https://github.com/joakimk/deployer/tree/master/app/models/repository/pg)
+* Persistence code is tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/repository.rb)
 
-## Fun stuff
+## Fast tests
 
 With this setup you can [test validations like you usually do](https://github.com/joakimk/deployer/blob/master/unit/models/entity/project_spec.rb), and still have very fast tests.
 
