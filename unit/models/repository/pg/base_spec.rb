@@ -14,15 +14,6 @@ class TestRepo < Repository::PG::Base
   entity_klass TestEntity
 end
 
-describe Repository::PG::Base, "delete_all" do
-  let(:repository) { described_class.new }
-
-  it "forwards to the record" do
-    TestRepo::Record.should_receive(:delete_all)
-    repository.delete_all
-  end
-end
-
 describe Repository::PG::Base, "last" do
   let(:repository) { TestRepo.new }
 

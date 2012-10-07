@@ -66,6 +66,14 @@ shared_examples :repository do
     end
   end
 
+  describe "delete_all" do
+    it "empties the repository" do
+      repository.add(build_valid_entity)
+      repository.delete_all
+      repository.all.should == []
+    end
+  end
+
   private
 
   def build_valid_entity

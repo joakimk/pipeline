@@ -15,16 +15,6 @@ describe Repository::Memory::Base do
   implements_role :base_repository
 end
 
-describe Repository::Memory::Base, "delete_all" do
-  let(:repository) { described_class.new }
-
-  it "empties the repository" do
-    repository.add(Entity::Base.new)
-    repository.delete_all
-    repository.all.should == []
-  end
-end
-
 describe Repository::Memory::Base, "first" do
   let(:repository) { described_class.new }
 
