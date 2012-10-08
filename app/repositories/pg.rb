@@ -3,11 +3,11 @@ require 'repository_backend'
 module Repository
   class PG < RepositoryBackend
     def projects
-      @projects ||= Project.new
+      @projects ||= ProjectMapper.new
     end
 
     def builds
-      @builds ||= Build.new
+      @builds ||= BuildMapper.new
     end
   end
 end

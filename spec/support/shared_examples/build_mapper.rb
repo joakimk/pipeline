@@ -1,4 +1,4 @@
-shared_examples :build_repository do
+shared_examples :build_mapper do
   # expects repository
   let(:build) { Build.new(project: 'github', step: 'build_assets', revision: '456', status: 'building') }
 

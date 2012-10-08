@@ -1,8 +1,8 @@
 module Repository
   module Common
-    module Project
+    module ProjectMapper
       def add_by_attributes(attributes, client)
-        project = ::Project.new(attributes)
+        project = Project.new(attributes)
 
         if add(project)
           client.project_added(project)
