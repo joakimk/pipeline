@@ -15,8 +15,8 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 * Memory storage: [app/models/repository/memory](https://github.com/joakimk/deployer/tree/master/app/models/repository/memory)
 * Postgres storage: [app/models/repository/pg](https://github.com/joakimk/deployer/tree/master/app/models/repository/pg)
 * Persistence code is tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/repository.rb)
-* Unit test suite: [unit/](https://github.com/joakimk/deployer/blob/master/unit) (does not load rails and each test is about 1ms)
-* Integrated test suite: [spec/](https://github.com/joakimk/deployer/blob/master/spec) (everything else)
+* Unit test suite (does not load rails and each test is about 1ms): [unit/](https://github.com/joakimk/deployer/blob/master/unit)
+* Integrated test suite (everything else): [spec/](https://github.com/joakimk/deployer/blob/master/spec)
 
 ## Fast tests
 
