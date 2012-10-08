@@ -4,7 +4,7 @@ require 'repository/common/project'
 module Repository
   class PG::Project < PG::Base
     include Repository::Common::Project
-    entity_klass Entity::Project
+    entity_klass Project
 
     private
 

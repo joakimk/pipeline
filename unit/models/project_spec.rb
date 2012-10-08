@@ -1,6 +1,6 @@
-require 'entity/project'
+require 'project'
 
-describe Entity::Project do
+describe Project do
   it "is valid" do
     FactoryGirl.build(:entity_project).should be_valid
   end

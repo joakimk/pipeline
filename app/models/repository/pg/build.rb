@@ -2,7 +2,7 @@ require 'repository/pg/base'
 
 module Repository
   class PG::Build < PG::Base
-    entity_klass Entity::Build
+    entity_klass Build
 
     def find_known_by(attributes)
       record_klass.where(

@@ -1,4 +1,4 @@
-require 'entity/build'
+require 'build'
 
 # Updates build status, creates new builds when needed.
 # Intended to be used by a client within a CI server to post status to this app.
@@ -15,7 +15,7 @@ module UseCase
         build.status = attributes[:status]
         builds.update(build)
       else
-        builds.add(Entity::Build.new(attributes))
+        builds.add(Build.new(attributes))
         builds.delete(builds.first) if builds.count > App.builds_to_keep
       end
     end

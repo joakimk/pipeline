@@ -4,7 +4,7 @@
 en:
   activemodel:
     attributes:
-      entity/project:
+      project:
         name: "Name"
         github_url: "Github URL"
 

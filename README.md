@@ -1,7 +1,6 @@
 ![Build status](https://secure.travis-ci.org/joakimk/deployer.png) | [builds](https://travis-ci.org/#!/joakimk/deployer/builds)
 
 ## Work in progress
-
 This will be an app to manage deploys. I plan to import some of the internal deployment tools from [barsoom](http://barsoom.se) into this app.
 
 ## The code
@@ -12,7 +11,7 @@ The goal with this experiment is to get most of the benefits (fast tests, low co
 
 ## Structure
 
-* Entity classes (domain models): [app/models/entity](https://github.com/joakimk/deployer/tree/master/app/models/entity)
+* Entity classes (domain models): [app/models](https://github.com/joakimk/deployer/tree/master/app/models)
 * Use cases (actions you can take with the app): [app/use_cases](https://github.com/joakimk/deployer/tree/master/app/use_cases)
 * Persistence
   - Tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/repository.rb)

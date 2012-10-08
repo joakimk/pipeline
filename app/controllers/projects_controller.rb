@@ -2,11 +2,11 @@ require 'add_project'
 
 class ProjectsController < WebController
   def new
-    @project = Entity::Project.new
+    @project = Project.new
   end
 
   def create
-    UseCase::AddProject.run(repository, params[:entity_project], self)
+    UseCase::AddProject.run(repository, params[:project], self)
   end
 
   def project_added(project)

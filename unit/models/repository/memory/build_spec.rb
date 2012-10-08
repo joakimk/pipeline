@@ -1,5 +1,5 @@
 require 'repository/memory/build'
-require 'entity/build'
+require 'build'
 
 describe Repository::Memory::Build do
   let(:repository) { Repository::Memory.instance }
