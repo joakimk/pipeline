@@ -18,20 +18,13 @@ module Repository
     end
 
     def update(entity)
-      if entity.id
-        stored_entity = store.find { |e| e.id == entity.id }
-        if stored_entity
-          stored_entity.attributes = entity.attributes
-          true
-        else
-          raise Common::CanNotFindEntity, id: entity.id
-        end
-      else
-        raise Common::CanNotUpdateEntityWithoutId, entity.inspect
-      end
+      known_entity = find_by_entity(entity)
+      known_entity.attributes = entity.attributes
+      true
     end
 
     def delete(entity)
+      known_entity = find_by_entity(entity)
       store.delete_if { |e| e.id == entity.id }
     end
 
@@ -56,6 +49,11 @@ module Repository
     end
 
     private
+
+    def find_by_entity(entity)
+      (entity.id && store.find { |e| e.id == entity.id }) ||
+        raise(Common::CanNotFindEntity, entity.inspect)
+    end
 
     def next_id
       @last_id += 1

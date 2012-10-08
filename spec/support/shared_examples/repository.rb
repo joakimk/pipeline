@@ -33,8 +33,6 @@ shared_examples :repository do
   end
 
   describe "update" do
-    it "todo: needs to handle update errors"
-
     it "updates" do
       entity = build_valid_entity
       repository.add(entity)
@@ -55,7 +53,7 @@ shared_examples :repository do
 
     it "fails when the entity does not have an id" do
       entity = build_valid_entity
-      -> { repository.update(entity) }.should raise_error(Repository::Common::CanNotUpdateEntityWithoutId)
+      -> { repository.update(entity) }.should raise_error(Repository::Common::CanNotFindEntity)
     end
 
     it "fails when the entity no longer exists" do
@@ -112,7 +110,15 @@ shared_examples :repository do
       repository.first.id.should_not == entity.id
     end
 
-    it "todo: should define what happens when the entity has no id and when the record does not exist"
+    it "fails when the entity does not have an id" do
+      entity = entity_klass.new
+      -> { repository.delete(entity) }.should raise_error(Repository::Common::CanNotFindEntity)
+    end
+
+    it "fails when the entity can not be found" do
+      entity = entity_klass.new(id: -1)
+      -> { repository.delete(entity) }.should raise_error(Repository::Common::CanNotFindEntity)
+    end
   end
 
   private

@@ -15,21 +15,12 @@ module Repository
     end
 
     def update(entity)
-      if entity.id
-        record = record_klass.find_by_id(entity.id)
-        if record
-          record.update_attributes!(entity.attributes)
-          true
-        else
-          raise Common::CanNotFindEntity, id: entity.id
-        end
-      else
-        raise Common::CanNotUpdateEntityWithoutId, entity.inspect
-      end
+      record_for(entity).update_attributes!(entity.attributes)
+      true
     end
 
     def delete(entity)
-      record_klass.find(entity.id).delete
+      record_for(entity).delete
     end
 
     def first
@@ -53,6 +44,11 @@ module Repository
     end
 
     private
+
+    def record_for(entity)
+      (entity.id && record_klass.find_by_id(entity.id)) ||
+        raise(Common::CanNotFindEntity, entity.inspect)
+    end
 
     def entity_for(record)
       if record
