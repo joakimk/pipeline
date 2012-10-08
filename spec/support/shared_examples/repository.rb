@@ -80,6 +80,10 @@ shared_examples :repository do
       repository.first.id.should == first_added_entity.id
       repository.first.should be_kind_of(entity_klass)
     end
+
+    it "returns nil when there is no entity" do
+      repository.first.should be_nil
+    end
   end
 
   describe "last" do
@@ -89,6 +93,10 @@ shared_examples :repository do
       repository.add(last_added_entity)
       repository.last.id.should == last_added_entity.id
       repository.last.should be_kind_of(entity_klass)
+    end
+
+    it "returns nil when there is no entity" do
+      repository.last.should be_nil
     end
   end
 
