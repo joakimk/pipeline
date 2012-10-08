@@ -14,8 +14,7 @@ I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8t
 * Use cases (actions you can take with the app): [app/use_cases](https://github.com/joakimk/deployer/tree/master/app/use_cases)
 * Persistence
   - Tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/repository.rb)
-  - Memory storage: [app/models/repository/memory](https://github.com/joakimk/deployer/tree/master/app/models/repository/memory)
-    - [Used in unit tests to test persistence](https://github.com/joakimk/deployer/blob/master/unit/use_cases/update_status_spec.rb)
+  - Memory storage: [app/models/repository/memory](https://github.com/joakimk/deployer/tree/master/app/models/repository/memory) (used in unit tests to [test persistence](https://github.com/joakimk/deployer/blob/master/unit/use_cases/update_status_spec.rb))
   - Postgres storage: [app/models/repository/pg](https://github.com/joakimk/deployer/tree/master/app/models/repository/pg)
 * Testing
   - Unit tests (does not load rails and each test is about 1ms): [unit/](https://github.com/joakimk/deployer/blob/master/unit)
