@@ -1,4 +1,4 @@
-require 'repository/memory'
+require 'repositories/memory'
 
 module Repository
   class Memory::Mapper

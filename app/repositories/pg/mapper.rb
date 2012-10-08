@@ -1,4 +1,4 @@
-require 'repository/pg'
+require 'repositories/pg'
 
 module Repository
   class PG::Mapper

@@ -1,6 +1,6 @@
 require 'update_status'
-require 'repository/memory'
-require 'repository/memory/build'
+require 'repositories/memory'
+require 'repositories/memory/build'
 
 describe UseCase::UpdateStatus do
   let(:repository) { Repository::Memory.instance }

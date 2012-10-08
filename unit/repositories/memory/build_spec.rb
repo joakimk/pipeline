@@ -1,4 +1,4 @@
-require 'repository/memory/build'
+require 'repositories/memory/build'
 require 'build'
 
 describe Repository::Memory::Build do

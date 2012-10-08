@@ -1,3 +1,7 @@
+$: << "#{Rails.root}/app"
+require "#{Rails.root}/app/repositories/pg.rb"
+require "#{Rails.root}/app/repositories/memory.rb"
+
 class App
   cattr_accessor :repository
 

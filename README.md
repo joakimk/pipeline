@@ -15,8 +15,8 @@ The goal with this experiment is to get most of the benefits (fast tests, low co
 * Use cases (actions you can take with the app): [app/use_cases](https://github.com/joakimk/deployer/tree/master/app/use_cases)
 * Persistence
   - Tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/repository.rb)
-  - Memory storage: [app/models/repository/memory](https://github.com/joakimk/deployer/tree/master/app/models/repository/memory)
-  - Postgres storage: [app/models/repository/pg](https://github.com/joakimk/deployer/tree/master/app/models/repository/pg)
+  - Memory storage: [app/repositories/memory](https://github.com/joakimk/deployer/tree/master/app/repositories/memory)
+  - Postgres storage: [app/repositories/pg](https://github.com/joakimk/deployer/tree/master/app/repositories/pg)
 * Testing
   - Unit tests (does not load rails and each test is about 1ms): [unit/](https://github.com/joakimk/deployer/blob/master/unit)
   - Integrated tests (everything else): [spec/](https://github.com/joakimk/deployer/blob/master/spec)

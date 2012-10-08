@@ -1,5 +1,5 @@
-require 'repository/pg/mapper'
-require 'repository/common/project'
+require 'repositories/pg/mapper'
+require 'repositories/common/project'
 
 module Repository
   class PG::Project < PG::Mapper

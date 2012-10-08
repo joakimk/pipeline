@@ -1,4 +1,4 @@
-require 'repository/pg/mapper'
+require 'repositories/pg/mapper'
 
 module Repository
   class PG::Build < PG::Mapper

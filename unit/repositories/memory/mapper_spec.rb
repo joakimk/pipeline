@@ -1,5 +1,5 @@
-require 'repository/memory/mapper'
-require 'repository/common'
+require 'repositories/memory/mapper'
+require 'repositories/common'
 require 'entity/base'
 
 class TestEntity < Entity::Base

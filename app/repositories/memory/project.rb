@@ -1,5 +1,5 @@
-require 'repository/memory/mapper'
-require 'repository/common/project'
+require 'repositories/memory/mapper'
+require 'repositories/common/project'
 
 module Repository
   class Memory::Project < Memory::Mapper

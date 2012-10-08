@@ -1,5 +1,5 @@
-require 'repository/common/project'
-require 'repository/memory/mapper'
+require 'repositories/common/project'
+require 'repositories/memory/mapper'
 
 describe Repository::Common::Project do
   subject { Class.new.send(:include, described_class).new }

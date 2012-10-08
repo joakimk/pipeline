@@ -21,7 +21,7 @@ end
 task :default => [ :"spec:unit", :"spec:with_memory", :"spec:with_postgres" ]
 
 def lines_for(type)
-  `cat $(find app/models/repository/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip
+  `cat $(find app/repositories/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip
 end
 
 desc "Some code stats"
