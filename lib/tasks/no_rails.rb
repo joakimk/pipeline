@@ -7,9 +7,18 @@ namespace :spec do
     spec_helper_path = File.expand_path("unit/spec_helper.rb")
     system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
   end
+
+  task :with_memory do
+    Rake::Task[:spec].execute
+  end
+
+  task :with_postgres do
+    ENV['DB'] = 't'
+    Rake::Task[:spec].execute
+  end
 end
 
-task :default => [ :"spec:unit", :spec ]
+task :default => [ :"spec:unit", :"spec:with_memory", :"spec:with_postgres" ]
 
 def lines_for(type)
   `cat $(find app/models/repository/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip
