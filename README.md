@@ -23,7 +23,7 @@ The goal with this experiment is to get most of the benefits (fast tests, low co
 
 ## Fast tests
 
-With this setup you can test [validations](https://github.com/joakimk/deployer/blob/master/unit/models/entity/project_spec.rb) and [persistence](https://github.com/joakimk/deployer/blob/master/unit/use_cases/update_status_spec.rb) like you usually do, and still have very fast tests.
+With this setup you can test [validations](https://github.com/joakimk/deployer/blob/master/unit/models/project_spec.rb) and [persistence](https://github.com/joakimk/deployer/blob/master/unit/use_cases/update_status_spec.rb) like you usually do, and still have very fast tests.
 
     Finished in 0.67609 seconds
     1000 examples, 0 failures
