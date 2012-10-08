@@ -1,7 +1,7 @@
-require 'repository_backend'
+require 'repositories/base'
 
 module Repository
-  class Memory < RepositoryBackend
+  class Memory < Repository::Base
     def projects
       @projects ||= ProjectMapper.new
     end
