@@ -1,7 +1,7 @@
 require 'repository/pg'
 
 module Repository
-  class PG::Base
+  class PG::Mapper
     def self.entity_klass(klass)
       self._entity_klass = klass
     end

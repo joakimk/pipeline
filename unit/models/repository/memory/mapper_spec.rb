@@ -1,4 +1,4 @@
-require 'repository/memory/base'
+require 'repository/memory/mapper'
 require 'repository/common'
 require 'entity/base'
 
@@ -7,14 +7,14 @@ class TestEntity < Entity::Base
   validates :name, presence: true
 end
 
-describe Repository::Memory::Base do
+describe Repository::Memory::Mapper do
   let(:repository) { described_class.new }
   let(:entity_klass) { TestEntity }
 
-  include_examples :repository
+  include_examples :mapper
 end
 
-describe Repository::Memory::Base, "all" do
+describe Repository::Memory::Mapper, "all" do
   let(:repository) { described_class.new }
 
   it "does not return the internal list" do

@@ -1,8 +1,8 @@
-require 'repository/memory/base'
+require 'repository/memory/mapper'
 require 'repository/common/project'
 
 module Repository
-  class Memory::Project < Memory::Base
+  class Memory::Project < Memory::Mapper
     include Repository::Common::Project
   end
 end

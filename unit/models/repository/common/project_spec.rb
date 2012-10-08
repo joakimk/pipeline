@@ -1,5 +1,5 @@
 require 'repository/common/project'
-require 'repository/memory/base'
+require 'repository/memory/mapper'
 
 describe Repository::Common::Project do
   subject { Class.new.send(:include, described_class).new }
@@ -7,7 +7,7 @@ describe Repository::Common::Project do
 end
 
 describe Repository::Common::Project, "add_by_attributes" do
-  class ProjectRepo < Repository::Memory::Base
+  class ProjectRepo < Repository::Memory::Mapper
     include Repository::Common::Project
   end
 

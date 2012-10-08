@@ -1,4 +1,4 @@
-shared_examples :repository do
+shared_examples :mapper do
   # expects repository and entity_klass to be defined
 
   describe "add" do

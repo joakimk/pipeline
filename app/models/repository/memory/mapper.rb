@@ -1,7 +1,7 @@
 require 'repository/memory'
 
 module Repository
-  class Memory::Base
+  class Memory::Mapper
     def initialize
       @store = []
       @last_id = 0
