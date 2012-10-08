@@ -1,7 +1,7 @@
-require 'repositories/pg'
+require 'repositories/ar'
 
 module Repository
-  class PG::Mapper
+  class AR::Mapper
     def self.entity_klass(klass)
       self._entity_klass = klass
     end

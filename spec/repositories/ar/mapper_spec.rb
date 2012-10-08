@@ -5,7 +5,7 @@ class TestEntity < Entity::Base
   validates :name, presence: true
 end
 
-class TestRepo < Repository::PG::Mapper
+class TestMapper < Repository::AR::Mapper
   entity_klass TestEntity
 
   def record_klass
@@ -18,8 +18,8 @@ class TestRepo < Repository::PG::Mapper
   end
 end
 
-describe Repository::PG::Mapper, :pg do
-  let(:repository) { TestRepo.new }
+describe Repository::AR::Mapper, :pg do
+  let(:repository) { TestMapper.new }
   let(:entity_klass) { TestEntity }
 
   include_examples :mapper

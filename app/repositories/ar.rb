@@ -1,7 +1,7 @@
 require 'repository_backend'
 
 module Repository
-  class PG < RepositoryBackend
+  class AR < RepositoryBackend
     def projects
       @projects ||= ProjectMapper.new
     end

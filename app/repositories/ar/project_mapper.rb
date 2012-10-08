@@ -1,8 +1,8 @@
-require 'repositories/pg/mapper'
+require 'repositories/ar/mapper'
 require 'repositories/common/project_mapper'
 
 module Repository
-  class PG::ProjectMapper < PG::Mapper
+  class AR::ProjectMapper < AR::Mapper
     include Repository::Common::ProjectMapper
     entity_klass Project
 

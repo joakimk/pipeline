@@ -1,5 +1,5 @@
 $: << "#{Rails.root}/app"
-require "#{Rails.root}/app/repositories/pg.rb"
+require "#{Rails.root}/app/repositories/ar.rb"
 require "#{Rails.root}/app/repositories/memory.rb"
 
 class App
@@ -8,7 +8,7 @@ class App
   if Rails.env.test? && !ENV['DB']
     self.repository = Repository::Memory.instance
   else
-    self.repository = Repository::PG.instance
+    self.repository = Repository::AR.instance
   end
 
   def self.api_token

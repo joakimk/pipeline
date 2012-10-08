@@ -1,7 +1,7 @@
-require 'repositories/pg/mapper'
+require 'repositories/ar/mapper'
 
 module Repository
-  class PG::BuildMapper < PG::Mapper
+  class AR::BuildMapper < AR::Mapper
     entity_klass Build
 
     def find_known_by(attributes)

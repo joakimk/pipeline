@@ -16,7 +16,7 @@ The goal with this experiment is to get most of the benefits (fast tests, low co
 * Persistence
   - Tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/repository.rb)
   - Memory storage: [app/repositories/memory](https://github.com/joakimk/deployer/tree/master/app/repositories/memory)
-  - Postgres storage: [app/repositories/pg](https://github.com/joakimk/deployer/tree/master/app/repositories/pg)
+  - ActiveRecord storage: [app/repositories/ar](https://github.com/joakimk/deployer/tree/master/app/repositories/ar)
 * Testing
   - Unit tests (does not load rails and each test is about 1ms): [unit/](https://github.com/joakimk/deployer/blob/master/unit)
   - Integrated tests (everything else): [spec/](https://github.com/joakimk/deployer/blob/master/spec)
