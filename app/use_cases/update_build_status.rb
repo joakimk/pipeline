@@ -1,13 +1,9 @@
 require 'build'
 
-# Updates build status, creates new builds when needed.
 # Intended to be used by a client within a CI server to post status to this app.
-class BuildStatusService
-  def initialize(repository)
-    @builds = repository.builds
-  end
-
-  def update_status(attributes)
+class UpdateBuildStatus
+  def self.run(repository, attributes)
+    builds = repository.builds
     build = builds.find_known_by(attributes)
 
     if build
@@ -18,8 +14,4 @@ class BuildStatusService
       builds.delete(builds.first) if builds.count > App.builds_to_keep
     end
   end
-
-  private
-
-  attr_reader :builds
 end

@@ -4,7 +4,7 @@ class ProjectsController < WebController
   end
 
   def create
-    service.add_project(params[:project], self)
+    AddProject.run(repository, params[:project], self)
   end
 
   def project_added(project)
@@ -21,10 +21,6 @@ class ProjectsController < WebController
   end
 
   private
-
-  def service
-    ProjectService.new(repository)
-  end
 
   def setup_menu
     if [ "new", "create" ].include?(params[:action])
