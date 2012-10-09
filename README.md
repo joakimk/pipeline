@@ -30,6 +30,9 @@ Basic architecture:
                            |                   |
     View <- Presenter <----|                Repository::AR
     # Rails #########                       # Rails ######
+            ^^^^^^^^^
+            Note: Presenters and code in lib/ can usually be made
+                  independent of rails too.
 
 ## Fast tests
 
