@@ -2,14 +2,14 @@ class Api::StatusesController < ApiController
   before_filter :check_token
 
   def create
-    update_status.with(clean_params)
+    service.update_status(clean_params)
     render nothing: true
   end
 
   private
 
-  def update_status
-    UseCase::UpdateStatus.new(repository)
+  def service
+    BuildStatusService.new(repository)
   end
 
   def check_token

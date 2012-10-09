@@ -1,12 +1,10 @@
-require 'add_project'
-
 class ProjectsController < WebController
   def new
     @project = Project.new
   end
 
   def create
-    UseCase::AddProject.run(repository, params[:project], self)
+    service.add_project(params[:project], self)
   end
 
   def project_added(project)
@@ -23,6 +21,10 @@ class ProjectsController < WebController
   end
 
   private
+
+  def service
+    ProjectService.new(repository)
+  end
 
   def setup_menu
     if [ "new", "create" ].include?(params[:action])
