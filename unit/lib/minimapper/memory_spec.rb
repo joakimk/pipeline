@@ -1,4 +1,4 @@
-require 'minimapper/memory_mapper'
+require 'minimapper/memory'
 require 'minimapper/common'
 
 class TestEntity < Minimapper::Entity
@@ -6,14 +6,14 @@ class TestEntity < Minimapper::Entity
   validates :name, presence: true
 end
 
-describe Minimapper::MemoryMapper do
+describe Minimapper::Memory do
   let(:repository) { described_class.new }
   let(:entity_klass) { TestEntity }
 
   include_examples :mapper
 end
 
-describe Minimapper::MemoryMapper, "all" do
+describe Minimapper::Memory, "all" do
   let(:repository) { described_class.new }
 
   it "does not return the internal list" do

@@ -1,7 +1,7 @@
 require 'repositories/ar'
 
 module Minimapper
-  class ARMapper
+  class AR
     def self.entity_klass(klass)
       self._entity_klass = klass
     end

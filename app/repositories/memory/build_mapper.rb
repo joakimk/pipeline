@@ -1,8 +1,8 @@
-require 'minimapper/memory_mapper'
+require 'minimapper/memory'
 require 'repositories/memory'
 
 module Repository
-  class Memory::BuildMapper < Minimapper::MemoryMapper
+  class Memory::BuildMapper < Minimapper::Memory
     def find_known_by(attributes)
       all.find { |b| b.project  == attributes[:project] &&
                      b.step     == attributes[:step] &&

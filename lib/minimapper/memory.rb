@@ -1,5 +1,5 @@
 module Minimapper
-  class MemoryMapper
+  class Memory
     def initialize
       @store = []
       @last_id = 0
