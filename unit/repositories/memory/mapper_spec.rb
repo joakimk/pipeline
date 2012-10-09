@@ -1,8 +1,7 @@
 require 'repositories/memory/mapper'
 require 'repositories/common'
-require 'entity/base'
 
-class TestEntity < Entity::Base
+class TestEntity < Minirepo::Entity
   attributes :name
   validates :name, presence: true
 end

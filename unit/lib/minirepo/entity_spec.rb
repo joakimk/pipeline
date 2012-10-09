@@ -1,8 +1,6 @@
-require 'entity/base'
-
-describe Entity::Base do
+describe Minirepo::Entity do
   it "handles base attributes" do
-    base = Entity::Base.new
+    base = described_class.new
     base.id = 5
     base.id.should == 5
 
@@ -15,9 +13,9 @@ describe Entity::Base do
   end
 end
 
-describe Entity::Base, "attributes" do
+describe Minirepo::Entity, "attributes" do
   it "returns the attributes" do
-    base = Entity::Base.new(id: 5)
+    base = described_class.new(id: 5)
     time = Time.now
     base.created_at = time
     base.attributes.should == { id: 5, created_at: time }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class TestEntity < Entity::Base
+class TestEntity < Minirepo::Entity
   attributes :name, :github_url
   validates :name, presence: true
 end

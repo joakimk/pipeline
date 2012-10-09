@@ -1,7 +1,7 @@
 require 'informal'
 
-module Entity
-  class Base
+module Minirepo
+  class Entity
     include Informal::Model
 
     def self.attributes(*list)

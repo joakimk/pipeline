@@ -1,6 +1,4 @@
-require 'entity/base'
-
-class Project < Entity::Base
+class Project < Minirepo::Entity
   attributes :name, :github_url
 
   validates :name, presence: true

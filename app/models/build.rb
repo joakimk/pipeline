@@ -1,5 +1,3 @@
-require 'entity/base'
-
-class Build < Entity::Base
+class Build < Minirepo::Entity
   attributes :project, :step, :revision, :status
 end
