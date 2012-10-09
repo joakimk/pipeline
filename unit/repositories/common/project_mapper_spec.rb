@@ -1,5 +1,5 @@
 require 'repositories/common/project_mapper'
-require 'repositories/memory/mapper'
+require 'minirepo/memory_mapper'
 
 describe Repository::Common::ProjectMapper do
   subject { Class.new.send(:include, described_class).new }
@@ -7,7 +7,7 @@ describe Repository::Common::ProjectMapper do
 end
 
 describe Repository::Common::ProjectMapper, "add_by_attributes" do
-  class ProjectMapper < Repository::Memory::Mapper
+  class ProjectMapper < Minirepo::MemoryMapper
     include Repository::Common::ProjectMapper
   end
 

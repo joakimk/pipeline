@@ -1,7 +1,5 @@
-require 'repositories/memory'
-
-module Repository
-  class Memory::Mapper
+module Minirepo
+  class MemoryMapper
     def initialize
       @store = []
       @last_id = 0

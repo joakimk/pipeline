@@ -47,7 +47,7 @@ module Repository
 
     def record_for(entity)
       (entity.id && record_klass.find_by_id(entity.id)) ||
-        raise(Common::CanNotFindEntity, entity.inspect)
+        raise(Minirepo::Common::CanNotFindEntity, entity.inspect)
     end
 
     def entity_for(record)
