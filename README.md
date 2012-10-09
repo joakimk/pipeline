@@ -1,15 +1,14 @@
 ![Build status](https://secure.travis-ci.org/joakimk/deployer.png) | [builds](https://travis-ci.org/#!/joakimk/deployer/builds)
 
 ## Work in progress
+
 This will be an app to manage deploys. I plan to import some of the internal deployment tools from [barsoom](http://barsoom.se) into this app.
 
-## The code
+## About the code
 
-I'm trying to find a good adaptation for [The Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) for larger rails apps, so I'm using this as a playground. Because of this, there might be things in this app that are architectural overkill for such a small app.
+I'm trying to find a good adaptation of [The Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) for larger rails apps, so I'm using this as a playground. Because of this, there might be things in this app that are architectural overkill for such a small app.
 
-The goal with this experiment is to get most of the benefits (fast tests, low coupling, etc) with as few added layers of abstraction as possible.
-
-## Structure
+## Directory structure
 
 * Models: [app/models](https://github.com/joakimk/deployer/tree/master/app/models)
 * Services (actions you can take with the app): [app/services](https://github.com/joakimk/deployer/tree/master/app/services)
@@ -21,7 +20,7 @@ The goal with this experiment is to get most of the benefits (fast tests, low co
   - Unit tests (does not load rails and each test is about 1ms): [unit/](https://github.com/joakimk/deployer/blob/master/unit)
   - Integrated tests (everything else): [spec/](https://github.com/joakimk/deployer/blob/master/spec)
 
-Basic architecture:
+# Architecture
 
     # Rails ##          # The ruby app #########################
     Controller -------> Service -> Model -> Repository(::Memory)
