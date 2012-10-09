@@ -1,6 +1,6 @@
 require 'informal'
 
-module Minirepo
+module Minimapper
   class Entity
     include Informal::Model
 

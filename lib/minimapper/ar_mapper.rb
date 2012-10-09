@@ -1,6 +1,6 @@
 require 'repositories/ar'
 
-module Minirepo
+module Minimapper
   class ARMapper
     def self.entity_klass(klass)
       self._entity_klass = klass

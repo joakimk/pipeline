@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-class TestEntity < Minirepo::Entity
+class TestEntity < Minimapper::Entity
   attributes :name, :github_url
   validates :name, presence: true
 end
 
-class TestMapper < Minirepo::ARMapper
+class TestMapper < Minimapper::ARMapper
   entity_klass TestEntity
 
   def record_klass
@@ -18,7 +18,7 @@ class TestMapper < Minirepo::ARMapper
   end
 end
 
-describe Minirepo::ARMapper, :pg do
+describe Minimapper::ARMapper, :pg do
   let(:repository) { TestMapper.new }
   let(:entity_klass) { TestEntity }
 

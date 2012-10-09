@@ -1,4 +1,4 @@
-class Project < Minirepo::Entity
+class Project < Minimapper::Entity
   attributes :name, :github_url
 
   validates :name, presence: true

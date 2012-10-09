@@ -1,3 +1,3 @@
-class Build < Minirepo::Entity
+class Build < Minimapper::Entity
   attributes :project, :step, :revision, :status
 end

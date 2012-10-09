@@ -1,4 +1,4 @@
-module Minirepo
+module Minimapper
   module Common
     CanNotFindEntity            = Class.new(StandardError)
   end

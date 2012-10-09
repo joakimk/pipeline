@@ -1,4 +1,4 @@
-describe Minirepo::Entity do
+describe Minimapper::Entity do
   it "handles base attributes" do
     base = described_class.new
     base.id = 5
@@ -13,7 +13,7 @@ describe Minirepo::Entity do
   end
 end
 
-describe Minirepo::Entity, "attributes" do
+describe Minimapper::Entity, "attributes" do
   it "returns the attributes" do
     base = described_class.new(id: 5)
     time = Time.now

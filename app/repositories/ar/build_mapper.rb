@@ -1,7 +1,7 @@
-require 'minirepo/ar_mapper'
+require 'minimapper/ar_mapper'
 
 module Repository
-  class AR::BuildMapper < Minirepo::ARMapper
+  class AR::BuildMapper < Minimapper::ARMapper
     entity_klass Build
 
     def find_known_by(attributes)

@@ -1,4 +1,4 @@
-module Minirepo
+module Minimapper
   class MemoryMapper
     def initialize
       @store = []

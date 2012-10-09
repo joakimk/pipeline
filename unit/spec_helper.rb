@@ -11,7 +11,7 @@ require 'active_support/core_ext'
 
 # I plan to gemify this soon, until then, it'll be
 # explicit requires
-require 'minirepo/entity'
+require 'minimapper/entity'
 
 # Stub app config in unit tests
 module App
