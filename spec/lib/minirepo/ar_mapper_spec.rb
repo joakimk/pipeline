@@ -5,7 +5,7 @@ class TestEntity < Minirepo::Entity
   validates :name, presence: true
 end
 
-class TestMapper < Repository::AR::Mapper
+class TestMapper < Minirepo::ARMapper
   entity_klass TestEntity
 
   def record_klass
@@ -18,7 +18,7 @@ class TestMapper < Repository::AR::Mapper
   end
 end
 
-describe Repository::AR::Mapper, :pg do
+describe Minirepo::ARMapper, :pg do
   let(:repository) { TestMapper.new }
   let(:entity_klass) { TestEntity }
 

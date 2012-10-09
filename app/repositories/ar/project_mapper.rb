@@ -1,8 +1,8 @@
-require 'repositories/ar/mapper'
+require 'minirepo/ar_mapper'
 require 'repositories/common/project_mapper'
 
 module Repository
-  class AR::ProjectMapper < AR::Mapper
+  class AR::ProjectMapper < Minirepo::ARMapper
     include Repository::Common::ProjectMapper
     entity_klass Project
 

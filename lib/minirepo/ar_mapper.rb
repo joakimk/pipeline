@@ -1,7 +1,7 @@
 require 'repositories/ar'
 
-module Repository
-  class AR::Mapper
+module Minirepo
+  class ARMapper
     def self.entity_klass(klass)
       self._entity_klass = klass
     end
@@ -47,7 +47,7 @@ module Repository
 
     def record_for(entity)
       (entity.id && record_klass.find_by_id(entity.id)) ||
-        raise(Minirepo::Common::CanNotFindEntity, entity.inspect)
+        raise(Common::CanNotFindEntity, entity.inspect)
     end
 
     def entity_for(record)
