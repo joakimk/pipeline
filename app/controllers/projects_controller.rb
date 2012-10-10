@@ -15,11 +15,11 @@ class ProjectsController < WebController
     AddProject.run(repository, params[:project], self)
   end
 
-  def project_added(project)
+  def project_was_added(project)
     redirect_to root_path, notice: "Project added."
   end
 
-  def project_could_not_be_added(project)
+  def project_was_not_added(project)
     @project = project
     render :new
   end

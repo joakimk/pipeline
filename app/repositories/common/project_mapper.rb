@@ -5,9 +5,9 @@ module Repository
         project = Project.new(attributes)
 
         if add(project)
-          client.project_added(project)
+          client.project_was_added(project)
         else
-          client.project_could_not_be_added(project)
+          client.project_was_not_added(project)
         end
       end
     end
