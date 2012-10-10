@@ -1,4 +1,4 @@
-class Api::StatusesController < ApiController
+class Api::BuildStatusesController < ApiController
   before_filter :check_token
 
   def create
