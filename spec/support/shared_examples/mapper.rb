@@ -72,6 +72,27 @@ shared_examples :mapper do
     end
   end
 
+  describe "find" do
+    it "returns an entity matching the id" do
+      entity = build_valid_entity
+      repository.add(entity)
+      found_entity = repository.find(entity.id)
+      found_entity.name.should == "test"
+      found_entity.id.should == entity.id
+      found_entity.should be_kind_of(Minimapper::Entity)
+    end
+
+    it "supports string ids" do
+      entity = build_valid_entity
+      repository.add(entity)
+      repository.find(entity.id.to_s)
+    end
+
+    it "fails when the an entity can not be found" do
+      -> { repository.find(-1) }.should raise_error(Minimapper::Common::CanNotFindEntity)
+    end
+  end
+
   describe "first" do
     it "returns the first entity" do
       first_added_entity = build_valid_entity
@@ -105,6 +126,21 @@ shared_examples :mapper do
       repository.add(build_valid_entity)
       repository.add(build_valid_entity)
       repository.count.should == 2
+    end
+  end
+
+  describe "delete_by_id" do
+    it "removes the entity" do
+      entity = build_valid_entity
+      repository.add(entity)
+      repository.add(build_valid_entity)
+      repository.delete_by_id(entity.id)
+      repository.all.size.should == 1
+      repository.first.id.should_not == entity.id
+    end
+
+    it "fails when the an entity can not be found" do
+      -> { repository.delete_by_id(-1) }.should raise_error(Minimapper::Common::CanNotFindEntity)
     end
   end
 

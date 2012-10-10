@@ -15,15 +15,24 @@ module Minimapper
       end
     end
 
+    def find(id)
+      (id && store.find { |e| e.id == id.to_i }) ||
+        raise(Common::CanNotFindEntity, id: id)
+    end
+
     def update(entity)
-      known_entity = find_by_entity(entity)
+      known_entity = find(entity.id)
       known_entity.attributes = entity.attributes
       true
     end
 
     def delete(entity)
-      known_entity = find_by_entity(entity)
-      store.delete_if { |e| e.id == entity.id }
+      delete_by_id(entity.id)
+    end
+
+    def delete_by_id(id)
+      entity = find(id)
+      store.delete(entity)
     end
 
     def delete_all
@@ -47,11 +56,6 @@ module Minimapper
     end
 
     private
-
-    def find_by_entity(entity)
-      (entity.id && store.find { |e| e.id == entity.id }) ||
-        raise(Common::CanNotFindEntity, entity.inspect)
-    end
 
     def next_id
       @last_id += 1

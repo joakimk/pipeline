@@ -20,7 +20,15 @@ module Minimapper
     end
 
     def delete(entity)
-      record_for(entity).delete
+      delete_by_id(entity.id)
+    end
+
+    def delete_by_id(id)
+      find_record(id).delete
+    end
+
+    def find(id)
+      entity_for(find_record(id))
     end
 
     def first
@@ -44,6 +52,11 @@ module Minimapper
     end
 
     private
+
+    def find_record(id)
+      (id && record_klass.find_by_id(id)) ||
+        raise(Common::CanNotFindEntity, id: id)
+    end
 
     def record_for(entity)
       (entity.id && record_klass.find_by_id(entity.id)) ||

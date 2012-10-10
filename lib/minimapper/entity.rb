@@ -22,6 +22,10 @@ module Minimapper
       super(*opts)
     end
 
+    def to_param
+      id
+    end
+
     attributes :id, :created_at, :updated_at
 
     attr_reader :attributes

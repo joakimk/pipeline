@@ -1,3 +1,5 @@
 %h1 Projects:
 - @projects.each do |project|
-  %p= project.name
+  %p[project]
+    = project.name
+    = link_to("Remove", project_path(project), method: :delete)
