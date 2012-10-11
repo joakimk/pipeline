@@ -6,12 +6,7 @@ module Minimapper
 
     def initialize(mappers)
       @mappers = mappers
-      mappers.each do |name, instance|
-        singleton = (class << self; self end)
-        singleton.send(:define_method, name) do
-          instance
-        end
-      end
+      define_mapper_methods
     end
 
     def delete_all!
@@ -19,6 +14,15 @@ module Minimapper
     end
 
     private
+
+    def define_mapper_methods
+      mappers.each do |name, instance|
+        singleton = (class << self; self end)
+        singleton.send(:define_method, name) do # def mapper_name
+          instance                              #  instance
+        end                                     # end
+      end
+    end
 
     attr_reader :mappers
   end
