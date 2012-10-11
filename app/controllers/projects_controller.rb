@@ -1,6 +1,6 @@
 class ProjectsController < WebController
   def index
-    @projects = ListProjects.run(repository)
+    @projects = ListProjects.in(repository)
   end
 
   def new

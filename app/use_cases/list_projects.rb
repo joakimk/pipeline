@@ -1,5 +1,5 @@
 module ListProjects
-  def self.run(repository)
+  def self.in(repository)
     sorted_by_name repository.projects.all
   end
 
