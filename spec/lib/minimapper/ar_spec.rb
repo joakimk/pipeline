@@ -6,9 +6,11 @@ class TestEntity < Minimapper::Entity
 end
 
 class TestMapper < Minimapper::AR
-  entity_klass TestEntity
-
   private
+
+  def entity_klass
+    TestEntity
+  end
 
   def record_klass
     Record

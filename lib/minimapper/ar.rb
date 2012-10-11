@@ -2,10 +2,6 @@ require 'repositories/ar'
 
 module Minimapper
   class AR
-    def self.entity_klass(klass)
-      self._entity_klass = klass
-    end
-
     def add(entity)
       if entity.valid?
         entity.id = record_klass.create!(entity.attributes).id
@@ -40,7 +36,7 @@ module Minimapper
     end
 
     def all
-      record_klass.all.map { |record| _entity_klass.new(record.attributes) }
+      record_klass.all.map { |record| entity_klass.new(record.attributes) }
     end
 
     def delete_all
@@ -57,6 +53,10 @@ module Minimapper
       @record_klass ||= self.class.name.gsub(/Mapper/, '').constantize
     end
 
+    def entity_klass
+      @entity_klass ||= self.class.name.split('::').last.gsub(/Mapper/, '').constantize
+    end
+
     def find_record(id)
       (id && record_klass.find_by_id(id)) ||
         raise(Common::CanNotFindEntity, id: id)
@@ -69,12 +69,10 @@ module Minimapper
 
     def entity_for(record)
       if record
-        _entity_klass.new(record.attributes)
+        entity_klass.new(record.attributes)
       else
         nil
       end
     end
-
-    class_attribute :_entity_klass
   end
 end
