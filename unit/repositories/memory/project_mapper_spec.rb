@@ -1,5 +1,5 @@
-require 'repositories/memory/project_mapper'
+require 'memory/project_mapper'
 
-describe Repository::Memory::ProjectMapper do
+describe Memory::ProjectMapper do
   implements_role :project_mapper
 end

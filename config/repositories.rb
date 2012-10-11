@@ -1,7 +1,7 @@
 module Repositories
   Memory = Minimapper::Repository.build({
-    projects: Repository::Memory::ProjectMapper.new,
-    builds:   Repository::Memory::BuildMapper.new
+    projects: Memory::ProjectMapper.new,
+    builds:   Memory::BuildMapper.new
   })
 
   AR = Minimapper::Repository.build({

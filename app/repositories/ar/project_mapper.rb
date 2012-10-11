@@ -4,7 +4,7 @@ require 'repositories/common/project_mapper'
 module Repository
   module AR
     class ProjectMapper < Minimapper::AR
-      include Repository::Common::ProjectMapper
+      include Common::ProjectMapper
     end
 
     class Project < ActiveRecord::Base

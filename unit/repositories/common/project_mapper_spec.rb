@@ -1,14 +1,14 @@
-require 'repositories/common/project_mapper'
+require 'common/project_mapper'
 require 'minimapper/memory'
 
-describe Repository::Common::ProjectMapper do
+describe Common::ProjectMapper do
   subject { Class.new.send(:include, described_class).new }
   implements_role :project_mapper
 end
 
-describe Repository::Common::ProjectMapper, "add_by_attributes" do
+describe Common::ProjectMapper, "add_by_attributes" do
   class ProjectMapper < Minimapper::Memory
-    include Repository::Common::ProjectMapper
+    include Common::ProjectMapper
   end
 
   let(:project_mapper) { ProjectMapper.new }

@@ -1,10 +1,8 @@
 require 'minimapper/memory'
-require 'repositories/common/project_mapper'
+require 'common/project_mapper'
 
-module Repository
-  module Memory
-    class ProjectMapper < Minimapper::Memory
-      include Repository::Common::ProjectMapper
-    end
+module Memory
+  class ProjectMapper < Minimapper::Memory
+    include Common::ProjectMapper
   end
 end
