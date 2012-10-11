@@ -8,6 +8,8 @@ end
 class TestMapper < Minimapper::AR
   entity_klass TestEntity
 
+  private
+
   def record_klass
     Record
   end

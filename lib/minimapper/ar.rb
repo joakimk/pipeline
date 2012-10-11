@@ -53,6 +53,10 @@ module Minimapper
 
     private
 
+    def record_klass
+      @record_klass ||= self.class.name.gsub(/Mapper/, '').constantize
+    end
+
     def find_record(id)
       (id && record_klass.find_by_id(id)) ||
         raise(Common::CanNotFindEntity, id: id)

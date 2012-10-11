@@ -11,16 +11,9 @@ module Repository
         revision: attributes[:revision]
       ).first
     end
+  end
 
-    private
-
-    def record_klass
-      Record
-    end
-
-    class Record < ActiveRecord::Base
-      attr_accessible :project, :step, :revision, :status
-      self.table_name = :builds
-    end
+  class AR::Build < ActiveRecord::Base
+    attr_accessible :project, :step, :revision, :status
   end
 end
