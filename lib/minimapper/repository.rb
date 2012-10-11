@@ -19,7 +19,7 @@ module Minimapper
       mappers.each do |name, instance|
         singleton = (class << self; self end)
         singleton.send(:define_method, name) do # def mapper_name
-          instance                              #  instance
+          instance                              #   instance
         end                                     # end
       end
     end
