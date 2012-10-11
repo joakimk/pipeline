@@ -13,6 +13,6 @@ class Api::BuildStatusesController < ApiController
   end
 
   def clean_params
-    params.reject { |k, v| [ :action, :controller, :token ].include?(k.to_sym) }
+    params.except(:action, :controller, :token)
   end
 end
