@@ -27,7 +27,7 @@ class ProjectsController < WebController
 
   # Update project
   def update
-    UpdateProject.with(repository, params[:id], params[:project], self)
+    UpdateProject.run(repository, params[:id], params[:project], self)
   end
 
   def project_was_updated(project)

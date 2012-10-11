@@ -1,5 +1,5 @@
 class UpdateProject
-  def self.with(repository, project_id, attributes, client)
+  def self.run(repository, project_id, attributes, client)
     project = repository.projects.find(project_id)
     project.attributes = attributes
 
