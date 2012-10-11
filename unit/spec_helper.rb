@@ -9,7 +9,7 @@ require 'support/load_path_optimizations'
 require 'support/roles'
 require 'active_support/core_ext'
 
-# Stub AR in unit tests
+# Stub AR
 module ActiveRecord
   class Base
     def self.table_name=(name)
@@ -21,22 +21,25 @@ module ActiveRecord
 end
 
 # Load app config
+require 'ostruct'
+
 class Rails
   def self.root
     RAILS_ROOT
   end
 
   def self.env
-    o = Object.new
-    def o.test?
-      true
-    end
-    o
+    OpenStruct.new(test?: true)
   end
+end
+
+Dir.glob("#{RAILS_ROOT}/app/repositories/**/*_mapper.rb").each do |mapper|
+  require mapper.split("/")[-2, 2].join('/')
 end
 
 require File.join(RAILS_ROOT, "config/initializers/app")
 
+# Setup factories
 require 'factory_girl'
 FactoryGirl.definition_file_paths = [ "#{RAILS_ROOT}/spec/factories" ]
 FactoryGirl.find_definitions

@@ -1,5 +1,4 @@
 require 'update_build_status'
-require 'repositories/memory/build_mapper'
 
 describe UpdateBuildStatus do
   let(:repository) { App.repository }

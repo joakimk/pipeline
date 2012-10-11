@@ -47,16 +47,21 @@ module Minimapper
 
     private
 
+    # TODO: write tests for these, they are indirectly tested by the fact
+    # that the test suite runs, but there could be bugs and I'll extract minimapper soon.
+
     # Will attempt to use AR:Project as the record class
     # when the mapper class name is AR::ProjectMapper
     def record_klass
       @record_klass ||= self.class.name.gsub(/Mapper/, '').constantize
+      @record_klass
     end
 
     # Will attempt to use Project as the enity class when
     # the mapper class name is AR::ProjectMapper
     def entity_klass
-      @entity_klass ||= self.class.name.split('::').last.gsub(/Mapper/, '').constantize
+      @entity_klass ||= ("::" + self.class.name.split('::').last.gsub(/Mapper/, '')).constantize
+      @entity_klass
     end
 
     def find_record(id)

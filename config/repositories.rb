@@ -5,7 +5,7 @@ module Repositories
   })
 
   AR = Minimapper::Repository.build({
-    projects: Repository::AR::ProjectMapper.new,
-    builds:   Repository::AR::BuildMapper.new
+    projects: AR::ProjectMapper.new,
+    builds:   AR::BuildMapper.new
   })
 end

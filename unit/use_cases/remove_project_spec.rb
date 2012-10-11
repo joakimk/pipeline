@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'remove_project'
-require 'repositories/memory/project_mapper'
 
 describe RemoveProject do
   let(:repository) { App.repository }

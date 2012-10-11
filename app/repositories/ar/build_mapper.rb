@@ -1,7 +1,7 @@
 require 'minimapper/ar'
 
-module Repository
-  class AR::BuildMapper < Minimapper::AR
+module AR
+  class BuildMapper < Minimapper::AR
     def find_known_by(attributes)
       record_klass.where(
         project:  attributes[:project],
@@ -11,7 +11,7 @@ module Repository
     end
   end
 
-  class AR::Build < ActiveRecord::Base
+  class Build < ActiveRecord::Base
     attr_accessible :project, :step, :revision, :status
   end
 end

@@ -1,5 +1,5 @@
-require 'repositories/ar/project_mapper'
+require 'ar/project_mapper'
 
-describe Repository::AR::ProjectMapper do
+describe AR::ProjectMapper do
   implements_role :project_mapper
 end
