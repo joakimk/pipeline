@@ -45,6 +45,15 @@ shared_examples :mapper do
       repository.last.name.should == "Updated"
     end
 
+    it "does not update and returns false when the entity isn't valid" do
+      entity = build_valid_entity
+      repository.add(entity)
+      entity.name = nil
+
+      repository.update(entity).should be_false
+      repository.last.name.should == "test"
+    end
+
     it "returns true" do
       entity = build_valid_entity
       repository.add(entity)
@@ -88,6 +97,13 @@ shared_examples :mapper do
       repository.find(entity.id.to_s)
     end
 
+    it "does not return the same instance" do
+      entity = build_valid_entity
+      repository.add(entity)
+      repository.find(entity.id).object_id.should_not == entity.object_id
+      repository.find(entity.id).object_id.should_not == repository.find(entity.id).object_id
+    end
+
     it "fails when the an entity can not be found" do
       -> { repository.find(-1) }.should raise_error(Minimapper::Common::CanNotFindEntity)
     end
@@ -102,6 +118,13 @@ shared_examples :mapper do
       repository.first.should be_kind_of(entity_klass)
     end
 
+    it "does not return the same instance" do
+      entity = build_valid_entity
+      repository.add(entity)
+      repository.first.object_id.should_not == entity.object_id
+      repository.first.object_id.should_not == repository.first.object_id
+    end
+
     it "returns nil when there is no entity" do
       repository.first.should be_nil
     end
@@ -114,6 +137,13 @@ shared_examples :mapper do
       repository.add(last_added_entity)
       repository.last.id.should == last_added_entity.id
       repository.last.should be_kind_of(entity_klass)
+    end
+
+    it "does not return the same instance" do
+      entity = build_valid_entity
+      repository.add(entity)
+      repository.last.object_id.should_not == entity.object_id
+      repository.last.object_id.should_not == repository.last.object_id
     end
 
     it "returns nil when there is no entity" do

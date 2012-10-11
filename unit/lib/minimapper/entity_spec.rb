@@ -28,3 +28,12 @@ describe Minimapper::Entity, "to_param" do
     base.to_param.should == 5
   end
 end
+
+describe Minimapper::Entity, "persisted?" do
+  it "responds true when there is an id (to be compatible with rails form helpers)" do
+    base = described_class.new
+    base.should_not be_persisted
+    base.id = 5
+    base.should be_persisted
+  end
+end

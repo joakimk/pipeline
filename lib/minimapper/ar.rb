@@ -9,8 +9,12 @@ module Minimapper
     end
 
     def update(entity)
-      record_for(entity).update_attributes!(entity.attributes)
-      true
+      if entity.valid?
+        record_for(entity).update_attributes!(entity.attributes)
+        true
+      else
+        false
+      end
     end
 
     def delete(entity)

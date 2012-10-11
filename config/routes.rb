@@ -3,6 +3,6 @@ Deployer::Application.routes.draw do
     resource :build_status, only: :create
   end
 
-  resources :projects, only: [ :index, :new, :create, :destroy ]
+  resources :projects, except: :show
   root :to => 'projects#index'
 end

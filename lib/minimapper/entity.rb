@@ -26,6 +26,10 @@ module Minimapper
       id
     end
 
+    def persisted?
+      id
+    end
+
     attributes :id, :created_at, :updated_at
 
     attr_reader :attributes

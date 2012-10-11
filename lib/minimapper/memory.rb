@@ -16,14 +16,17 @@ module Minimapper
     end
 
     def find(id)
-      (id && store.find { |e| e.id == id.to_i }) ||
-        raise(Common::CanNotFindEntity, id: id)
+      find_internal(id).dup
     end
 
     def update(entity)
-      known_entity = find(entity.id)
-      known_entity.attributes = entity.attributes
-      true
+      if entity.valid?
+        known_entity = find_internal(entity.id)
+        known_entity.attributes = entity.attributes
+        true
+      else
+        false
+      end
     end
 
     def delete(entity)
@@ -31,7 +34,7 @@ module Minimapper
     end
 
     def delete_by_id(id)
-      entity = find(id)
+      entity = find_internal(id)
       store.delete(entity)
     end
 
@@ -40,11 +43,11 @@ module Minimapper
     end
 
     def first
-      store.first
+      store.first && store.first.dup
     end
 
     def last
-      store.last
+      store.last && store.last.dup
     end
 
     def count
@@ -56,6 +59,11 @@ module Minimapper
     end
 
     private
+
+    def find_internal(id)
+      (id && store.find { |e| e.id == id.to_i }) ||
+        raise(Common::CanNotFindEntity, id: id)
+    end
 
     def next_id
       @last_id += 1

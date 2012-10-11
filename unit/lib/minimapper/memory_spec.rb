@@ -12,13 +12,3 @@ describe Minimapper::Memory do
 
   include_examples :mapper
 end
-
-describe Minimapper::Memory, "all" do
-  let(:repository) { described_class.new }
-
-  it "does not return the internal list" do
-    list = repository.all
-    list << "foo"
-    repository.all.should be_empty
-  end
-end

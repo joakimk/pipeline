@@ -1,7 +1,3 @@
-# todo: remove the "Repository" namespace so that rails can find things in
-# app/repositories
-require 'ar/project_mapper'
-
 class ProjectsController < WebController
   def index
     @projects = repository.projects.all
@@ -11,6 +7,11 @@ class ProjectsController < WebController
     @project = Project.new
   end
 
+  def edit
+    @project = FindProject.by_id(repository, params[:id])
+  end
+
+  # Add project
   def create
     AddProject.run(repository, params[:project], self)
   end
@@ -24,6 +25,21 @@ class ProjectsController < WebController
     render :new
   end
 
+  # Update project
+  def update
+    UpdateProject.with(repository, params[:id], params[:project], self)
+  end
+
+  def project_was_updated(project)
+    redirect_to root_path, notice: "Project updated."
+  end
+
+  def project_was_not_updated(project)
+    @project = project
+    render :edit
+  end
+
+  # Remove project
   def destroy
     RemoveProject.run(repository, params[:id])
     redirect_to root_path, notice: "Project removed."
