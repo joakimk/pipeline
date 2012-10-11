@@ -30,11 +30,11 @@ module Minimapper
     end
 
     def first
-      entity_for(record_klass.first)
+      entity_for(record_klass.order("id ASC").first)
     end
 
     def last
-      entity_for(record_klass.last)
+      entity_for(record_klass.order("id ASC").last)
     end
 
     def all
