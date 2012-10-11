@@ -16,7 +16,7 @@ I'm trying to find a good adaptation of [The Clean Architecture](http://blog.8th
   - Tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/mapper.rb)
   - Memory storage: [app/repositories/memory](https://github.com/joakimk/deployer/tree/master/app/repositories/memory)
   - ActiveRecord storage: [app/repositories/ar](https://github.com/joakimk/deployer/tree/master/app/repositories/ar)
-  - Extracted base code: [lib/minimapper](https://github.com/joakimk/deployer/tree/master/lib/minimapper)
+  - Extracted base code: [lib/minimapper](https://github.com/joakimk/deployer/tree/master/lib/minimapper) (will be made into a gem soon)
 * Testing
   - Unit tests (does not load rails and each test is about 1ms): [unit/](https://github.com/joakimk/deployer/blob/master/unit)
   - Integrated tests (everything else): [spec/](https://github.com/joakimk/deployer/blob/master/spec)
