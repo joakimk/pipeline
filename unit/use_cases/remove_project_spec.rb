@@ -1,14 +1,9 @@
 require 'spec_helper'
 require 'remove_project'
-require 'repositories/memory'
 require 'repositories/memory/project_mapper'
 
 describe RemoveProject do
-  let(:repository) { Repository::Memory.instance }
-
-  before do
-    repository.projects.delete_all
-  end
+  let(:repository) { App.repository }
 
   it "deletes the project" do
     project = FactoryGirl.create(:entity_project)

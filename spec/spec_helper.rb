@@ -27,8 +27,12 @@ RSpec.configure do |config|
 
   config.treat_symbols_as_metadata_keys_with_true_values = true
 
+  config.before do
+    App.repository.delete_all!
+  end
+
   running_a_single_file = (ARGV.count == 1)
-  using_memory_repository = App.repository.is_a?(Repository::Memory)
+  using_memory_repository = App.repository.projects.is_a?(Minimapper::Memory)
   if using_memory_repository
     unless running_a_single_file
       config.filter_run_excluding :pg

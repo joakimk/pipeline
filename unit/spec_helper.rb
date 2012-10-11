@@ -9,17 +9,6 @@ require 'support/load_path_optimizations'
 require 'support/roles'
 require 'active_support/core_ext'
 
-# I plan to gemify this soon, until then, it'll be
-# explicit requires
-require 'minimapper/entity'
-
-# Stub app config in unit tests
-module App
-  def self.builds_to_keep
-    1000
-  end
-end
-
 # Stub AR in unit tests
 module ActiveRecord
   class Base
@@ -31,6 +20,23 @@ module ActiveRecord
   end
 end
 
+# Load app config
+class Rails
+  def self.root
+    RAILS_ROOT
+  end
+
+  def self.env
+    o = Object.new
+    def o.test?
+      true
+    end
+    o
+  end
+end
+
+require File.join(RAILS_ROOT, "config/initializers/app")
+
 require 'factory_girl'
 FactoryGirl.definition_file_paths = [ "#{RAILS_ROOT}/spec/factories" ]
 FactoryGirl.find_definitions
@@ -38,4 +44,7 @@ FactoryGirl.find_definitions
 Dir[File.join(RAILS_ROOT, "spec/support/shared_examples/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
+  config.before do
+    App.repository.delete_all!
+  end
 end

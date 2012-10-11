@@ -1,14 +1,9 @@
 require 'update_build_status'
-require 'repositories/memory'
 require 'repositories/memory/build_mapper'
 
 describe UpdateBuildStatus do
-  let(:repository) { Repository::Memory.instance }
+  let(:repository) { App.repository }
   let(:update_build_status) { described_class }
-
-  before do
-    repository.builds.delete_all
-  end
 
   context "when there are no previous builds" do
     it "adds a build" do

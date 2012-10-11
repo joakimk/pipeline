@@ -1,5 +1,3 @@
-require 'repositories/ar'
-
 module Minimapper
   class AR
     def add(entity)

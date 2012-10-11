@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe do
-  before(:each) do
-    repository.projects.delete_all
-  end
-
   let(:repository) { App.repository }
 
   describe "Adding projects" do

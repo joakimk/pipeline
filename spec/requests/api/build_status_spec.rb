@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe "POST /api/build_status" do
-  after do
-    App.repository.builds.delete_all
-  end
-
   it "adds or updates build status" do
     App.stub(api_token: 'secret')
     post "/api/build_status", project: "testbot", step: "tests", revision: "999", status: "building", token: "secret"
