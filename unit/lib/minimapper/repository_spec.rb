@@ -17,6 +17,13 @@ describe Minimapper::Repository, "self.build" do
     repository = described_class.build(projects: Test::ProjectMapper.new)
     repository.projects.object_id.should == repository.projects.object_id
   end
+
+  it "does not leak between instances" do
+    repository1 = described_class.build(projects: :foo)
+    repository2 = described_class.build(projects: :bar)
+    repository1.projects.should == :foo
+    repository2.projects.should == :bar
+  end
 end
 
 describe Minimapper::Repository, "#delete_all!" do
