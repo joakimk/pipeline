@@ -4,6 +4,13 @@ GIT
   specs:
     rspec-roles (0.0.1)
 
+PATH
+  remote: vendor/gems/minimapper
+  specs:
+    minimapper (0.0.1)
+      informal
+      rake
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -158,6 +165,7 @@ DEPENDENCIES
   haml
   informal
   jquery-rails
+  minimapper!
   pg
   rails (= 3.2.8)
   rspec-rails

@@ -34,6 +34,12 @@ end
 
 gem 'jquery-rails'
 
+if File.exists?("vendor/gems/minimapper/lib") && !ENV['GEM']
+  gem 'minimapper', path: 'vendor/gems/minimapper'
+else
+  gem 'minimapper', github: 'joakimk/minimapper'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
