@@ -4,7 +4,9 @@ $: << File.join(RAILS_ROOT, "app/use_cases")
 $: << File.join(RAILS_ROOT, "app/repositories")
 $: << File.join(RAILS_ROOT, "lib")
 $: << File.join(RAILS_ROOT, "unit")
+$: << File.join(RAILS_ROOT, "vendor/gems/minimapper/lib")
 
+require 'minimapper'
 require 'support/load_path_optimizations'
 require 'support/roles'
 require 'active_support/core_ext'
