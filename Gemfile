@@ -7,7 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 gem 'haml'
-gem 'informal'
+gem 'minimapper'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,12 +33,6 @@ group :test do
 end
 
 gem 'jquery-rails'
-
-if File.exists?("vendor/gems/minimapper/lib") && !ENV['GEM']
-  gem 'minimapper', path: 'vendor/gems/minimapper'
-else
-  gem 'minimapper', github: 'joakimk/minimapper'
-end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

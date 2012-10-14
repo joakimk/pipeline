@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/joakimk/minimapper.git
-  revision: 721bdcccc560f4ee69e23fb2849b66a79b9b2761
-  specs:
-    minimapper (0.0.1)
-      informal
-      rake
-
-GIT
   remote: git://github.com/joakimk/rspec-roles.git
   revision: cb2889362a75d4e98707209308fffdf9b6629626
   specs:
@@ -86,6 +78,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    minimapper (0.0.3)
+      informal
+      rake
     multi_json (1.3.6)
     nokogiri (1.5.5)
     pg (0.14.1)
@@ -164,9 +159,8 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   factory_girl
   haml
-  informal
   jquery-rails
-  minimapper!
+  minimapper
   pg
   rails (= 3.2.8)
   rspec-rails
