@@ -13,7 +13,7 @@ I'm trying to find a good adaptation of [The Clean Architecture](http://blog.8th
 * Models: [app/models](https://github.com/joakimk/deployer/tree/master/app/models)
 * Use cases (actions you can take with the app): [app/use_cases](https://github.com/joakimk/deployer/tree/master/app/use_cases)
 * Persistence
-  - Tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/mapper.rb)
+  - Tested with [shared examples](https://github.com/joakimk/deployer/blob/master/spec/support/shared_examples/build_mapper.rb)
   - Memory storage: [app/repositories/memory](https://github.com/joakimk/deployer/tree/master/app/repositories/memory)
   - ActiveRecord storage: [app/repositories/ar](https://github.com/joakimk/deployer/tree/master/app/repositories/ar)
   - Extracted base code: [minimapper](https://github.com/joakimk/minimapper)
