@@ -1,16 +1,15 @@
 GIT
-  remote: git://github.com/joakimk/minimapper.git
-  revision: e196498705aeb6c086b1bd1c07746f185361374d
-  specs:
-    minimapper (0.0.1)
-      informal
-      rake
-
-GIT
   remote: git://github.com/joakimk/rspec-roles.git
   revision: cb2889362a75d4e98707209308fffdf9b6629626
   specs:
     rspec-roles (0.0.1)
+
+PATH
+  remote: vendor/gems/minimapper
+  specs:
+    minimapper (0.0.1)
+      informal
+      rake
 
 GEM
   remote: https://rubygems.org/
