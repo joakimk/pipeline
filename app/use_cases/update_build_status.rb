@@ -10,7 +10,7 @@ class UpdateBuildStatus
       build.status = attributes[:status]
       builds.update(build)
     else
-      builds.add(Build.new(attributes))
+      builds.create(Build.new(attributes))
       builds.delete(builds.first) if builds.count > App.builds_to_keep
     end
   end

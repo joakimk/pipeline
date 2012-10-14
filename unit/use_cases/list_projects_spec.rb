@@ -5,7 +5,7 @@ describe ListProjects, "self.in" do
 
   it "returns all projects" do
     project = FactoryGirl.create(:entity_project, name: "testbot")
-    repository.projects.add(project)
+    repository.projects.create(project)
 
     projects = ListProjects.in(repository)
     projects.size.should == 1
@@ -14,10 +14,10 @@ describe ListProjects, "self.in" do
 
   it "orders the projects alphabetically" do
     project = FactoryGirl.create(:entity_project, name: "testbot")
-    repository.projects.add(project)
+    repository.projects.create(project)
 
     project = FactoryGirl.create(:entity_project, name: "deployer")
-    repository.projects.add(project)
+    repository.projects.create(project)
 
     ListProjects.in(repository).map(&:name).should == [ "deployer", "testbot" ]
   end

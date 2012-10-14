@@ -29,7 +29,7 @@ describe do
   describe "Removing projects" do
     it "can be done" do
       project = Project.new(name: "TheApp")
-      repository.projects.add(project)
+      repository.projects.create(project)
       visit root_path
 
       within("#project_#{project.id}") do
@@ -45,7 +45,7 @@ describe do
   describe "Editing projects" do
     it "when successful" do
       project = Project.new(name: "TheApp")
-      repository.projects.add(project)
+      repository.projects.create(project)
       visit root_path
 
       within("#project_#{project.id}") do
@@ -62,7 +62,7 @@ describe do
 
     it "when there are validation errors" do
       project = Project.new(name: "TheApp")
-      repository.projects.add(project)
+      repository.projects.create(project)
       visit edit_project_path(project)
 
       fill_in "Name", with: ""

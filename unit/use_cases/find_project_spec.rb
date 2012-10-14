@@ -5,7 +5,7 @@ describe FindProject, "self.by_id" do
 
   it "finds a project" do
     project = FactoryGirl.create(:entity_project)
-    repository.projects.add(project)
+    repository.projects.create(project)
     FindProject.by_id(repository, project.id).id.should == project.id
   end
 end

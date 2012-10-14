@@ -15,18 +15,18 @@ describe Common::ProjectMapper, "add_by_attributes" do
   let(:client) { mock }
 
   it "adds a project entity to itself" do
-    project_mapper.add_by_attributes({ name: "Deployer" }, client.as_null_object)
+    project_mapper.create_by_attributes({ name: "Deployer" }, client.as_null_object)
     project_mapper.last.name.should == "Deployer"
   end
 
   it "tells the client a project was added when adding was successful" do
     client.should_receive(:project_was_added).with(instance_of(Project))
-    project_mapper.add_by_attributes({ name: "Deployer" }, client)
+    project_mapper.create_by_attributes({ name: "Deployer" }, client)
   end
 
   it "tells the client a project could not be added when adding fails" do
-    project_mapper.stub(add: nil)
+    project_mapper.stub(create: nil)
     client.should_receive(:project_was_not_added).with(instance_of(Project))
-    project_mapper.add_by_attributes({}, client)
+    project_mapper.create_by_attributes({}, client)
   end
 end

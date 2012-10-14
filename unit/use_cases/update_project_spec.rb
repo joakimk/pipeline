@@ -7,7 +7,7 @@ describe UpdateProject, "self.run" do
   context "when successful" do
     it "updates the project" do
       project = FactoryGirl.create(:entity_project, name: "testbot")
-      repository.projects.add(project)
+      repository.projects.create(project)
       client.as_null_object
       UpdateProject.run(repository, project.id, { github_url: "http://github.com/joakimk/testbot" }, client)
 
@@ -18,7 +18,7 @@ describe UpdateProject, "self.run" do
 
     it "tells the client" do
       project = FactoryGirl.create(:entity_project, name: "testbot")
-      repository.projects.add(project)
+      repository.projects.create(project)
       client.should_receive(:project_was_updated).with(instance_of(Project))
       UpdateProject.run(repository, project.id, {}, client)
     end
@@ -27,7 +27,7 @@ describe UpdateProject, "self.run" do
   context "when there are validation errors" do
     it "does not update the project" do
       project = FactoryGirl.create(:entity_project, name: "testbot")
-      repository.projects.add(project)
+      repository.projects.create(project)
       client.as_null_object
       UpdateProject.run(repository, project.id, { name: "" }, client)
 
@@ -37,7 +37,7 @@ describe UpdateProject, "self.run" do
 
     it "tells the client" do
       project = FactoryGirl.create(:entity_project, name: "testbot")
-      repository.projects.add(project)
+      repository.projects.create(project)
       client.should_receive(:project_was_not_updated).with(instance_of(Project))
       UpdateProject.run(repository, project.id, { name: "" }, client)
     end

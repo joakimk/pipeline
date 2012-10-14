@@ -6,7 +6,7 @@ describe RemoveProject do
 
   it "deletes the project" do
     project = FactoryGirl.create(:entity_project)
-    repository.projects.add(project)
+    repository.projects.create(project)
     RemoveProject.run(repository, project.id)
     repository.projects.all.should be_empty
   end
