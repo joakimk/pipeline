@@ -2,9 +2,6 @@
 set -e
 export CI=true
 
-# Add remote if missing.
-git remote add heroku git@heroku.com:deployer.git 2>/dev/null
-
 echo "Running unit tests."
 bundle exec rake spec:unit
 
