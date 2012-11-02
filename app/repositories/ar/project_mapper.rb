@@ -1,9 +1,7 @@
 require 'minimapper/ar'
-require 'common/project_mapper'
 
 module AR
   class ProjectMapper < Minimapper::AR
-    include Common::ProjectMapper
   end
 
   class Project < ActiveRecord::Base

@@ -8,44 +8,42 @@ class ProjectsController < WebController
   end
 
   def edit
-    @project = FindProject.by_id(repository, params[:id])
+    @project = projects_mapper.find(params[:id])
   end
 
-  # Add project
   def create
-    AddProject.run(repository, params[:project], self)
+    project = Project.new(params[:project])
+
+    if projects_mapper.create(project)
+      redirect_to root_path, notice: "Project added."
+    else
+      @project = project
+      render :new
+    end
   end
 
-  def project_was_added(project)
-    redirect_to root_path, notice: "Project added."
-  end
-
-  def project_was_not_added(project)
-    @project = project
-    render :new
-  end
-
-  # Update project
   def update
-    UpdateProject.run(repository, params[:id], params[:project], self)
+    project = projects_mapper.find(params[:id])
+    project.attributes = params[:project]
+
+    if projects_mapper.update(project)
+      redirect_to root_path, notice: "Project updated."
+    else
+      @project = project
+      render :edit
+    end
   end
 
-  def project_was_updated(project)
-    redirect_to root_path, notice: "Project updated."
-  end
-
-  def project_was_not_updated(project)
-    @project = project
-    render :edit
-  end
-
-  # Remove project
   def destroy
-    RemoveProject.run(repository, params[:id])
+    projects_mapper.delete_by_id(params[:id])
     redirect_to root_path, notice: "Project removed."
   end
 
   private
+
+  def projects_mapper
+    repository.projects
+  end
 
   def setup_menu
     if [ "new", "create" ].include?(params[:action])
