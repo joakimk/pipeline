@@ -37,7 +37,7 @@ GEM
     addressable (2.3.2)
     arel (3.0.2)
     bootstrap-sass (2.1.0.0)
-    builder (3.0.3)
+    builder (3.0.4)
     capybara (1.1.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -78,10 +78,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    minimapper (0.0.5)
+    minimapper (0.1.0)
       informal
       rake
-    multi_json (1.3.6)
+    multi_json (1.3.7)
     nokogiri (1.5.5)
     pg (0.14.1)
     polyglot (0.3.3)

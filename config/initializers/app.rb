@@ -2,7 +2,9 @@ require 'minimapper/repository'
 require File.join(Rails.root, 'config/repositories')
 
 class App
-  cattr_accessor :repository
+  class << self
+    attr_accessor :repository
+  end
 
   if Rails.env.test? && !ENV['DB']
     self.repository = Repositories::Memory
