@@ -40,4 +40,11 @@ RSpec.configure do |config|
   else
     config.filter_run_excluding :memory_only
   end
+
+  if ENV['TEST_ADAPTER'] == 'api'
+    config.filter_run_excluding :web_only
+    include ApiSteps
+  else
+    include EndToEndSteps
+  end
 end
