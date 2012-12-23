@@ -1,17 +1,51 @@
 require 'build'
+require 'attr_extras'
 
 # Intended to be used by a client within a CI server to post status to this app.
 class UpdateBuildStatus
   def self.run(repository, attributes)
-    builds = repository.builds
-    build = builds.find_known_by(attributes)
+    new(repository, attributes).run
+  end
 
-    if build
-      build.status = attributes[:status]
-      builds.update(build)
+  attr_initialize :repository, :attributes
+  attr_private :repository, :attributes
+
+  def run
+    if known_build?
+      update_build_status
     else
-      builds.create(Build.new(attributes))
-      builds.delete(builds.first) if builds.count > App.builds_to_keep
+      create_build
+      limit_build_history
     end
+  end
+
+  private
+
+  def known_build?
+    current_build
+  end
+
+  def current_build
+    @current_build ||= build_mapper.find_known_by(attributes)
+  end
+
+  def update_build_status
+    current_build.status = attributes[:status]
+    build_mapper.update(current_build)
+  end
+
+  def create_build
+    build = Build.new(attributes)
+    build_mapper.create(build)
+  end
+
+  def limit_build_history
+    if build_mapper.count > App.builds_to_keep
+      build_mapper.delete(build_mapper.first)
+    end
+  end
+
+  def build_mapper
+    repository.builds
   end
 end
