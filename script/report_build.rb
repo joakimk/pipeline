@@ -3,8 +3,8 @@
 # Script to report build status to a deployer server.
 # https://github.com/joakimk/deployer
 
-require 'net/http'
-require 'uri'
+require 'rubygems'
+require 'httparty'
 require 'yaml'
 
 class BuildStatusReporter
@@ -45,13 +45,15 @@ class BuildStatusApi
   end
 
   def report_status(status)
-    uri = URI(@config.url)
-    data = { :project_id => @project_id, :step => @step, revision: @revision, status: status, token: @config.token }
+    data = { :project_id => @project_id, :step => @step, :revision => @revision, :status => status, :token => @config.token }
 
     begin
-      Net::HTTP.post_form(uri, data)
-    rescue Exception
-      puts "Failed to report status (#{data.inspect})."
+      res = HTTParty.post(@config.url, :body => data)
+      unless res.response.code == "200"
+        raise "Bad response: #{res.inspect}"
+      end
+    rescue Exception => ex
+      puts "Failed to report status (#{data.inspect}, #{ex.inspect})."
     end
   end
 end

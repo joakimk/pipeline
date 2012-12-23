@@ -26,6 +26,9 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+
+  # Used by the report_build script.
+  gem 'httparty'
 end
 
 group :test do
