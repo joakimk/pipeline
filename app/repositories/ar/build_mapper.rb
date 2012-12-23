@@ -12,6 +12,7 @@ module AR
   end
 
   class Build < ActiveRecord::Base
-    attr_accessible :project_id, :step, :revision, :status
+    # TODO: find out why minimapper assigns id, created_at and updated_at
+    attr_accessible :id, :created_at, :updated_at, :project_id, :step, :revision, :status
   end
 end
