@@ -2,5 +2,9 @@ require 'minimapper/entity'
 
 class Build
   include Minimapper::Entity
-  attributes [ :project_id, :integer ], :step, :revision, :status
+
+  attribute :project_id, :integer
+  attribute :step
+  attribute :revision
+  attribute :status
 end
