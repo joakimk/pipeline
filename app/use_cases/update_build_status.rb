@@ -22,16 +22,16 @@ class UpdateBuildStatus
   private
 
   def known_build?
-    current_build
+    known_build
   end
 
-  def current_build
-    @current_build ||= build_mapper.find_known_by(attributes)
+  def known_build
+    @known_build ||= build_mapper.find_known_by(attributes)
   end
 
   def update_build_status
-    current_build.status = attributes[:status]
-    build_mapper.update(current_build)
+    known_build.status = attributes[:status]
+    build_mapper.update(known_build)
   end
 
   def create_build
