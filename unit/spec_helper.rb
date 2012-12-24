@@ -34,7 +34,7 @@ class Rails
   end
 end
 
-Dir.glob("#{RAILS_ROOT}/app/repositories/**/*_mapper.rb").each do |mapper|
+Dir.glob("#{RAILS_ROOT}/app/repositories/memory/*_mapper.rb").each do |mapper|
   require mapper.split("/")[-2, 2].join('/')
 end
 
