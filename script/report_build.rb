@@ -37,23 +37,24 @@ class BuildStatusReporter
 end
 
 class BuildStatusApi
-  def initialize(config, project_id, step, revision)
+  def initialize(config, project_name, step_name, revision)
     @config = config
-    @project_id = project_id
-    @step = step
-    @revision = revision
+    @data = {
+      :project_name => project_name,
+      :step_name => step_name,
+      :revision => revision,
+      :token => config.token
+    }
   end
 
   def report_status(status)
-    data = { :project_id => @project_id, :step => @step, :revision => @revision, :status => status, :token => @config.token }
-
     begin
-      res = HTTParty.post(@config.url, :body => data)
+      res = HTTParty.post(@config.url, :body => @data.merge(:status => status))
       unless res.response.code == "200"
         raise "Bad response: #{res.inspect}"
       end
     rescue Exception => ex
-      puts "Failed to report status (#{data.inspect}, #{ex.inspect})."
+      puts "Failed to report status (#{@data.inspect}, #{ex.inspect})."
     end
   end
 end
@@ -106,7 +107,7 @@ end
 
 if __FILE__ == $0
   if ARGV.count != 4
-    puts "Usage: #{$0} project_id step revision command"
+    puts "Usage: #{$0} project_name step_name revision command"
   else
     config = ApiConfig.new
 
@@ -115,9 +116,9 @@ if __FILE__ == $0
       exit 1
     end
 
-    project_id, step, revision, command = ARGV
+    project_name, step_name, revision, command = ARGV
     revision = FullGitRevision.convert(revision)
-    api = BuildStatusApi.new(config, project_id, step, revision)
+    api = BuildStatusApi.new(config, project_name, step_name, revision)
     BuildStatusReporter.new(api).build_and_report(command) || exit(1)
   end
 end

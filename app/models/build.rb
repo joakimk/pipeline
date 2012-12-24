@@ -3,8 +3,8 @@ require 'minimapper/entity'
 class Build
   include Minimapper::Entity
 
-  attribute :project_id, :integer
-  attribute :step
+  attribute :project_name
+  attribute :step_name
   attribute :revision
   attribute :status
 end
