@@ -5,7 +5,9 @@ shared_examples :build_mapper do
   describe "find_known_by" do
     it "finds a build that match on project step and revision" do
       repository.builds.create(build)
-      repository.builds.find_known_by(project_name: 'deployer', step_name: 'build_assets', revision: '456').id.should == build.id
+      entity = repository.builds.find_known_by(project_name: 'deployer', step_name: 'build_assets', revision: '456')
+      entity.id.should == build.id
+      entity.should be_kind_of(Minimapper::Entity)
     end
 
     it "does not find builds that don't match" do

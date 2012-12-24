@@ -3,7 +3,7 @@ require 'minimapper/ar'
 module AR
   class BuildMapper < Minimapper::AR
     def find_known_by(attributes)
-      record_klass.where(
+      entity_for record_klass.where(
         project_name: attributes[:project_name],
         step_name:    attributes[:step_name],
         revision:     attributes[:revision]
