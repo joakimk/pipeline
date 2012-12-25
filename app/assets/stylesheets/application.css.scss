@@ -13,3 +13,17 @@
  */
 
 @import "bootstrap";
+
+.container > .navbar {
+  margin-top: 23px;
+}
+
+.container > .alert {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.container > .row {
+  padding-left: 20px;
+  padding-right: 20px;
+}

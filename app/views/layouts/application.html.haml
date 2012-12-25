@@ -8,17 +8,18 @@
   = csrf_meta_tags
 
   %body
-    .navbar
-      .navbar-inner
-        = link_to("Deployer", root_path, class: "brand")
-        %ul.nav
-          %li[menu_item(:projects)]
-            = link_to("Projects", projects_path)
-          %li[menu_item(:new_project)]
-            = link_to("Add project", new_project_path)
+    .container
+      .navbar
+        .navbar-inner
+          = link_to("Deployer", root_path, class: "brand")
+          %ul.nav
+            %li[menu_item(:projects)]
+              = link_to("Projects", projects_path)
+            %li[menu_item(:new_project)]
+              = link_to("Add project", new_project_path)
 
 
-    - if flash[:notice]
-      %p= flash[:notice]
-
-    = yield
+    .container
+      - if flash[:notice]
+        %p.alert.alert-success= flash[:notice]
+      = yield

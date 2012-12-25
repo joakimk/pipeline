@@ -10,6 +10,7 @@ gem 'activerecord-nulldb-adapter'
 gem 'haml'
 gem 'minimapper'
 gem 'attr_extras'
+gem 'bootstrap_forms', github: 'barsoom/bootstrap_forms'
 #gem 'minimapper', path: "/Users/jocke/Projects/shared/minimapper"
 
 # Gems used only for assets and not required

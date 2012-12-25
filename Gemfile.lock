@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/barsoom/bootstrap_forms.git
+  revision: 94977b8668899f857115235aff76bb8b95156b5b
+  specs:
+    bootstrap_forms (1.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -154,6 +160,7 @@ DEPENDENCIES
   activerecord-nulldb-adapter
   attr_extras
   bootstrap-sass
+  bootstrap_forms!
   capybara
   coffee-rails (~> 3.2.1)
   factory_girl
