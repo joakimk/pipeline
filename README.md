@@ -47,5 +47,8 @@ You need postgres installed.
 
     script/bootstrap
 
-    rake
-    rake spec:unit # only unit tests
+    rake              # all tests
+    rake spec:unit    # unit tests
+    rake spec         # integrated tests in-memory
+    rake spec:db      # integrated tests with a database
+    rake spec:db_only # only database adapter tests
