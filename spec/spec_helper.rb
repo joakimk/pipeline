@@ -45,7 +45,5 @@ RSpec.configure do |config|
     unless running_a_single_file
       config.filter_run_excluding :pg
     end
-  else
-    config.filter_run_excluding :memory_only
   end
 end
