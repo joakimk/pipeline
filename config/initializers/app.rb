@@ -6,10 +6,12 @@ class App
     attr_accessor :repository
   end
 
-  if Rails.env.test? && !ENV['DB']
-    self.repository = Repositories::Memory
-  else
-    self.repository = Repositories::AR
+  def self.reset_repository
+    if Rails.env.test? && !ENV['DB']
+      self.repository = Repositories::Memory
+    else
+      self.repository = Repositories::AR
+    end
   end
 
   def self.api_token
@@ -23,4 +25,6 @@ class App
   def self.builds_to_keep
     (ENV['BUILDS_TO_KEEP'] || 1000).to_i
   end
+
+  reset_repository
 end

@@ -1,6 +1,6 @@
 shared_examples :project_mapper do
   # expects repository
-  before { FactoryGirl.repository = repository }
+  before { App.repository = repository }
 
   describe "all_sorted_by_name" do
     it "returns all projects projects alphabetically" do

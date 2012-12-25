@@ -1,7 +1,7 @@
 shared_examples :build_mapper do
   # expects repository
   before do
-    FactoryGirl.repository = repository
+    App.repository = repository
     @build = FactoryGirl.create(:build, project_name: "deployer", step_name: "build_assets", revision: "456")
   end
 

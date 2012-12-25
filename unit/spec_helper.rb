@@ -48,11 +48,8 @@ FactoryGirl.find_definitions
 Dir[File.join(RAILS_ROOT, "spec/support/shared_examples/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
-  config.before do
-    App.repository.delete_all!
-  end
-
   config.after do
-    FactoryGirl.repository = nil
+    App.repository.delete_all!
+    App.reset_repository
   end
 end

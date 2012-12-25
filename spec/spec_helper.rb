@@ -31,12 +31,9 @@ RSpec.configure do |config|
 
   config.treat_symbols_as_metadata_keys_with_true_values = true
 
-  config.before do
-    App.repository.delete_all!
-  end
-
   config.after do
-    FactoryGirl.repository = nil
+    App.repository.delete_all!
+    App.reset_repository
   end
 
   running_a_single_file = (ARGV.count == 1)
