@@ -7,4 +7,7 @@ class Build
   attribute :step_name
   attribute :revision
   attribute :status
+
+  validates :project_name, :step_name, :revision, :status, presence: true
+  validates :revision, format: /^[a-z0-9]{40}$/
 end

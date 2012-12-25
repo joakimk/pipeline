@@ -33,11 +33,14 @@ describe UpdateBuildStatus do
   context "when there are more than App.builds_to_keep builds" do
     it "removes the oldest build" do
       App.stub(builds_to_keep: 2)
-      update_with revision: "123"
-      update_with revision: "456"
-      update_with revision: "789"
+      update_with revision: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      update_with revision: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      update_with revision: "cccccccccccccccccccccccccccccccccccccccc"
 
-      repository.builds.all.map(&:revision).should == [ "456", "789" ]
+      revisions = repository.builds.all.map(&:revision).to_s
+      revisions.should_not include("a")
+      revisions.should include("b")
+      revisions.should include("c")
     end
   end
 end
