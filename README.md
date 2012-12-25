@@ -36,7 +36,7 @@ I'm trying to find a good adaptation of [The Clean Architecture](http://blog.8th
 
 ## Fast tests
 
-With this setup you can test [validations](https://github.com/joakimk/deployer/blob/master/unit/models/project_spec.rb) and [persistence](https://github.com/joakimk/deployer/blob/master/unit/use_cases/update_build_status_spec.rb) like you usually do, and still have very fast tests.
+With this setup you can test [validations](https://github.com/joakimk/deployer/blob/master/unit/models/build_spec.rb) and [persistence](https://github.com/joakimk/deployer/blob/master/unit/use_cases/update_build_status_spec.rb) like you usually do, and still have very fast tests.
 
     Finished in 0.67609 seconds
     1000 examples, 0 failures
