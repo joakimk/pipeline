@@ -41,6 +41,16 @@ With this setup you can test [validations](https://github.com/joakimk/deployer/b
     Finished in 0.67609 seconds
     1000 examples, 0 failures
 
+## Benefits of in-memory models
+
+I've found having an in-memory store means I can introduce new models and rename model attributes without having to write a migration right away. I can focus on the design and naming first.
+
+## Problems
+
+Having two persistance adapters means more work. It's a tradeoff. In larger applications it could be a good thing. You can test the code without going out to a database where fully isolated testing isn't possible. It makes it harder for persistance details to leak into the system (SQL in controllers, etc).
+
+Moving persistance out of the models makes it more complex to persist them. Although they are more focused.
+
 ## Running the tests
 
 You need postgres installed.
