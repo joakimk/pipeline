@@ -8,17 +8,13 @@ namespace :spec do
     system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
   end
 
-  task :with_memory do
-    Rake::Task[:spec].execute
-  end
-
   task :with_ar do
     ENV['DB'] = 't'
     Rake::Task[:spec].execute
   end
 end
 
-task :default => [ :"spec:unit", :"spec:with_memory", :"spec:with_ar" ]
+task :default => [ :"spec:unit", :"spec", :"spec:with_ar" ]
 
 def lines_for(type)
   `cat $(find app/repositories/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip

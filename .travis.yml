@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 1.9.3
   - 1.9.2
-  #- rbx-19mode # rspec-roles is not compatible
+  - rbx-19mode
   #- jruby-19mode # needs jruby compatible deps
 before_script:
   - psql -c 'create database deployer_test;' -U postgres

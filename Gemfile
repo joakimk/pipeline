@@ -34,7 +34,6 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_girl'
-  gem 'rspec-roles', github: 'joakimk/rspec-roles'
 end
 
 gem 'jquery-rails'
