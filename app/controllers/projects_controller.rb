@@ -1,6 +1,6 @@
 class ProjectsController < WebController
   def index
-    @projects = ListProjects.in(repository)
+    @projects = projects_mapper.all_sorted_by_name
   end
 
   def new

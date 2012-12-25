@@ -5,6 +5,10 @@ require 'rspec/autorun'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+require 'factory_girl'
+FactoryGirl.definition_file_paths = [ "#{Rails.root}/spec/factories" ]
+FactoryGirl.find_definitions
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
