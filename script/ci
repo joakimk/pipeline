@@ -15,4 +15,4 @@ bundle exec rake spec
 
 echo
 echo "Running integrated tests with the postgres store."
-bundle exec rake spec DB=true
+bundle exec rake spec:db

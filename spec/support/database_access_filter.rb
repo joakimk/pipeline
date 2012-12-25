@@ -3,8 +3,13 @@
 # as :ar specs where needed.
 module DatabaseAccessFilter
   def self.setup(config)
+    running_only_database_tests = ENV['DB_ONLY']
     running_tests_with_database_integration = ENV['DB']
     running_a_single_file = (ARGV.count == 1)
+
+    if running_only_database_tests
+      config.filter_run :ar
+    end
 
     config.before(:each, :ar) do
       $nulldb = false

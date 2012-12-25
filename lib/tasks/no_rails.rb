@@ -8,13 +8,21 @@ namespace :spec do
     system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
   end
 
-  task :with_ar do
+  desc "Run all specs with a real database backend"
+  task :db do
     ENV['DB'] = 't'
+    Rake::Task[:spec].execute
+  end
+
+  desc "Run only the database backend specs"
+  task :db_only do
+    ENV['DB'] = 't'
+    ENV['DB_ONLY'] = 't'
     Rake::Task[:spec].execute
   end
 end
 
-task :default => [ :"spec:unit", :"spec", :"spec:with_ar" ]
+task :default => [ :"spec:unit", :"spec", :"spec:db" ]
 
 def lines_for(type)
   `cat $(find app/repositories/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip
