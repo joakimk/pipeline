@@ -1,8 +1,7 @@
 require 'project'
 
 FactoryGirl.define do
-  factory :entity_project, class: Project do
+  factory :project do
     name 'Deployer'
-    skip_create
   end
 end

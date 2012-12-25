@@ -35,6 +35,10 @@ RSpec.configure do |config|
     App.repository.delete_all!
   end
 
+  config.after do
+    FactoryGirl.repository = nil
+  end
+
   running_a_single_file = (ARGV.count == 1)
   using_memory_repository = App.repository.projects.is_a?(Minimapper::Memory)
   if using_memory_repository

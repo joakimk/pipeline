@@ -5,7 +5,7 @@ describe UpdateBuildStatus do
   let(:update_build_status) { described_class }
 
   def update_with(custom = {})
-    build_attributes = FactoryGirl.attributes_for(:entity_build).merge(custom)
+    build_attributes = FactoryGirl.attributes_for(:build).merge(custom)
     update_build_status.run(repository, build_attributes)
   end
 

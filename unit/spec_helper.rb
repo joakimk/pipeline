@@ -51,4 +51,8 @@ RSpec.configure do |config|
   config.before do
     App.repository.delete_all!
   end
+
+  config.after do
+    FactoryGirl.repository = nil
+  end
 end
