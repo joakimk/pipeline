@@ -22,6 +22,8 @@ GEM
       activesupport (= 3.2.8)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-nulldb-adapter (0.2.3)
+      activerecord (>= 2.0.0)
     activeresource (3.2.8)
       activemodel (= 3.2.8)
       activesupport (= 3.2.8)
@@ -149,6 +151,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-nulldb-adapter
   attr_extras
   bootstrap-sass
   capybara

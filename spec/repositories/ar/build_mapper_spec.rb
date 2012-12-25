@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-describe AR::BuildMapper do
-  let(:repository) { Repositories::AR }
+describe AR::BuildMapper, :ar do
   include_examples :build_mapper
 end

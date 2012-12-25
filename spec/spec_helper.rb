@@ -11,8 +11,13 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.order = "random"
 
+  DatabaseAccessFilter.setup(config)
+
+  config.before do
+    App.reset_repository
+  end
+
   config.after do
     App.repository.delete_all!
-    App.reset_repository
   end
 end

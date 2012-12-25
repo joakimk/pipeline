@@ -24,7 +24,7 @@ desc "Some code stats"
 namespace :deployer do
   task :code_stats do
     puts "Number of lines in the memory repository:\t #{lines_for("memory")}"
-    puts "Number of lines in the pg repository:\t\t #{lines_for("pg")}"
+    puts "Number of lines in the ar repository:\t\t #{lines_for("ar")}"
     puts "Number of lines shared between repositories:\t #{lines_for("common")}"
   end
 end
