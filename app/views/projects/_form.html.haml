@@ -4,6 +4,7 @@
       - if @project.errors.any?
         = @project.errors.full_messages.each do |error|
           %p{style: 'color: red'}= error
+      %p= "The name is used to match reported builds to this project. Must be lowercase letters, numbers or underscore."
       = f.text_field :name
       = f.text_field :github_url
       .form-actions

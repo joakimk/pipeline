@@ -6,5 +6,5 @@ class Project
   attribute :name
   attribute :github_url
 
-  validates :name, presence: true
+  validates :name, presence: true, format: /\A[a-z0-9_]+\z/
 end

@@ -9,7 +9,7 @@ describe do
       page.find(".active").should have_content("Projects")
       click_link "Add project"
       page.find(".active").should have_content("Add project")
-      fill_in "Name", with: "Deployer"
+      fill_in "Name", with: "deployer"
       fill_in "Github URL", with: "https://github.com/barsoom/deployer"
       click_button "Save"
       page.should have_content("Project added.")
@@ -28,7 +28,7 @@ describe do
 
   describe "Removing projects" do
     it "can be done" do
-      project = Project.new(name: "TheApp")
+      project = Project.new(name: "the_app")
       repository.projects.create(project)
       visit root_path
 
@@ -44,7 +44,7 @@ describe do
 
   describe "Editing projects" do
     it "when successful" do
-      project = Project.new(name: "TheApp")
+      project = Project.new(name: "the_app")
       repository.projects.create(project)
       visit root_path
 
@@ -61,7 +61,7 @@ describe do
     end
 
     it "when there are validation errors" do
-      project = Project.new(name: "TheApp")
+      project = Project.new(name: "the_app")
       repository.projects.create(project)
       visit edit_project_path(project)
 
@@ -70,7 +70,7 @@ describe do
 
       page.should have_content("Name can't be blank")
       current_path.should == project_path(project)
-      repository.projects.find(project.id).name.should == "TheApp"
+      repository.projects.find(project.id).name.should == "the_app"
     end
   end
 end
