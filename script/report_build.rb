@@ -3,8 +3,6 @@
 # Script to report build status to a deployer server.
 # https://github.com/joakimk/deployer
 
-require 'rubygems'
-require 'httparty'
 require 'yaml'
 
 class BuildStatusReporter
@@ -106,6 +104,10 @@ EOS
 end
 
 if __FILE__ == $0
+  # Don't load this in unit tests
+  require 'rubygems'
+  require 'httparty'
+
   if ARGV.count != 4
     puts "Usage: #{$0} project_name step_name revision command"
   else

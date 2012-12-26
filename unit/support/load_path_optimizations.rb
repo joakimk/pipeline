@@ -9,4 +9,6 @@ unless ENV['CI']
                        find { |line| line.include?("'rails'") }.split.last.gsub("'",'')
 
   add_load_path "gems/activesupport-#{rails_version}/lib"
+  add_load_path "gems/activemodel-#{rails_version}/lib"
+  add_load_path "gems/factory_girl-4.1.0/lib"
 end
