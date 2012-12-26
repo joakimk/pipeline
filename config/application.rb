@@ -2,15 +2,12 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-require 'jquery-rails'
-
 Bundler.setup(:default, :assets, Rails.env) if defined?(Bundler)
 
-if ARGV.to_s.include?("assets")
-  require 'coffee-rails'
-  require 'bootstrap-sass'
-  require 'uglifier'
-end
+require 'jquery-rails'
+require 'coffee-rails'
+require 'bootstrap-sass'
+require 'uglifier'
 
 module Deployer
   class Application < Rails::Application
