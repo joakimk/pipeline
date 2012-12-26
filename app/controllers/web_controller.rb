@@ -1,3 +1,6 @@
+require 'haml'
+require 'bootstrap_forms'
+
 class WebController < ApplicationController
   protect_from_forgery
 
