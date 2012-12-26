@@ -6,13 +6,11 @@ require 'jquery-rails'
 
 Bundler.setup(:default, :assets, Rails.env) if defined?(Bundler)
 
-# Disabled bundler gem auto loading.
-# Could be that these are needed later.
-# Try to load them in WebController if possible.
-#
-#require 'coffee-rails'
-#require 'bootstrap-sass'
-#require 'uglifier'
+if ARGV.to_s.include?("assets")
+  require 'coffee-rails'
+  require 'bootstrap-sass'
+  require 'uglifier'
+end
 
 module Deployer
   class Application < Rails::Application
