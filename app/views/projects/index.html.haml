@@ -1,11 +1,12 @@
 .row
   .span12
     - @projects.each do |project|
-      %h1= project.name
-      %p[project]
-        = link_to("Remove", project_path(project), method: :delete, confirm: "Are you sure you want to remove #{project.name}?")
-        |
-        = link_to("Edit", edit_project_path(project))
-        |
-        - if project.github_url
-          = link_to("Github", project.github_url)
+      .project[project]
+        .actions
+          = link_to("Edit", edit_project_path(project))
+          |
+          = link_to("Remove", project_path(project), method: :delete, confirm: "Are you sure you want to remove #{project.name}?")
+          - if project.github_url
+            |
+            = link_to("Github", project.github_url)
+        %h1= project.name
