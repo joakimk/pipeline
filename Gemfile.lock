@@ -83,7 +83,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    minimapper (0.2.5)
+    minimapper (0.2.6)
     multi_json (1.5.0)
     multi_xml (0.5.1)
     nokogiri (1.5.6)

@@ -3,7 +3,7 @@ require 'minimapper/ar'
 module AR
   class ProjectMapper < Minimapper::AR
     def all_sorted_by_name
-      record_klass.order("name ASC").map { |record| entity_for(record) }
+      entities_for record_klass.order("name ASC")
     end
   end
 
