@@ -2,9 +2,6 @@
   .span12
     .page
       = bootstrap_form_for(@project) do |f|
-        - if @project.errors.any?
-          = @project.errors.full_messages.each do |error|
-            %p{style: 'color: red'}= error
         = f.text_field :name, help_block: "Used to match reported builds to this project. Must be lowercase letters, numbers or underscore."
         = f.text_field :github_url
         .form-actions
