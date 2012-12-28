@@ -1,12 +1,9 @@
 if ENV['LOAD_PROFILE']
-  # Must be loaded before we use Time.now.
-  require 'timecop'
+  SLOW = (ENV['SLOW'] && ENV['SLOW'].to_f) || 0.05
 
   puts "profiling enabled."
   module Kernel
-    SLOW = (ENV['SLOW'] && ENV['SLOW'].to_f) || 0.05
-
-    [ :require, :load ].each do |method|
+    def self.define_profiling_method(method)
       alias_method "old_#{method}", method
 
       define_method(method) do |*opts|
@@ -20,6 +17,10 @@ if ENV['LOAD_PROFILE']
 
         ret
       end
+    end
+
+    [ :require, :load ].each do |method|
+      define_profiling_method(method)
     end
   end
 end
