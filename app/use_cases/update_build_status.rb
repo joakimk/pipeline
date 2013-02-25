@@ -3,12 +3,12 @@ require 'attr_extras'
 
 # Intended to be used by a client within a CI server to post status to this app.
 class UpdateBuildStatus
-  def self.run(repository, attributes)
-    new(repository, attributes).run
+  def self.run(attributes)
+    new(attributes).run
   end
 
-  attr_initialize :repository, :attributes
-  attr_private :repository, :attributes
+  attr_initialize :attributes
+  attr_private :attributes
 
   def run
     if known_build?
@@ -46,6 +46,6 @@ class UpdateBuildStatus
   end
 
   def build_mapper
-    repository.builds
+    Repo.builds
   end
 end
