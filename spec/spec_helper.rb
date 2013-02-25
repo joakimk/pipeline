@@ -11,7 +11,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.order = "random"
 
-  DatabaseAccessFilter.setup(config)
+  RspecNulldb.setup(config)
 
   config.before do
     App.reset_repository

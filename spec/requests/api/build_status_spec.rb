@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "POST /api/build_status" do
+describe "POST /api/build_status", :db do
   it "adds or updates build status" do
     App.stub(api_token: 'secret')
     post "/api/build_status", FactoryGirl.attributes_for(:build).merge(token: "secret", step_name: "tests")

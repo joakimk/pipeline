@@ -1,28 +1,21 @@
+desc "Run the integrated specs"
 task :spec do
   system("rspec", *Dir["spec/**/*_spec.rb"]) || exit(1)
 end
 
 namespace :spec do
+  desc "Run the unit tests"
   task :unit do
     spec_helper_path = File.expand_path("unit/spec_helper.rb")
     system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
   end
-
-  desc "Run all specs with a real database backend"
-  task :db do
-    ENV['DB'] = 't'
-    Rake::Task[:spec].execute
-  end
-
-  desc "Run only the database backend specs"
-  task :db_only do
-    ENV['DB'] = 't'
-    ENV['DB_ONLY'] = 't'
-    Rake::Task[:spec].execute
-  end
 end
 
-task :default => [ :"spec:unit", :"spec", :"spec:db" ]
+task :default => [ :"spec:unit", :spacer, :"spec" ]
+
+task :spacer do
+  puts
+end
 
 def lines_for(type)
   `cat $(find app/repositories/#{type}* 2> /dev/null|grep '.rb'|xargs)|wc -l`.chomp.strip
@@ -31,8 +24,6 @@ end
 desc "Some code stats"
 namespace :deployer do
   task :code_stats do
-    puts "Number of lines in the memory repository:\t #{lines_for("memory")}"
-    puts "Number of lines in the ar repository:\t\t #{lines_for("ar")}"
-    puts "Number of lines shared between repositories:\t #{lines_for("common")}"
+    puts "Number of lines in the repository:\t\t #{lines_for("ar")}"
   end
 end

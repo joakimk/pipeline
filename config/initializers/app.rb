@@ -7,11 +7,7 @@ class App
   end
 
   def self.reset_repository
-    if Rails.env.test? && !ENV['DB']
-      self.repository = Repositories::Memory
-    else
-      self.repository = Repositories::AR
-    end
+    self.repository = Repositories::AR
   end
 
   def self.api_token

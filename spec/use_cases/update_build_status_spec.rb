@@ -1,6 +1,7 @@
+require "spec_helper"
 require "update_build_status"
 
-describe UpdateBuildStatus do
+describe UpdateBuildStatus, :db do
   let(:repository) { App.repository }
   let(:update_build_status) { described_class }
 

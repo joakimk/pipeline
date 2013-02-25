@@ -10,9 +10,5 @@ echo "Preparing database."
 bundle exec rake db:migrate db:test:prepare
 
 echo
-echo "Running integrated tests with the memory store."
-bundle exec rake spec
-
-echo
 echo "Running integrated tests with the postgres store."
-bundle exec rake spec:db
+bundle exec rake spec

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe do
+describe "Projects", :db do
   let(:repository) { App.repository }
 
   describe "Adding projects" do
