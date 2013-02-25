@@ -1,17 +1,17 @@
-require 'minimapper/ar'
-
-module AR
-  class BuildMapper < Minimapper::AR
-    def find_known_by(attributes)
-      entity_for record_klass.where(
-        project_name: attributes[:project_name],
-        step_name:    attributes[:step_name],
-        revision:     attributes[:revision]
-      ).first
-    end
+class BuildMapper < Minimapper::AR
+  def find_known_by(attributes)
+    entity_for record_klass.where(
+      project_name: attributes[:project_name],
+      step_name:    attributes[:step_name],
+      revision:     attributes[:revision]
+    ).first
   end
 
-  class Build < ActiveRecord::Base
+  def record_klass
+    Record
+  end
+
+  class Record < ActiveRecord::Base
     attr_accessible :project_name, :step_name, :revision, :status
 
     # To not break the build reporter:
@@ -22,5 +22,8 @@ module AR
     # If we don't blacklist them minimapper will try and set them which will
     # lead to a ActiveModel::MassAssignmentSecurity::Error :(
     attr_protected :created_at, :updated_at
+
+    self.table_name = :builds
   end
 end
+

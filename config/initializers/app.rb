@@ -1,4 +1,5 @@
 require 'minimapper/repository'
+require 'minimapper/ar'
 require File.join(Rails.root, 'config/repo')
 
 class App

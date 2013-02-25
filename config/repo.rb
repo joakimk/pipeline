@@ -1,4 +1,4 @@
 Repo = Minimapper::Repository.build({
-  projects: AR::ProjectMapper.new,
-  builds:   AR::BuildMapper.new
+  projects: ProjectMapper.new,
+  builds:   BuildMapper.new
 })
