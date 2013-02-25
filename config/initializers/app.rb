@@ -1,5 +1,5 @@
 require 'minimapper/repository'
-require File.join(Rails.root, 'config/repositories')
+require File.join(Rails.root, 'config/repo')
 
 class App
   class << self
@@ -7,7 +7,7 @@ class App
   end
 
   def self.reset_repository
-    self.repository = Repositories::AR
+    self.repository = Repo
   end
 
   def self.api_token
