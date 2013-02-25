@@ -7,7 +7,7 @@ describe ProjectMapper, :db do
       FactoryGirl.create(:project, name: "alpha")
       FactoryGirl.create(:project, name: "beta")
 
-      projects = App.repository.projects.all_sorted_by_name
+      projects = Repo.projects.all_sorted_by_name
       projects.map(&:name).should == [ "alpha", "beta" ]
       projects.first.should be_kind_of(Minimapper::Entity)
     end

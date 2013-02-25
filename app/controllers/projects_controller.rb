@@ -42,7 +42,7 @@ class ProjectsController < WebController
   private
 
   def projects_mapper
-    repository.projects
+    Repo.projects
   end
 
   def setup_menu

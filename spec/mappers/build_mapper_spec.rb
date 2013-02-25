@@ -5,7 +5,7 @@ describe BuildMapper, :db do
     @build = FactoryGirl.create(:build, project_name: "deployer", step_name: "build_assets", revision: "440f78f6de0c71e073707d9435db89f8e5390a59")
   end
 
-  let(:build_mapper) { App.repository.builds }
+  let(:build_mapper) { Repo.builds }
   let(:build) { @build }
 
   describe "find_known_by" do

@@ -18,6 +18,6 @@ RSpec.configure do |config|
   end
 
   config.after do
-    App.repository.delete_all!
+    Repo.delete_all!
   end
 end

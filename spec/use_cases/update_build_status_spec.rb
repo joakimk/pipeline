@@ -2,7 +2,7 @@ require "spec_helper"
 require "update_build_status"
 
 describe UpdateBuildStatus, :db do
-  let(:repository) { App.repository }
+  let(:repository) { Repo }
   let(:update_build_status) { described_class }
 
   def update_with(custom = {})
