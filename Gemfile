@@ -6,12 +6,9 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'activerecord-nulldb-adapter'
 gem 'haml'
-gem 'minimapper'
 gem 'attr_extras'
 gem 'bootstrap_forms', github: 'barsoom/bootstrap_forms'
-#gem 'minimapper', path: "/Users/jocke/Projects/shared/minimapper"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,7 +32,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 gem 'jquery-rails'

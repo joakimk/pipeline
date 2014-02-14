@@ -3,10 +3,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def repository
-    App.repository
-  end
-
   def production?
     Rails.env.production?
   end

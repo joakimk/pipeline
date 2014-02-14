@@ -1,6 +1,6 @@
 class ProjectsController < WebController
   def index
-    @projects = projects_mapper.all_sorted_by_name
+    @projects = Project.all_sorted_by_name
   end
 
   def new
@@ -8,13 +8,13 @@ class ProjectsController < WebController
   end
 
   def edit
-    @project = projects_mapper.find(params[:id])
+    @project = Project.find(params[:id])
   end
 
   def create
     project = Project.new(params[:project])
 
-    if projects_mapper.create(project)
+    if project.save
       redirect_to root_path, notice: "Project added."
     else
       @project = project
@@ -23,10 +23,10 @@ class ProjectsController < WebController
   end
 
   def update
-    project = projects_mapper.find(params[:id])
+    project = Project.find(params[:id])
     project.attributes = params[:project]
 
-    if projects_mapper.update(project)
+    if project.save
       redirect_to root_path, notice: "Project updated."
     else
       @project = project
@@ -35,15 +35,11 @@ class ProjectsController < WebController
   end
 
   def destroy
-    projects_mapper.delete_by_id(params[:id])
+    Project.find(params[:id]).destroy
     redirect_to root_path, notice: "Project removed."
   end
 
   private
-
-  def projects_mapper
-    repository.projects
-  end
 
   def setup_menu
     if [ "new", "create" ].include?(params[:action])

@@ -28,8 +28,6 @@ GEM
       activesupport (= 3.2.8)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-nulldb-adapter (0.2.3)
-      activerecord (>= 2.0.0)
     activeresource (3.2.8)
       activemodel (= 3.2.8)
       activesupport (= 3.2.8)
@@ -63,6 +61,9 @@ GEM
       multi_json (~> 1.0)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.1.0)
+      factory_girl (~> 4.1.0)
+      railties (>= 3.0.0)
     ffi (1.2.0)
     haml (3.1.7)
     hike (1.2.1)
@@ -83,7 +84,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    minimapper (0.2.6)
     multi_json (1.5.0)
     multi_xml (0.5.1)
     nokogiri (1.5.6)
@@ -157,17 +157,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-nulldb-adapter
   attr_extras
   bootstrap-sass
   bootstrap_forms!
   capybara
   coffee-rails (~> 3.2.1)
-  factory_girl
+  factory_girl_rails
   haml
   httparty
   jquery-rails
-  minimapper
   pg
   rails (= 3.2.8)
   rspec-rails

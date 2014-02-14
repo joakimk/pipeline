@@ -1,19 +1,18 @@
-require "update_build_status"
+require "spec_helper"
 
 describe UpdateBuildStatus do
-  let(:repository) { App.repository }
   let(:update_build_status) { described_class }
 
   def update_with(custom = {})
     build_attributes = FactoryGirl.attributes_for(:build).merge(custom)
-    update_build_status.run(repository, build_attributes)
+    update_build_status.run(build_attributes)
   end
 
   context "when there are no previous builds" do
     it "adds a build" do
       update_with name: "deployer_tests"
 
-      builds = repository.builds.all
+      builds = Build.all
       builds.size.should == 1
       builds.first.name.should == "deployer_tests"
     end
@@ -24,7 +23,7 @@ describe UpdateBuildStatus do
       update_with status: "building"
       update_with status: "successful"
 
-      builds = repository.builds.all
+      builds = Build.all
       builds.size.should == 1
       builds.first.status.should == "successful"
     end
@@ -37,7 +36,7 @@ describe UpdateBuildStatus do
       update_with revision: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       update_with revision: "cccccccccccccccccccccccccccccccccccccccc"
 
-      revisions = repository.builds.all.map(&:revision).to_s
+      revisions = Build.all.map(&:revision).to_s
       revisions.should_not include("a")
       revisions.should include("b")
       revisions.should include("c")

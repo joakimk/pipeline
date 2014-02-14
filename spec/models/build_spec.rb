@@ -1,4 +1,4 @@
-require 'build'
+require "spec_helper"
 
 describe Build do
   it "requires a name" do

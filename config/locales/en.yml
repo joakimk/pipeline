@@ -5,7 +5,7 @@ en:
   bootstrap_forms:
     errors:
       header: "Something went wrong"
-  activemodel:
+  activerecord:
     attributes:
       project:
         name: "Name"
