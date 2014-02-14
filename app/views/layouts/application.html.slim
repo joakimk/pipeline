@@ -12,9 +12,9 @@ html
         .navbar-inner
           = link_to("Deployer", root_path, class: "brand")
           ul.nav
-            li class=menu_item(:projects).class
+            li class=menu_item_class(:projects)
               = link_to("Projects", projects_path)
-            li class=menu_item(:new_project).class
+            li class=menu_item_class(:new_project)
               = link_to("Add project", new_project_path)
 
 
