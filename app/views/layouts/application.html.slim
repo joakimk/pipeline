@@ -1,25 +1,24 @@
-!!!
-%html
-  %head
-    %title Deployer
+html
+  head
+    title Deployer
 
   = stylesheet_link_tag "application", media: "all"
   = javascript_include_tag "application"
   = csrf_meta_tags
 
-  %body
+  body
     .container
       .navbar
         .navbar-inner
           = link_to("Deployer", root_path, class: "brand")
-          %ul.nav
-            %li[menu_item(:projects)]
+          ul.nav
+            li class=menu_item(:projects).class
               = link_to("Projects", projects_path)
-            %li[menu_item(:new_project)]
+            li class=menu_item(:new_project).class
               = link_to("Add project", new_project_path)
 
 
     .container
       - if flash[:notice]
-        %p.alert.alert-success= flash[:notice]
+        p.alert.alert-success= flash[:notice]
       = yield

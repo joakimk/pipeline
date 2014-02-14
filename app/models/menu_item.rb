@@ -5,10 +5,7 @@ class MenuItem
     @active = (name == current)
   end
 
-  def haml_object_ref
+  def class
     @active ? 'active' : ''
-  end
-
-  def id
   end
 end

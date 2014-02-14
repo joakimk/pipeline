@@ -1,4 +1,4 @@
-require 'haml'
+require 'slim'
 require 'bootstrap_forms'
 
 class WebController < ApplicationController
