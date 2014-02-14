@@ -8,7 +8,7 @@ module AR
   end
 
   class Project < ActiveRecord::Base
-    attr_accessible :name, :github_url
+    attr_accessible :name, :github_url, :build_pattern
     attr_protected :created_at, :updated_at
   end
 end
