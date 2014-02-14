@@ -15,7 +15,9 @@ class WebController < ApplicationController
 
   def temporary_security
     return unless Rails.env.production?
+
     raise 'Need pw configured in prod.' unless ENV['TEMP_PW']
+
     if !session[:logged_in] && params[:pw] != ENV['TEMP_PW']
       render text: ''
     else
