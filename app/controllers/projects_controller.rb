@@ -24,9 +24,8 @@ class ProjectsController < WebController
 
   def update
     project = Project.find(params[:id])
-    project.attributes = params[:project]
 
-    if project.save
+    if project.update_attributes(params[:project])
       redirect_to root_path, notice: "Project updated."
     else
       @project = project
