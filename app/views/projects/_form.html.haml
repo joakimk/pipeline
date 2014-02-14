@@ -2,7 +2,7 @@
   .span12
     .page
       = bootstrap_form_for(@project) do |f|
-        = f.text_field :name, help_block: "Used to match reported builds to this project. Must be lowercase letters, numbers or underscore."
+        = f.text_field :name
         = f.text_field :github_url
         = f.text_field :build_pattern
         .form-actions
