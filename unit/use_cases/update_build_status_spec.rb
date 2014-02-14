@@ -11,11 +11,11 @@ describe UpdateBuildStatus do
 
   context "when there are no previous builds" do
     it "adds a build" do
-      update_with project_name: "deployer"
+      update_with name: "deployer_tests"
 
       builds = repository.builds.all
       builds.size.should == 1
-      builds.first.project_name.should == "deployer"
+      builds.first.name.should == "deployer_tests"
     end
   end
 

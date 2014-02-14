@@ -4,15 +4,14 @@ module AR
   class BuildMapper < Minimapper::AR
     def find_known_by(attributes)
       entity_for record_klass.where(
-        project_name: attributes[:project_name],
-        step_name:    attributes[:step_name],
-        revision:     attributes[:revision]
+        name:     attributes[:name],
+        revision: attributes[:revision]
       ).first
     end
   end
 
   class Build < ActiveRecord::Base
-    attr_accessible :project_name, :step_name, :revision, :status
+    attr_accessible :name, :revision, :status
 
     # To not break the build reporter:
     #

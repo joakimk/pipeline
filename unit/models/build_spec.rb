@@ -1,12 +1,8 @@
 require 'build'
 
 describe Build do
-  it "requires a project_name" do
-    FactoryGirl.build(:build, project_name: nil).should_not be_valid
-  end
-
-  it "requires a step_name" do
-    FactoryGirl.build(:build, step_name: nil).should_not be_valid
+  it "requires a name" do
+    FactoryGirl.build(:build, name: nil).should_not be_valid
   end
 
   it "requires a revision" do
