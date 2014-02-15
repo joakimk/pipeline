@@ -14,5 +14,7 @@
         - project.revisions.order('id desc').limit(10).each do |revision|
           p= revision.name
           - revision.builds.each do |build|
-            p= "#{link_to(build.name, build.status_url)} #{build.status}"
+            p
+              = link_to(build.name, build.status_url)
+              = " #{build.status}"
 
