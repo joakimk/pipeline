@@ -7,7 +7,7 @@ class App
     end
   end
 
-  def self.builds_to_keep
-    (ENV['BUILDS_TO_KEEP'] || 1000).to_i
+  def self.revisions_to_keep
+    (ENV['REVISIONS_TO_KEEP'] || 500).to_i
   end
 end

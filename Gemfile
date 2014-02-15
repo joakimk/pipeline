@@ -28,6 +28,7 @@ group :development, :test do
 
   # Used by the report_build script.
   gem 'httparty'
+  gem 'unicorn'
 end
 
 group :test do

@@ -1,7 +1,6 @@
-require 'project'
-
 FactoryGirl.define do
   factory :project do
-    name 'deployer'
+    name "deployer"
+    repository "git@example.com:user/foo.git"
   end
 end

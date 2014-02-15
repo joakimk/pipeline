@@ -17,6 +17,13 @@ describe Project do
   end
 end
 
+describe Project do
+  it "sets the name from repository" do
+    project = Project.new(repository: "git@example.com:user/foo.git")
+    expect(project.name).to eq("foo")
+  end
+end
+
 describe Project, ".all_sorted_by_name" do
   it "returns all projects projects alphabetically" do
     FactoryGirl.create(:project, name: "alpha")

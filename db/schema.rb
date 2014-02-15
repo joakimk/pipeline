@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140214200638) do
+ActiveRecord::Schema.define(:version => 20140215092646) do
 
   create_table "builds", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "revision",   :null => false
-    t.string   "status",     :null => false
-    t.string   "name",       :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "status",      :null => false
+    t.string   "name",        :null => false
+    t.integer  "revision_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(:version => 20140214200638) do
     t.string   "name",          :null => false
     t.string   "github_url"
     t.string   "build_pattern"
+    t.string   "repository"
+  end
+
+  create_table "revisions", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "project_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

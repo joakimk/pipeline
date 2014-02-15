@@ -11,7 +11,8 @@
             = link_to("Github", project.github_url)
         h1= project.name
         - # temporary code, want a quick way to view our current build data before building something real
-        - if project.build_pattern
-          - Build.where("name LIKE ?", project.build_pattern).order("id desc").each do |build|
-            p= "#{build.name} #{build.revision} #{build.status}"
+        - project.revisions.order('id desc').limit(10).each do |revision|
+          p= revision.name
+          - revision.builds.each do |build|
+            p= "#{build.name} #{build.status}"
 
