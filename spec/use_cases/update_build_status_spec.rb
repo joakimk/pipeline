@@ -8,6 +8,7 @@ describe UpdateBuildStatus do
       name: "foo_tests",
       repository: "git@example.com:user/foo.git",
       revision: "440f78f6de0c71e073707d9435db89f8e5390a59",
+      status_url: "http://example.com/builds/1",
       status: "building",
     }.merge(custom)
 
@@ -22,6 +23,7 @@ describe UpdateBuildStatus do
       builds.size.should == 1
       build = builds.first
       expect(build.name).to eq("deployer_tests")
+      expect(build.status_url).to eq("http://example.com/builds/1")
       expect(build.revision.project.name).to eq("bar")
     end
   end

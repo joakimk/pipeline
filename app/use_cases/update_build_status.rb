@@ -8,10 +8,11 @@ class UpdateBuildStatus
   end
 
   def initialize(attributes)
-    @name, @repository, @revision_hash, @status = attributes[:name], attributes[:repository], attributes[:revision], attributes[:status]
+    @name, @repository, @revision_hash, @status, @status_url =
+      attributes[:name], attributes[:repository], attributes[:revision], attributes[:status], attributes[:status_url]
   end
 
-  attr_private :name, :repository, :revision_hash, :status
+  attr_private :name, :repository, :revision_hash, :status, :status_url
 
   def run
     if known_build?
@@ -33,6 +34,7 @@ class UpdateBuildStatus
     build = Build.new
     build.name = name
     build.status = status
+    build.status_url = status_url
     build.revision = revision
     build.save!
   end

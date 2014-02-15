@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140215092646) do
+ActiveRecord::Schema.define(:version => 20140215110941) do
 
   create_table "builds", :force => true do |t|
     t.datetime "created_at",  :null => false
@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(:version => 20140215092646) do
     t.string   "status",      :null => false
     t.string   "name",        :null => false
     t.integer  "revision_id"
+    t.string   "status_url"
   end
 
   create_table "projects", :force => true do |t|
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "name",          :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name",       :null => false
     t.string   "github_url"
-    t.string   "build_pattern"
     t.string   "repository"
   end
 
