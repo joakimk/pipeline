@@ -1,9 +1,0 @@
-.row
-  .span12
-    .page
-      = bootstrap_form_for(@project) do |f|
-        = f.text_field :name
-        = f.text_field :github_url
-        = f.text_field :repository
-        .form-actions
-          = submit_tag "Save", class: "btn btn-primary"

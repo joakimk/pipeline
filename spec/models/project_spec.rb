@@ -34,6 +34,30 @@ describe Project, "latest_revisions" do
   end
 end
 
+describe Project, "github_url" do
+  it "is based on the repository" do
+    project = Project.new(repository: "git@github.com:joakimk/deployer.git")
+    expect(project.github_url).to eq("https://github.com/joakimk/deployer")
+  end
+
+  it "is nil when the repository is not on github" do
+    expect(Project.new(repository: "git@example.com:foo.git").github_url).to be_nil
+    expect(Project.new.github_url).to be_nil
+  end
+end
+
+describe Project, "github_wiki_url" do
+  it "is based on the repository" do
+    project = Project.new(repository: "git@github.com:joakimk/deployer.git")
+    expect(project.github_wiki_url).to eq("https://github.com/joakimk/deployer/wiki")
+  end
+
+  it "is nil when the repository is not on github" do
+    expect(Project.new(repository: "git@example.com:foo.git").github_wiki_url).to be_nil
+    expect(Project.new.github_url).to be_nil
+  end
+end
+
 describe Project, ".all_sorted_by_name" do
   it "returns all projects projects alphabetically" do
     FactoryGirl.create(:project, name: "alpha")

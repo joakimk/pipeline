@@ -1,1 +1,13 @@
-= render "form"
+.row
+  .span12
+    .page
+      .row
+        .span9
+          = bootstrap_form_for(@project) do |f|
+            = f.text_field :name
+            = f.text_field :github_url
+            = f.text_field :repository
+            .form-actions
+              = submit_tag "Save", class: "btn btn-primary"
+        .span2
+          p= link_to("Remove project", project_path(@project), method: :delete, confirm: "Are you sure you want to remove #{@project.name}?")

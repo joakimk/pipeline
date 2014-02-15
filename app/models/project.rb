@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :github_url, :build_pattern, :repository
+  attr_accessible :name, :repository
 
   has_many :revisions, dependent: :destroy
   after_initialize :set_name
@@ -16,6 +16,24 @@ class Project < ActiveRecord::Base
 
   def latest_revisions(limit = 10)
     revisions.order('id desc').limit(limit)
+  end
+
+  def github_wiki_url
+    if github_url
+      "#{github_url}/wiki"
+    else
+      nil
+    end
+  end
+
+  def github_url
+    if repository.to_s.include?("github.com")
+      match = repository.match(/github.com:(.*?)\./)
+      github_path = match && match[1]
+      "https://github.com/#{github_path}"
+    else
+      nil
+    end
   end
 
   private
