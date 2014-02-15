@@ -10,8 +10,7 @@
             = ' | '
             = link_to("Github", project.github_url)
         h1= project.name
-        - # temporary code, want a quick way to view our current build data before building something real
-        - project.revisions.order('id desc').limit(10).each do |revision|
+        - project.latest_revisions.each do |revision|
           p= revision.name
           - revision.builds.each do |build|
             p

@@ -24,6 +24,16 @@ describe Project do
   end
 end
 
+describe Project, "latest_revisions" do
+  it "returns the latest revisions in order" do
+    project = FactoryGirl.create(:project)
+    rev1 = FactoryGirl.create(:revision, project: project)
+    rev2 = FactoryGirl.create(:revision, project: project)
+    rev3 = FactoryGirl.create(:revision, project: project)
+    expect(project.latest_revisions(2).map(&:id)).to eq([ rev3.id, rev2.id ])
+  end
+end
+
 describe Project, ".all_sorted_by_name" do
   it "returns all projects projects alphabetically" do
     FactoryGirl.create(:project, name: "alpha")

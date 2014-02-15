@@ -14,6 +14,10 @@ class Project < ActiveRecord::Base
     where(repository: repository).first_or_create!
   end
 
+  def latest_revisions(limit = 10)
+    revisions.order('id desc').limit(limit)
+  end
+
   private
 
   def set_name
