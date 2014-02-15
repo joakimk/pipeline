@@ -5,6 +5,7 @@
         .span9
           = bootstrap_form_for(@project) do |f|
             = f.text_field :name
+            = f.text_area :mappings
             .form-actions
               = submit_tag "Save", class: "btn btn-primary"
         .span2

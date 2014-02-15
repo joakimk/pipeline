@@ -14,12 +14,17 @@
           h1= project.name
           .revisions
             - project.latest_revisions.each do |revision|
-              - split_line = false
-              - revision.builds.each_slice(4) do |builds|
-                .revision
-                  = revision.name[0, 6] unless split_line
-                  - split_line = true
-                  - builds.each do |build|
-                    span.build class=build.status
+              .revision
+                = revision.name[0, 6]
+                - revision.builds.each do |build|
+                  span.build class=build.status
+                    - # trying out project name mappings
+                    - if project.mappings
+                      - mapping = project.mappings.split("\n").find { |x| x.split('=').first == build.name }
+                      - if mapping
+                        = link_to(mapping.split("=").last.chomp, build.status_url)
+                      - else
+                        = link_to(build.name, build.status_url)
+                    - else
                       = link_to(build.name, build.status_url)
 
