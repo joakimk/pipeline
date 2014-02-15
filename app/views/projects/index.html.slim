@@ -9,11 +9,16 @@
           - if project.github_url
             = ' | '
             = link_to("Github", project.github_url)
-        h1= project.name
-        - project.latest_revisions.each do |revision|
-          p= revision.name
-          - revision.builds.each do |build|
-            p
-              = link_to(build.name, build.status_url)
-              = " #{build.status}"
+        .status
+          h1= project.name
+          .revisions
+            - project.latest_revisions.each do |revision|
+              - split_line = false
+              - revision.builds.each_slice(4) do |builds|
+                .revision
+                  = revision.name[0, 6] unless split_line
+                  - split_line = true
+                  - builds.each do |build|
+                    span.build class=build.status
+                      = link_to(build.name, build.status_url)
 
