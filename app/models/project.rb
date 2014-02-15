@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
   has_many :revisions, dependent: :destroy
   after_initialize :set_name
 
-  validates :name, presence: true, format: /\A[a-z0-9_]+\z/
+  validates :name, presence: true
 
   def self.all_sorted_by_name
     order("name ASC")

@@ -8,8 +8,10 @@ describe do
       visit root_path
 
       within("#project_#{project.id}") do
-        click_link "Remove"
+        click_link "Edit"
       end
+
+      click_link "Remove"
 
       current_path.should == root_path
       page.should have_content("Project removed.")
@@ -27,12 +29,12 @@ describe do
         click_link "Edit"
       end
 
-      fill_in "Github URL", with: "https://github.com/barsoom/the_app"
+      fill_in "Name", with: "The app"
       click_button "Save"
 
       current_path.should == root_path
       page.should have_content("Project updated.")
-      Project.find(project.id).github_url.should == "https://github.com/barsoom/the_app"
+      Project.find(project.id).name.should == "The app"
     end
 
     it "when there are validation errors" do
