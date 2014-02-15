@@ -27,6 +27,7 @@ class UpdateBuildStatus
 
   def update_build_status
     build.status = status
+    build.status_url = status_url
     build.save!
   end
 

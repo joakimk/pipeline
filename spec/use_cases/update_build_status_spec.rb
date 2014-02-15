@@ -31,11 +31,12 @@ describe UpdateBuildStatus do
   context "when there are previous builds" do
     it "updates the status" do
       update_with status: "building"
-      update_with status: "successful"
+      update_with status: "successful", status_url: "http://example.com/updated"
 
       builds = Build.all
       builds.size.should == 1
       builds.first.status.should == "successful"
+      builds.first.status_url.should == "http://example.com/updated"
     end
   end
 
