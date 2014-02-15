@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   attr_accessible :name, :github_url, :build_pattern, :repository
 
-  has_many :revisions
+  has_many :revisions, dependent: :destroy
   after_initialize :set_name
 
   validates :name, presence: true, format: /\A[a-z0-9_]+\z/
