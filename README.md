@@ -58,3 +58,4 @@ You need postgres installed.
 * Upgrade rails and ruby. Require ruby 2.1? If so, change .travis.yml.
 * Tell the world about it :)
 * Explore using it do manage continous deployment pipelines better and simpler than can be done with jenkins plugins.
+* Stats: averge build times, estimated time left, time from commit to deploy, average number of commits per deploy, ...
