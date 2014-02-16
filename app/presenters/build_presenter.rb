@@ -50,8 +50,15 @@ class BuildPresenter
     build_mappings.find { |m| m.from == build.name }
   end
 
-  def new_build(name, status, build = nil)
-    build = Build.new(attributes: (build ? build.attributes : {}))
+  def new_build(name, status, old_build = nil)
+    build = Build.new
+
+    if old_build
+      old_build.attributes.each do |k, v|
+        build.public_send("#{k}=", v)
+      end
+    end
+
     build.name = name
     build.status = status
     build
