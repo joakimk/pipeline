@@ -13,6 +13,8 @@ The tool used to report build status isn't part of this repo yet.
 
 ![how it looks](http://cl.ly/image/3t021A0n2d25/Screen%20Shot%202014-02-16%20at%201.10.25%20PM.png)
 
+The names links to the `status_url` passed in when reporting builds. At barsoom we pass in a link to the jenkins build result console. This way we can easily get to any build result of any recent revision.
+
 ## Work in progress
 
 Right now it can show build status, link to build results and github.
