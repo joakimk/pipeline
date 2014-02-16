@@ -11,7 +11,7 @@ The tool used to report build status isn't part of this repo yet (but you can pr
 
 ## How it looks
 
-![how it looks](http://cl.ly/image/3t021A0n2d25/Screen%20Shot%202014-02-16%20at%201.10.25%20PM.png)
+![how it looks](http://cl.ly/image/1v1f1N2c3l27/Screen%20Shot%202014-02-16%20at%203.08.04%20PM.png)
 
 Each commit shows up as it's own line, the newest at the top. Within each line boxes are shown for the different builds run on that revision.
 
