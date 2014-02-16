@@ -7,7 +7,7 @@ This is a tool for viewing CI build status from multiple CI servers and projects
 
 It can be deployed to heroku but there are no instructions yet.
 
-The tool used to report build status isn't part of this repo yet.
+The tool used to report build status isn't part of this repo yet (but you can probably build your own quite quickly, see API docs below).
 
 ## How it looks
 
@@ -21,19 +21,13 @@ The api token is set with the `API_TOKEN` environment variable.
 
 Build status are reported to `/api/build_statuses` as a POST with the following attributes:
 
-* name: the name of the build (e.g. foo_tests or foo_deploy)
-* repository: the repository path (e.g. git@github...)
-* revision: the git revision
-* status_url: the url to link to for showing build results
-* status: can be `building`, `successful` or `failed`
+* *name*: the name of the build (e.g. foo_tests or foo_deploy)
+* *repository*: the repository path (e.g. git@github...)
+* *revision*: the git revision
+* *status_url*: the url to link to for showing build results
+* *status*: can be `building`, `successful` or `failed`
 
 Normally the client would first post with the status of `building` and then either `successful` or `failed` after the build is done.
-
-## Work in progress
-
-Right now it can show build status, link to build results and github.
-
-One thing I'd like to do it to make it manage continous deployment pipelines better than what I can do with jenkins plugins.
 
 ## Running the tests
 
@@ -48,3 +42,15 @@ You need postgres installed.
 ## Download production data
 
     rake app:reset
+
+## TODO
+
+* Be able to sort build results
+* Add heroku deploy instructions
+* Add build reporting script
+  - possibly built in go so that it is simple to install, no deps on ruby or similar
+* Make the UI nicer
+* Possibly make the UI auto-updating. Maybe client side MVC.
+* Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
+* Tell the world about it :)
+* Explore using it do manage continous deployment pipelines better and simpler than can be done with jenkins plugins.
