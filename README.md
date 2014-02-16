@@ -13,6 +13,8 @@ The tool used to report build status isn't part of this repo yet (but you can pr
 
 ![how it looks](http://cl.ly/image/3t021A0n2d25/Screen%20Shot%202014-02-16%20at%201.10.25%20PM.png)
 
+Each commit shows up as it's own line, the newest at the top. Within each line boxes are shown for the different builds run on that revision.
+
 The names links to the `status_url` passed in when reporting builds. At barsoom we pass in a link to the jenkins build result console. This way we can easily get to any build result of any recent revision.
 
 ## API
