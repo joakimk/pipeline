@@ -3,18 +3,6 @@ require "spec_helper"
 describe UpdateBuildStatus do
   let(:update_build_status) { described_class }
 
-  def update_with(custom = {})
-    build_attributes = {
-      name: "foo_tests",
-      repository: "git@example.com:user/foo.git",
-      revision: "440f78f6de0c71e073707d9435db89f8e5390a59",
-      status_url: "http://example.com/builds/1",
-      status: "building",
-    }.merge(custom)
-
-    update_build_status.run(build_attributes)
-  end
-
   context "when there are no previous builds" do
     it "adds a build, a revision and a project" do
       update_with name: "deployer_tests", repository: "git@example.com:user/bar.git"
@@ -64,5 +52,23 @@ describe UpdateBuildStatus do
 
       expect(Build.count).to eq(2)
     end
+  end
+
+  def update_with(custom = {})
+    attributes = {
+      name: "foo_tests",
+      repository: "git@example.com:user/foo.git",
+      revision: "440f78f6de0c71e073707d9435db89f8e5390a59",
+      status_url: "http://example.com/builds/1",
+      status: "building",
+    }.merge(custom)
+
+    update_build_status.run(
+      attributes[:name],
+      attributes[:repository],
+      attributes[:revision],
+      attributes[:status],
+      attributes[:status_url],
+    )
   end
 end

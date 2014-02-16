@@ -3,16 +3,8 @@ require 'attr_extras'
 
 # Intended to be used by a client within a CI server to post status to this app.
 class UpdateBuildStatus
-  def self.run(attributes)
-    new(attributes).run
-  end
-
-  def initialize(attributes)
-    @name, @repository, @revision_hash, @status, @status_url =
-      attributes[:name], attributes[:repository], attributes[:revision], attributes[:status], attributes[:status_url]
-  end
-
-  attr_private :name, :repository, :revision_hash, :status, :status_url
+  method_object :run,
+    :name, :repository, :revision_hash, :status, :status_url
 
   def run
     if known_build?
