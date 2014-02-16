@@ -58,7 +58,7 @@ V1:
 * Tell the world about it :)
 
 Later:
-
+* Be able to manually trigger builds in CI. Probably some kind of plugin-API.
 * Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
 * Custom urls configurable for projects, possibly driven by custom data in build status?
 * Show fixed status for builds when a later revision fixes a build [see `fixed_status` branch]
