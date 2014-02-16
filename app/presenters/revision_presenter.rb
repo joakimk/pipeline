@@ -6,7 +6,8 @@ class RevisionPresenter
   end
 
   def builds
-    sorted_builds.map { |build|
+    builds = with_pending(revision.builds)
+    sort(builds).map { |build|
       apply_mapping(build)
       build
     }
@@ -14,13 +15,26 @@ class RevisionPresenter
 
   private
 
-  def sorted_builds
-    builds = build_mappings.map { |mapping|
-      revision.builds.find { |b| b.name == mapping.from }
-    }.compact
+  def sort(builds)
+    out = build_mappings.map { |mapping|
+      builds.find { |b| b.name == mapping.from }
+    }
 
-    builds += revision.builds
-    builds.uniq
+    out += builds
+    out.uniq(&:name)
+  end
+
+  def with_pending(builds)
+    out = []
+
+    build_mappings.each do |mapping|
+      unless builds.map(&:name).include?(mapping.from)
+        out << Build.new(name: mapping.from, status: "pending")
+      end
+    end
+
+    out += builds.map(&:dup)
+    out
   end
 
   def apply_mapping(build)

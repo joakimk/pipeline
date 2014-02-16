@@ -3,6 +3,8 @@ require "revision_presenter"
 require "ostruct"
 require "build_mapping"
 
+stub_class :Build, OpenStruct
+
 describe RevisionPresenter, "#name" do
   it "is the first 6 characters" do
     revision = double(name: "00677457465544877dc2293f724009caa9da03a4")
@@ -21,16 +23,16 @@ end
 
 describe RevisionPresenter, "#builds" do
   it "returns builds" do
-    build1 = double(name: "tests")
-    build2 = double(name: "deploy")
+    build1 = Build.new(name: "tests")
+    build2 = Build.new(name: "deploy")
     revision = double(builds: [ build1, build2 ], build_mappings: [])
     presenter = RevisionPresenter.new(revision)
     expect(presenter.builds.map(&:name)).to eq([ "tests", "deploy" ])
   end
 
   it "maps build names when mappings is available" do
-    build1 = OpenStruct.new(name: "foo_tests")
-    build2 = OpenStruct.new(name: "foo_deploy")
+    build1 = Build.new(name: "foo_tests")
+    build2 = Build.new(name: "foo_deploy")
     build_mappings = [ BuildMapping.new("foo_tests", "tests") ]
     revision = double(builds: [ build1, build2 ], build_mappings: build_mappings)
     presenter = RevisionPresenter.new(revision)
@@ -38,9 +40,9 @@ describe RevisionPresenter, "#builds" do
   end
 
   it "sorts the builds based on mappings" do
-    build1 = OpenStruct.new(name: "foo_deploy_production")
-    build2 = OpenStruct.new(name: "foo_tests")
-    build3 = OpenStruct.new(name: "foo_deploy_staging")
+    build1 = Build.new(name: "foo_deploy_production")
+    build2 = Build.new(name: "foo_tests")
+    build3 = Build.new(name: "foo_deploy_staging")
     build_mappings = [
       BuildMapping.new("foo_tests", "tests"),
       BuildMapping.new("foo_deploy_staging", "staging")
@@ -50,13 +52,15 @@ describe RevisionPresenter, "#builds" do
     expect(presenter.builds.map(&:name)).to eq([ "tests", "staging", "foo_deploy_production" ])
   end
 
-  it "ignores unknown mappings" do
-    build1 = OpenStruct.new(name: "foo_tests")
+  it "fills out with blank build results until they turn up" do
+    build1 = Build.new(name: "foo_tests", status: "building")
     build_mappings = [
-      BuildMapping.new("foo_unknown", "unknown")
+      BuildMapping.new("foo_tests", "tests"),
+      BuildMapping.new("foo_deploy_staging", "staging")
     ]
     revision = double(builds: [ build1 ], build_mappings: build_mappings)
     presenter = RevisionPresenter.new(revision)
-    expect(presenter.builds.map(&:name)).to eq([ "foo_tests" ])
+    expect(presenter.builds.map(&:name)).to eq([ "tests", "staging" ])
+    expect(presenter.builds.map(&:status)).to eq([ "building", "pending" ])
   end
 end
