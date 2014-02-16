@@ -10,6 +10,10 @@ class Revision < ActiveRecord::Base
     where(project_id: project, name: name).first_or_create!
   end
 
+  def build_mappings
+    BuildMapping.build_list(project.mappings)
+  end
+
   def for_build(name)
     builds.where(name: name).first
   end

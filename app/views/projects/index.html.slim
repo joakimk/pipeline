@@ -17,15 +17,7 @@
               .revision
                 - presenter = RevisionPresenter.new(revision)
                 = presenter.name
-                - revision.builds.each do |build|
+                - presenter.builds.each do |build|
                   span.build class=build.status
-                    - # trying out project name mappings
-                    - if project.mappings
-                      - mapping = project.mappings.split("\n").find { |x| x.split('=').first == build.name }
-                      - if mapping
-                        = link_to(mapping.split("=").last.chomp, build.status_url)
-                      - else
-                        = link_to(build.name, build.status_url)
-                    - else
-                      = link_to(build.name, build.status_url)
+                    = link_to(build.name, build.status_url)
 
