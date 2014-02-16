@@ -34,7 +34,7 @@ class BuildPresenter
       mapping = mapping_for_build(build)
       name = mapping ? mapping.to : build.name
       status = build.status
-      new_build(name, status)
+      new_build(name, status, build)
     }
   end
 
@@ -50,7 +50,10 @@ class BuildPresenter
     build_mappings.find { |m| m.from == build.name }
   end
 
-  def new_build(name, status)
-    Build.new(name: name, status: status)
+  def new_build(name, status, build = nil)
+    build = Build.new(attributes: (build ? build.attributes : {}))
+    build.name = name
+    build.status = status
+    build
   end
 end

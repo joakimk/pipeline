@@ -2,8 +2,15 @@ require "spec_helper"
 require "build_presenter"
 require "ostruct"
 require "build_mapping"
+require "minimapper"
+require "minimapper/entity"
 
-stub_class :Build, OpenStruct
+# Behaves aproximatly like the model, don't want to the entire app, or
+# add in support for loading AR models right now. No need yet.
+class Build
+  include Minimapper::Entity
+  attributes :name, :status, :status_url
+end
 
 describe BuildPresenter, "#list" do
   it "returns builds" do
@@ -15,6 +22,15 @@ describe BuildPresenter, "#list" do
     presenter = BuildPresenter.new(builds, [])
 
     expect(presenter.list.map(&:name)).to eq([ "tests", "deploy" ])
+  end
+
+  it "keeps all the data" do
+    builds = [
+      Build.new(name: "tests", status: "building", status_url: "http://example.com"),
+    ]
+
+    presenter = BuildPresenter.new(builds, [])
+    expect(presenter.list.first.status_url).to include("example.com")
   end
 
   it "maps build names when mappings is available" do
