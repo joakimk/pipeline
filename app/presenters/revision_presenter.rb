@@ -6,41 +6,52 @@ class RevisionPresenter
   end
 
   def builds
-    builds = sort(with_pending(revision.builds))
+    builds = revision.builds
+    builds = with_pending(builds)
+    builds = sort(builds)
     builds.map { |build|
       mapping = mapping_for_build(build)
       name = mapping ? mapping.to : build.name
       status = build.status
-      build(name, status)
+      new_build(name, status)
     }
   end
 
   private
 
+  def with_pending(builds)
+    pending_mappings = build_mappings.select { |mapping|
+      pending_build?(builds, mapping)
+    }
+
+    pending_builds = pending_mappings.map { |mapping|
+      new_build(mapping.from, "pending")
+    }
+
+    builds + pending_builds
+  end
+
+  def sort(builds)
+    mapped_builds = build_mappings.map { |mapping|
+      build_for_mapping(builds, mapping)
+    }
+
+    (mapped_builds + builds).uniq
+  end
+
+  def pending_build?(builds, mapping)
+    !builds.map(&:name).include?(mapping.from)
+  end
+
+  def build_for_mapping(builds, mapping)
+    builds.find { |b| b.name == mapping.from }
+  end
+
   def mapping_for_build(build)
     build_mappings.find { |m| m.from == build.name }
   end
 
-  def sort(builds)
-    out = build_mappings.map { |mapping|
-      builds.find { |b| b.name == mapping.from }
-    }
-
-    out += builds
-    out.uniq
-  end
-
-  def with_pending(builds)
-    build_mappings.each do |mapping|
-      unless builds.map(&:name).include?(mapping.from)
-        builds << build(mapping.from, "pending")
-      end
-    end
-
-    builds
-  end
-
-  def build(name, status)
+  def new_build(name, status)
     Build.new(name: name, status: status)
   end
 
