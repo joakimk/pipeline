@@ -36,4 +36,27 @@ describe RevisionPresenter, "#builds" do
     presenter = RevisionPresenter.new(revision)
     expect(presenter.builds.map(&:name)).to eq([ "tests", "foo_deploy" ])
   end
+
+  it "sorts the builds based on mappings" do
+    build1 = OpenStruct.new(name: "foo_deploy_production")
+    build2 = OpenStruct.new(name: "foo_tests")
+    build3 = OpenStruct.new(name: "foo_deploy_staging")
+    build_mappings = [
+      BuildMapping.new("foo_tests", "tests"),
+      BuildMapping.new("foo_deploy_staging", "staging")
+    ]
+    revision = double(builds: [ build1, build2, build3 ], build_mappings: build_mappings)
+    presenter = RevisionPresenter.new(revision)
+    expect(presenter.builds.map(&:name)).to eq([ "tests", "staging", "foo_deploy_production" ])
+  end
+
+  it "ignores unknown mappings" do
+    build1 = OpenStruct.new(name: "foo_tests")
+    build_mappings = [
+      BuildMapping.new("foo_unknown", "unknown")
+    ]
+    revision = double(builds: [ build1 ], build_mappings: build_mappings)
+    presenter = RevisionPresenter.new(revision)
+    expect(presenter.builds.map(&:name)).to eq([ "foo_tests" ])
+  end
 end

@@ -47,7 +47,6 @@ You need postgres installed.
 
 ## TODO
 
-* Be able to sort build results
 * Add heroku deploy instructions
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
