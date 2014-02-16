@@ -47,7 +47,7 @@ You need postgres installed.
 
 ## TODO
 
-* Show fixed status for builds when a later revision fixes a build
+* Show fixed status for builds when a later revision fixes a build [see `fixed_status` branch]
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions
