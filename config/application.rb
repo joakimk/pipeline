@@ -19,7 +19,6 @@ module Deployer
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(
       #{config.root}/lib
-      #{config.root}/app/use_cases
       #{config.root}/app/presenters
     )
 
