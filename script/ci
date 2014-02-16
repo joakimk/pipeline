@@ -7,7 +7,7 @@ bundle exec rake spec:unit
 
 echo
 echo "Preparing database."
-bundle exec rake db:migrate db:test:prepare
+RAILS_ENV=test bundle exec rake db:schema:load
 
 echo
 echo "Running integrated tests."
