@@ -2,15 +2,8 @@ require "spec_helper"
 require "build_presenter"
 require "ostruct"
 require "build_mapping"
-require "minimapper"
-require "minimapper/entity"
 
-# Behaves aproximatly like the model, don't want to load the entire app, or
-# add in support for loading AR models right now. No need yet.
-class Build
-  include Minimapper::Entity
-  attributes :name, :status, :status_url
-end
+stub_constant :Build, OpenStruct
 
 describe BuildPresenter, "#list" do
   it "returns builds" do

@@ -51,14 +51,7 @@ class BuildPresenter
   end
 
   def new_build(name, status, old_build = nil)
-    build = Build.new
-
-    if old_build
-      old_build.attributes.each do |k, v|
-        build.public_send("#{k}=", v)
-      end
-    end
-
+    build = old_build ? old_build.dup : Build.new
     build.name = name
     build.status = status
     build
