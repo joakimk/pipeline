@@ -2,19 +2,14 @@ class BuildPresenter
   pattr_initialize :source_builds, :build_mappings
 
   def list
-    builds = with_pending(source_builds)
-    builds = sort(builds)
-    builds.map { |build|
-      mapping = mapping_for_build(build)
-      name = mapping ? mapping.to : build.name
-      status = build.status
-      new_build(name, status)
-    }
+    builds = add_pending(source_builds)
+    builds = sort_by_mappings(builds)
+    map_names(builds)
   end
 
   private
 
-  def with_pending(builds)
+  def add_pending(builds)
     pending_mappings = build_mappings.select { |mapping|
       pending_build?(builds, mapping)
     }
@@ -26,12 +21,21 @@ class BuildPresenter
     builds + pending_builds
   end
 
-  def sort(builds)
+  def sort_by_mappings(builds)
     mapped_builds = build_mappings.map { |mapping|
       build_for_mapping(builds, mapping)
     }
 
     (mapped_builds + builds).uniq
+  end
+
+  def map_names(builds)
+    builds.map { |build|
+      mapping = mapping_for_build(build)
+      name = mapping ? mapping.to : build.name
+      status = build.status
+      new_build(name, status)
+    }
   end
 
   def pending_build?(builds, mapping)
