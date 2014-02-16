@@ -56,6 +56,6 @@ You need postgres installed.
 * Possibly make the UI auto-updating. Maybe client side MVC.
 * Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
 * Think of a better name for it?
-* Upgrade rails and ruby
+* Upgrade rails and ruby. Require ruby 2.1? If so, change .travis.yml.
 * Tell the world about it :)
 * Explore using it do manage continous deployment pipelines better and simpler than can be done with jenkins plugins.

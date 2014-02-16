@@ -1,9 +1,9 @@
 language: ruby
 rvm:
   - 1.9.3
-  - 1.9.2
   - rbx-19mode
-  #- jruby-19mode # needs jruby compatible deps
+  - 2.0.0
+  - 2.1.0
 before_script:
   - psql -c 'create database deployer_test;' -U postgres
 script: "script/ci"
