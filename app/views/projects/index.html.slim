@@ -15,7 +15,8 @@
           .revisions
             - project.latest_revisions.each do |revision|
               .revision
-                = revision.name[0, 6]
+                - presenter = RevisionPresenter.new(revision)
+                = presenter.name
                 - revision.builds.each do |build|
                   span.build class=build.status
                     - # trying out project name mappings

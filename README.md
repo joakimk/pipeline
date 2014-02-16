@@ -14,3 +14,7 @@ You need postgres installed.
     rake              # all tests
     rake spec:unit    # unit tests
     rake spec         # integrated tests
+
+## Download production data
+
+    rake app:reset

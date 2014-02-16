@@ -8,6 +8,7 @@ require 'jquery-rails'
 require 'coffee-rails'
 require 'bootstrap-sass'
 require 'uglifier'
+require 'attr_extras'
 
 module Deployer
   class Application < Rails::Application
@@ -19,6 +20,7 @@ module Deployer
     config.autoload_paths += %W(
       #{config.root}/lib
       #{config.root}/app/use_cases
+      #{config.root}/app/presenters
     )
 
     config.assets.initialize_on_precompile = false
