@@ -47,15 +47,21 @@ You need postgres installed.
 
 ## TODO
 
-* Show fixed status for builds when a later revision fixes a build [see `fixed_status` branch]
+V1:
+
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions
-* Make the UI nicer
-* Possibly make the UI auto-updating. Maybe client side MVC.
-* Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
+* Possibly make the UI auto-updating. Maybe client side MVC. Simplest thing possible first.
 * Think of a better name for it?
 * Upgrade rails and ruby. Require ruby 2.1? If so, change .travis.yml.
 * Tell the world about it :)
+
+Later:
+
+* Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
+* Custom urls configurable for projects, possibly driven by custom data in build status?
+* Show fixed status for builds when a later revision fixes a build [see `fixed_status` branch]
+* Support for custom badges, etc. Like codeclimate.
 * Explore using it do manage continous deployment pipelines better and simpler than can be done with jenkins plugins.
 * Stats: averge build times, estimated time left, time from commit to deploy, average number of commits per deploy, ...
