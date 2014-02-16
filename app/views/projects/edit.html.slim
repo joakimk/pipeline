@@ -5,7 +5,9 @@
         .span9
           = bootstrap_form_for(@project) do |f|
             = f.text_field :name
-            = f.text_area :mappings, help_block: "Syntax: build_name1=alias1 <newline> build_name2=alias2"
+            = f.text_area :mappings, style: "width: 875px", label: "Mappings (ordered aliases for longer build names)"
+            p Syntax:
+            p= "build_name1=alias1<br/>build_name2=alias2".html_safe
             .form-actions
               = submit_tag "Save", class: "btn btn-primary"
         .span2
