@@ -6,14 +6,20 @@ class RevisionPresenter
   end
 
   def builds
-    builds = with_pending(revision.builds)
-    sort(builds).map { |build|
-      apply_mapping(build)
-      build
+    builds = sort(with_pending(revision.builds))
+    builds.map { |build|
+      mapping = mapping_for_build(build)
+      name = mapping ? mapping.to : build.name
+      status = build.status
+      build(name, status)
     }
   end
 
   private
+
+  def mapping_for_build(build)
+    build_mappings.find { |m| m.from == build.name }
+  end
 
   def sort(builds)
     out = build_mappings.map { |mapping|
@@ -21,26 +27,21 @@ class RevisionPresenter
     }
 
     out += builds
-    out.uniq(&:name)
+    out.uniq
   end
 
   def with_pending(builds)
-    out = []
-
     build_mappings.each do |mapping|
       unless builds.map(&:name).include?(mapping.from)
-        out << Build.new(name: mapping.from, status: "pending")
+        builds << build(mapping.from, "pending")
       end
     end
 
-    out += builds.map(&:dup)
-    out
+    builds
   end
 
-  def apply_mapping(build)
-    build_mappings.each do |mapping|
-      mapping.apply(build)
-    end
+  def build(name, status)
+    Build.new(name: name, status: status)
   end
 
   def build_mappings
