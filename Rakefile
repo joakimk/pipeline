@@ -17,7 +17,6 @@ def load_rails_tasks_when_needed
   require File.expand_path('../lib/railsless_rake_task_runner.rb', __FILE__)
 
   RailslessRakeTaskRunner.load_rails_when_needed_with(lambda {
-    raise "Rakefile says: If this was a rails app, we would load its rake tasks here."
     require File.expand_path('../config/application', __FILE__)
     Deployer::Application.load_tasks
   })
