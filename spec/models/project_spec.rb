@@ -51,11 +51,12 @@ describe Project, "github_wiki_url" do
   end
 end
 
-describe Project, ".all_sorted_by_name" do
-  it "returns all projects projects alphabetically" do
-    FactoryGirl.create(:project, name: "alpha")
-    FactoryGirl.create(:project, name: "beta")
+describe Project, ".all_sorted" do
+  it "returns all projects projects by position and alphabetically" do
+    FactoryGirl.create(:project, name: "alpha", position: 1)
+    FactoryGirl.create(:project, name: "beta", position: 1)
+    FactoryGirl.create(:project, name: "delta", position: 0)
 
-    Project.all_sorted_by_name.map(&:name).should == [ "alpha", "beta" ]
+    Project.all_sorted.map(&:name).should == [ "delta", "alpha", "beta" ]
   end
 end

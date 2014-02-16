@@ -1,13 +1,13 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :repository, :mappings
+  attr_accessible :name, :repository, :mappings, :position
 
   has_many :revisions, dependent: :destroy
   after_initialize :set_name
 
   validates :name, presence: true
 
-  def self.all_sorted_by_name
-    order("name ASC")
+  def self.all_sorted
+    order("position ASC, name ASC")
   end
 
   def self.find_or_create_for_repository(repository)

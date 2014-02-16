@@ -1,6 +1,6 @@
 class ProjectsController < WebController
   def index
-    @projects = Project.all_sorted_by_name
+    @projects = Project.all_sorted
   end
 
   def edit
