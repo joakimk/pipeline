@@ -48,6 +48,7 @@ You need postgres installed.
 ## TODO
 
 * Some kind of manual sorting of projects
+* Show fixed status for builds when a later revision fixes a build
 * Add heroku deploy instructions
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar

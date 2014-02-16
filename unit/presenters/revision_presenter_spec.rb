@@ -11,14 +11,6 @@ describe RevisionPresenter, "#name" do
     presenter = RevisionPresenter.new(revision)
     expect(presenter.name).to eq("006774")
   end
-
-  # todo:
-  # - reproduce that we've doing in the view
-  # - order them in the order of the mappings
-  # - show gray boxes for mappings that exist where
-  #   we don't have any build info yet
-  # - show "fixed" status if a later revision fixes
-  #   and earlier one
 end
 
 describe RevisionPresenter, "#builds" do
