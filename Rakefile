@@ -1,8 +1,26 @@
 #!/usr/bin/env rake
-require File.expand_path('../lib/tasks/no_rails.rb', __FILE__)
-require File.expand_path('../lib/tasks/no_rails_rake_tasks.rb', __FILE__)
 
-NoRailsRakeTasks.load_rails_when_needed_with(Proc.new {
-  require File.expand_path('../config/application', __FILE__)
-  Deployer::Application.load_tasks
-})
+def load_application_tasks
+  load_non_rails_tasks
+  load_rails_tasks_when_needed
+end
+
+def load_non_rails_tasks
+  path = File.expand_path('../lib/tasks/no_rails', __FILE__)
+
+  # These are named .rb, not .rake, or else Rails may pick them up.
+  ruby_files = Dir.glob(path + "/*.rb")
+  ruby_files.each { |file| load file }
+end
+
+def load_rails_tasks_when_needed
+  require File.expand_path('../lib/railsless_rake_task_runner.rb', __FILE__)
+
+  RailslessRakeTaskRunner.load_rails_when_needed_with(lambda {
+    raise "Rakefile says: If this was a rails app, we would load its rake tasks here."
+    require File.expand_path('../config/application', __FILE__)
+    Deployer::Application.load_tasks
+  })
+end
+
+load_application_tasks

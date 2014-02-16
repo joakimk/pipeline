@@ -1,11 +1,11 @@
-module NoRailsRakeTasks
-  def self.load_rails_when_needed_with(load_proc)
-    @load_proc = load_proc
+module RailslessRakeTaskRunner
+  def self.load_rails_when_needed_with(loader)
+    @loader = loader
   end
 
   def self.load_rails
-    raise "You need to specify the app name: NoRailsRakeTasks.load_rails = Proc.new { ... }" unless @load_proc
-    @load_proc.call
+    raise "You need register a loader" unless @loader
+    @loader.call
   end
 end
 
@@ -17,7 +17,7 @@ Rake.application.instance_eval do
 
       def lookup_prerequisite(prerequisite_name)
         if prerequisite_name == "environment" && !Rake.application.lookup(prerequisite_name)
-          NoRailsRakeTasks.load_rails
+          RailslessRakeTaskRunner.load_rails
         end
         old_lookup_prerequisite(prerequisite_name)
       end
@@ -28,7 +28,7 @@ Rake.application.instance_eval do
     if running_a_task? && requested_tasks_exist?
       super
     else
-      NoRailsRakeTasks.load_rails
+      RailslessRakeTaskRunner.load_rails
       super
     end
   end
