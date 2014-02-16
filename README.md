@@ -23,7 +23,7 @@ The api token is set with the `API_TOKEN` environment variable.
 
 Build status are reported to `/api/build_statuses` as a POST with the following attributes:
 
-* *name*: The name of the build (e.g. foo_tests or foo_deploy). The app assumes that each build has a unique name.
+* *name*: The name of the build (e.g. foo_tests or foo_deploy). The app assumes that each build has a unique name. You use mappings configured for each project to display short names as in the screenshot.
 * *repository*: The repository path (e.g. git@github...).
 * *revision*: The git revision.
 * *status_url*: The url to link to for showing build results.
