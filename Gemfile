@@ -10,6 +10,7 @@ gem 'pg'
 gem 'slim'
 gem 'attr_extras'
 gem 'bootstrap_forms', github: 'barsoom/bootstrap_forms'
+gem 'puma'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,7 +30,6 @@ group :development, :test do
 
   # Used by the report_build script.
   gem 'httparty'
-  gem 'unicorn'
 end
 
 group :test do
