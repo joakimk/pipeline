@@ -53,6 +53,7 @@ V1:
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
 * Possibly make the UI auto-updating. Maybe client side MVC. Simplest thing possible first.
+  - https://devcenter.heroku.com/articles/ruby-websockets
 * Think of a better name for it?
 * Upgrade rails and ruby. Require ruby 2.1? If so, change .travis.yml.
 * Tell the world about it :)
