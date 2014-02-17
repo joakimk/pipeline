@@ -24,7 +24,9 @@ class PushBackend
           push(msg)
         end
       end
+    end
 
+    Thread.new do
       loop do
         sleep 5
         push("ping")

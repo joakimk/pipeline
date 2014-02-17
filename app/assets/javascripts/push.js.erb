@@ -2,6 +2,10 @@ var scheme   = "<%= Rails.env.production? ? 'wss://' : 'ws://' %>";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
 ws.onmessage = function(message) {
-  var data = JSON.parse(message.data);
-  $("#project_" + data.project_id).html(data.html);
+  if(message.data == "ping") {
+    console.log("Got ping from server.")
+  } else {
+    var data = JSON.parse(message.data);
+    $("#project_" + data.project_id).html(data.html);
+  }
 };
