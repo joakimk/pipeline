@@ -10,6 +10,14 @@ class Revision < ActiveRecord::Base
     where(project_id: project, name: name).first_or_create!
   end
 
+  def github_url
+    if project.github_url
+      "#{project.github_url}/commit/#{name}"
+    else
+      nil
+    end
+  end
+
   def build_mappings
     BuildMapping.build_list(project.mappings)
   end
