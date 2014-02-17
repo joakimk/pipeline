@@ -21,8 +21,13 @@ class PushBackend
       subscriber = build_redis
       subscriber.subscribe(CHANNEL) do |on|
         on.message do |channel, msg|
-          clients.each { |ws| ws.send(msg) }
+          push(msg)
         end
+      end
+
+      loop do
+        sleep 5
+        push("ping")
       end
     end
   end
@@ -51,6 +56,10 @@ class PushBackend
   private
 
   attr_reader :publisher, :clients, :app
+
+  def push(message)
+    clients.each { |ws| ws.send(message) }
+  end
 
   def build_redis
     uri = URI.parse(ENV["REDISCLOUD_URL"] || "localhost:6379")
