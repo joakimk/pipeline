@@ -3,7 +3,7 @@ class BuildMapping
   attr_reader :from, :to
 
   def self.build_list(data)
-    data.split("\r\n").map { |mapping_line|
+    data.to_s.split("\r\n").map { |mapping_line|
       from, to = mapping_line.split('=')
       BuildMapping.new(from, to)
     }

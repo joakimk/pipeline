@@ -8,4 +8,12 @@ describe BuildMapping, ".build_list" do
     expect(mappings.map(&:from)).to eq([ "foo_tests", "foo_deploy" ])
     expect(mappings.map(&:to)).to eq([ "tests", "deploy" ])
   end
+
+  it "builds an empty list when there are no mappings" do
+    mappings = BuildMapping.build_list(nil)
+    expect(mappings.size).to eq(0)
+
+    mappings = BuildMapping.build_list("")
+    expect(mappings.size).to eq(0)
+  end
 end
