@@ -1,6 +1,4 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :repository, :mappings, :position
-
   has_many :revisions, dependent: :destroy
   after_initialize :set_name
 

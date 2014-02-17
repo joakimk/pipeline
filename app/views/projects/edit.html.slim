@@ -6,7 +6,7 @@
           = bootstrap_form_for(@project) do |f|
             = f.text_field :name
             = f.text_field :position
-            = f.text_area :mappings, style: "width: 875px", label: "Mappings (ordered aliases for longer build names)"
+            = f.text_area :mappings, style: "width: 875px; height: 400px;", label: "Mappings (ordered aliases for longer build names)"
             p Syntax:
             p= "build_name1=alias1<br/>build_name2=alias2".html_safe
             .form-actions

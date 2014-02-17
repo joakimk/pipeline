@@ -1,7 +1,5 @@
 class Revision < ActiveRecord::Base
-  attr_accessible :name, :project_id
-
-  validates :name, format: /^[a-z0-9]{40}$/
+  validates :name, format: /\A[a-z0-9]{40}\z/
 
   belongs_to :project
   has_many :builds, dependent: :destroy

@@ -10,7 +10,7 @@ class ProjectsController < WebController
   def update
     project = Project.find(params[:id])
 
-    if project.update_attributes(params[:project])
+    if project.update_attributes(project_params)
       redirect_to root_path, notice: "Project updated."
     else
       @project = project
@@ -24,6 +24,10 @@ class ProjectsController < WebController
   end
 
   private
+
+  def project_params
+    params.require(:project).permit(:name, :revision, :status, :status_url)
+  end
 
   def setup_menu
     active_menu_item_name :projects

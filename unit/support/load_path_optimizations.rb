@@ -1,5 +1,5 @@
 def add_load_path(path)
-  full_path = "#{ENV["HOME"]}/.rvm/gems/ruby-1.9.3-p0-patched@deployer/#{path}"
+  full_path = "#{ENV["HOME"]}/.rvm/gems/ruby-1.9.3-p194-falcon/#{path}"
   raise("load path missing: #{full_path}") unless File.exists?(full_path)
   $: << full_path
 end
