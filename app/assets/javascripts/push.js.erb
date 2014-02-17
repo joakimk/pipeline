@@ -1,7 +1,6 @@
 var scheme   = "<%= Rails.env.production? ? 'wss://' : 'ws://' %>";
-var uri      = scheme + <%= Rails.env.production? ? %{window.document.location.host + "/"} : %{"localhost:3000/"} %>;
+var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
-console.log(uri);
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   console.log(data);
