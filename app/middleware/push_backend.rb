@@ -29,7 +29,7 @@ class PushBackend
 
   def call(env)
     if Faye::WebSocket.websocket?(env)
-      ws = Faye::WebSocket.new(env, nil, { ping: KEEPALIVE_TIME })
+      ws = Faye::WebSocket.new(env)
       ws.on :open do |event|
         p [:open, ws.object_id]
         clients << ws
