@@ -9,6 +9,7 @@ require 'coffee-rails'
 require 'bootstrap-sass'
 require 'uglifier'
 require 'attr_extras'
+require_relative '../app/middleware/push_backend'
 
 module Deployer
   class Application < Rails::Application
@@ -37,7 +38,8 @@ module Deployer
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    # ig.i18n.default_locale = :de
+    config.middleware.use PushBackend
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
