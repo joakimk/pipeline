@@ -37,6 +37,10 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
