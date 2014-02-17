@@ -3,5 +3,5 @@ var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  console.log(data);
+  $("#project_" + data.project_id).html(data.html);
 };

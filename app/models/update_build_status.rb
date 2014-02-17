@@ -13,6 +13,8 @@ class UpdateBuildStatus
       create_build
       limit_build_history
     end
+
+    project
   end
 
   private

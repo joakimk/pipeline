@@ -1,0 +1,19 @@
+.actions
+  = link_to("Edit", edit_project_path(project))
+  - if project.github_url
+    = ' | '
+    = link_to("Github", project.github_url)
+  - if project.github_wiki_url
+    = ' | '
+    = link_to("Wiki", project.github_wiki_url)
+.status
+  h1= project.name
+  .revisions
+    - project.latest_revisions.each do |revision|
+      .revision
+        - presenter = RevisionPresenter.new(revision)
+        = link_to(presenter.name, revision.github_url)
+        - presenter.builds.each do |build|
+          span.build class=build.status
+            = link_to(build.name, build.status_url)
+

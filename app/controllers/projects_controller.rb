@@ -4,7 +4,6 @@ class ProjectsController < WebController
   end
 
   def edit
-    PushBackend.push({ foo: "bar" })
     @project = Project.find(params[:id])
   end
 
