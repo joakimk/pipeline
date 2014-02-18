@@ -35,7 +35,7 @@ class PushBackend
   end
 
   def call(env)
-    if Faye::WebSocket.websocket?(env)
+    if Faye::WebSocket.websocket?(env) && authorized?(env)
       ws = Faye::WebSocket.new(env)
       ws.on :open do |event|
         p [:open, ws.object_id]
@@ -58,6 +58,11 @@ class PushBackend
   private
 
   attr_reader :publisher, :clients, :app
+
+  def authorized?(env)
+    request = ActionDispatch::Request.new(env)
+    request.session[:logged_in]
+  end
 
   def push(message)
     clients.each { |ws| ws.send(message) }
