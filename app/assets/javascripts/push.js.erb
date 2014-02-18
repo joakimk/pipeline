@@ -1,11 +1,13 @@
-var scheme   = "<%= Rails.env.production? ? 'wss://' : 'ws://' %>";
-var uri      = scheme + window.document.location.host + "/";
-var ws       = new WebSocket(uri);
-ws.onmessage = function(message) {
-  if(message.data == "ping") {
-    console.log("Got ping from server.")
-  } else {
-    var data = JSON.parse(message.data);
-    $("#project_" + data.project_id).html(data.html);
-  }
-};
+$(document).ready(function() {
+  var scheme   = "<%= Rails.env.production? ? 'wss://' : 'ws://' %>";
+  var uri      = scheme + window.document.location.host + "/?push_key=" + $(".row").data("push-key");
+  var ws       = new WebSocket(uri);
+  ws.onmessage = function(message) {
+    if(message.data == "ping") {
+      console.log("Got ping from server.")
+    } else {
+      var data = JSON.parse(message.data);
+      $("#project_" + data.project_id).html(data.html);
+    }
+  };
+});

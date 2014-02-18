@@ -1,6 +1,7 @@
 class ProjectsController < WebController
   def index
     @projects = Project.all_sorted
+    @push_key = PushBackend.generate_auth_key
   end
 
   def edit

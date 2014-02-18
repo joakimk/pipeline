@@ -1,6 +1,7 @@
 require 'faye/websocket'
 require 'redis'
 require 'thread'
+require 'securerandom'
 
 Faye::WebSocket.load_adapter('thin')
 
@@ -9,6 +10,19 @@ class PushBackend
 
   def self.push(data)
     @@publisher.publish(CHANNEL, data.to_json)
+  end
+
+  def self.generate_auth_key
+    redis = build_redis
+    key = SecureRandom.hex(64)
+    redis.set(key, '1')
+    redis.expire(key, 10)
+    key
+  end
+
+  def self.build_redis
+    uri = URI.parse(ENV["REDISCLOUD_URL"] || "localhost:6379")
+    Redis.new(host: uri.host, port: uri.port, password: uri.password)
   end
 
   def initialize(app)
@@ -35,7 +49,7 @@ class PushBackend
   end
 
   def call(env)
-    if Faye::WebSocket.websocket?(env)
+    if Faye::WebSocket.websocket?(env) && known_user?(env)
       ws = Faye::WebSocket.new(env)
       ws.on :open do |event|
         p [:open, ws.object_id]
@@ -59,12 +73,16 @@ class PushBackend
 
   attr_reader :publisher, :clients, :app
 
+  def build_redis
+    PushBackend.build_redis
+  end
+
   def push(message)
     clients.each { |ws| ws.send(message) }
   end
 
-  def build_redis
-    uri = URI.parse(ENV["REDISCLOUD_URL"] || "localhost:6379")
-    Redis.new(host: uri.host, port: uri.port, password: uri.password)
+  def known_user?(env)
+    push_key = env["QUERY_STRING"].split("=").last
+    build_redis.get(push_key)
   end
 end

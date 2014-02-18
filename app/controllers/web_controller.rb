@@ -18,6 +18,7 @@ class WebController < ApplicationController
 
     raise 'Need pw configured in prod.' unless ENV['TEMP_PW']
 
+    # NOTE: Also used in app/middleware/push_backend
     if !session[:logged_in] && params[:pw] != ENV['TEMP_PW']
       render text: ''
     else
