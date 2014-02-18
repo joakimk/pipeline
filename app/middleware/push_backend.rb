@@ -8,6 +8,10 @@ class PushBackend
   CHANNEL        = "push"
 
   def self.push(data)
+    # No redis in test env for now
+    # Push isn't strictly needed to use the app anyhow and hard to test.
+    return if Rails.env.test?
+
     @@publisher.publish(CHANNEL, data.to_json)
   end
 
