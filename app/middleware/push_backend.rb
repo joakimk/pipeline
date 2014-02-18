@@ -1,8 +1,8 @@
-require 'faye/websocket'
-require 'redis'
-require 'thread'
+require "faye/websocket"
+require "redis"
+require "thread"
 
-Faye::WebSocket.load_adapter('thin')
+Faye::WebSocket.load_adapter("thin")
 
 class PushBackend
   CHANNEL        = "push"
@@ -14,41 +14,24 @@ class PushBackend
   def initialize(app)
     @app = app
     @clients = []
-
     @@publisher = @publisher = build_redis
 
-    Thread.new do
-      subscriber = build_redis
-      subscriber.subscribe(CHANNEL) do |on|
-        on.message do |channel, msg|
-          push(msg)
-        end
-      end
-    end
-
-    Thread.new do
-      loop do
-        sleep 5
-        push("ping")
-      end
-    end
+    subscribe_and_push
+    keep_connection_open
   end
 
   def call(env)
     if Faye::WebSocket.websocket?(env) && authorized?(env)
       ws = Faye::WebSocket.new(env)
       ws.on :open do |event|
-        p [:open, ws.object_id]
         clients << ws
       end
 
       ws.on :close do |event|
-        p [:close, ws.object_id, event.code, event.reason]
         clients.delete(ws)
         ws = nil
       end
 
-      # Return async Rack response
       ws.rack_response
     else
       app.call(env)
@@ -62,6 +45,26 @@ class PushBackend
   def authorized?(env)
     request = ActionDispatch::Request.new(env)
     request.session[:logged_in]
+  end
+
+  def subscribe_and_push
+    Thread.new do
+      subscriber = build_redis
+      subscriber.subscribe(CHANNEL) do |on|
+        on.message do |channel, message|
+          push(message)
+        end
+      end
+    end
+  end
+
+  def keep_connection_open
+    Thread.new do
+      loop do
+        sleep 5
+        push("ping")
+      end
+    end
   end
 
   def push(message)
