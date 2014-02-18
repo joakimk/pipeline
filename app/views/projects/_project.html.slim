@@ -12,7 +12,7 @@
     - project.latest_revisions.each do |revision|
       .revision
         - presenter = RevisionPresenter.new(revision)
-        = link_to(presenter.name, revision.github_url)
+        = link_to(presenter.name, revision.github_url, target: "_blank")
         - presenter.builds.each do |build|
           span.build class=build.status
             = link_to(build.name, build.status_url, target: "_blank")

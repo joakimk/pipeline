@@ -49,9 +49,6 @@ You need postgres installed.
 
 V1:
 
-* Require auth to access websockets
-  - https://devcenter.heroku.com/articles/websocket-security
-* Link to target-top
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
