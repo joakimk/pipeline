@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+
+def on_heroku?
+  ENV['DYNO']
+end
+
+# Don't break multiple ruby versions in travis just because heroku requires a specific one
+ruby "1.9.3" if on_heroku?
 
 gem 'rails', '4.0.2'
 
