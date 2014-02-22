@@ -11,7 +11,7 @@ require 'uglifier'
 require 'attr_extras'
 require_relative '../app/middleware/push_backend'
 
-module Deployer
+module Pipeline
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

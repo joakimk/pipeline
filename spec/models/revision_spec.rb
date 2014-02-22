@@ -11,10 +11,10 @@ end
 
 describe Revision, "#github_url" do
   it "is a url to the revision on github" do
-    project = mock_model(Project, github_url: "https://github.com/barsoom/deployer")
+    project = mock_model(Project, github_url: "https://github.com/barsoom/pipeline")
     revision = Revision.new(name: "7220d9a3bdd24de48435406016177be7165b1cc2")
     revision.project = project
-    expect(revision.github_url).to eq("https://github.com/barsoom/deployer/commit/7220d9a3bdd24de48435406016177be7165b1cc2")
+    expect(revision.github_url).to eq("https://github.com/barsoom/pipeline/commit/7220d9a3bdd24de48435406016177be7165b1cc2")
   end
 
   it "is nil when there are no such url" do

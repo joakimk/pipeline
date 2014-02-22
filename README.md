@@ -1,5 +1,5 @@
-[![Build Status](https://secure.travis-ci.org/joakimk/deployer.png)](http://travis-ci.org/joakimk/deployer)
-[![Code Climate](https://codeclimate.com/github/joakimk/deployer.png)](https://codeclimate.com/github/joakimk/deployer)
+[![Build Status](https://secure.travis-ci.org/joakimk/pipeline.png)](http://travis-ci.org/joakimk/pipeline)
+[![Code Climate](https://codeclimate.com/github/joakimk/pipeline.png)](https://codeclimate.com/github/joakimk/pipeline)
 
 ## About
 
@@ -52,7 +52,7 @@ V1:
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
-* Think of a better name for it?
+* Think of a better name for it? cipipeline?
 * Upgrade rails and ruby. Require ruby 2.1? If so, change .travis.yml.
 * Tell the world about it :)
 

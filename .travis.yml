@@ -3,5 +3,5 @@ rvm:
   - 1.9.3
   - 2.1.0
 before_script:
-  - psql -c 'create database deployer_test;' -U postgres
+  - psql -c 'create database pipeline_test;' -U postgres
 script: "script/ci"

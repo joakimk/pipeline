@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :build do
-    name "deployer_tests"
+    name "pipeline_tests"
     revision { FactoryGirl.build(:revision) }
     status "building"
   end

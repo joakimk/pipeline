@@ -1,4 +1,4 @@
-Deployer::Application.routes.draw do
+Pipeline::Application.routes.draw do
   namespace :api do
     resource :build_status, only: :create
   end

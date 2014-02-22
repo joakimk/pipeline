@@ -29,8 +29,8 @@ end
 
 describe Project, "github_url" do
   it "is based on the repository" do
-    project = Project.new(repository: "git@github.com:joakimk/deployer.git")
-    expect(project.github_url).to eq("https://github.com/joakimk/deployer")
+    project = Project.new(repository: "git@github.com:joakimk/pipeline.git")
+    expect(project.github_url).to eq("https://github.com/joakimk/pipeline")
   end
 
   it "is nil when the repository is not on github" do
@@ -41,8 +41,8 @@ end
 
 describe Project, "github_wiki_url" do
   it "is based on the repository" do
-    project = Project.new(repository: "git@github.com:joakimk/deployer.git")
-    expect(project.github_wiki_url).to eq("https://github.com/joakimk/deployer/wiki")
+    project = Project.new(repository: "git@github.com:joakimk/pipeline.git")
+    expect(project.github_wiki_url).to eq("https://github.com/joakimk/pipeline/wiki")
   end
 
   it "is nil when the repository is not on github" do

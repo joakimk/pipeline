@@ -1,4 +1,4 @@
-DUMP_PATH = "/tmp/deployer_prod_db.dump"
+DUMP_PATH = "/tmp/pipeline_prod_db.dump"
 
 namespace :app do
   desc "Reset development database from a production dump"
@@ -19,6 +19,6 @@ namespace :app do
 
   desc "Import the downloaded dump"
   task :import_db => [:"db:drop", :"db:create"] do
-    system(%{pg_restore --no-acl --no-owner -d deployer_development "#{DUMP_PATH}"}) || exit(1)
+    system(%{pg_restore --no-acl --no-owner -d pipeline_development "#{DUMP_PATH}"}) || exit(1)
   end
 end

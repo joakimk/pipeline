@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['JOB_NAME'] || 'deployer' %>_development
+  database: <%= ENV['JOB_NAME'] || 'pipeline' %>_development
   pool: 5
   username: <%= ENV['USER'] %>
   password: <%= ENV['USER'] == "jenkins" ? 'jenkins' : nil %>
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['JOB_NAME'] || 'deployer' %>_test
+  database: <%= ENV['JOB_NAME'] || 'pipeline' %>_test
   pool: 5
   username: <%= ENV['USER'] %>
   password: <%= ENV['USER'] == "jenkins" ? 'jenkins' : nil %>

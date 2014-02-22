@@ -1,6 +1,6 @@
 html
   head
-    title Deployer
+    title Pipeline
 
   = stylesheet_link_tag "application", media: "all"
   = javascript_include_tag "application"
@@ -10,7 +10,7 @@ html
     .container
       .navbar
         .navbar-inner
-          = link_to("Deployer", root_path, class: "brand")
+          = link_to("Pipeline", root_path, class: "brand")
           ul.nav
             li class=menu_item_class(:projects)
               = link_to("Projects", projects_path)

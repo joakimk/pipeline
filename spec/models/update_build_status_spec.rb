@@ -5,12 +5,12 @@ describe UpdateBuildStatus do
 
   context "when there are no previous builds" do
     it "adds a build, a revision and a project" do
-      update_with name: "deployer_tests", repository: "git@example.com:user/bar.git"
+      update_with name: "pipeline_tests", repository: "git@example.com:user/bar.git"
 
       builds = Build.all
       builds.size.should == 1
       build = builds.first
-      expect(build.name).to eq("deployer_tests")
+      expect(build.name).to eq("pipeline_tests")
       expect(build.status_url).to eq("http://example.com/builds/1")
       expect(build.revision.project.name).to eq("bar")
     end
