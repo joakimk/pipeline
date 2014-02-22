@@ -1,11 +1,25 @@
 var scheme   = "<%= Rails.env.production? ? 'wss://' : 'ws://' %>";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
+var lastPingTime = new Date();
+
 ws.onmessage = function(message) {
   if(message.data == "ping") {
+    lastPingTime = new Date();
     console.log("Got ping from server.")
   } else {
     var data = JSON.parse(message.data);
     $("#project_" + data.project_id).html(data.html);
   }
 };
+
+reloadWhenSocketConnectionIsLost = function() {
+  currentTime = new Date();
+  secondsSinceLastUpdate = (currentTime - lastPingTime) / 1000.0;
+
+  if(secondsSinceLastUpdate > 10) {
+    location.reload();
+  }
+}
+
+window.setInterval(reloadWhenSocketConnectionIsLost, 1000);
