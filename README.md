@@ -52,8 +52,8 @@ V1:
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
-* Think of a better name for it? cipipeline?
 * Upgrade rails and ruby. Require ruby 2.1? If so, change .travis.yml.
+* Make a new screenshot
 * Tell the world about it :)
 
 Later:
