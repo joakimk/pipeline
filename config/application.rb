@@ -25,8 +25,6 @@ module Pipeline
       #{config.root}/app/presenters
     )
 
-    config.assets.initialize_on_precompile = false
-
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -68,8 +66,10 @@ module Pipeline
     config.secret_key_base = ENV['SECRET_KEY_BASE'] || default_key
 
     unless config.secret_key_base
-      puts "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."
-      exit 1
+      Rails.logger.error "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."
+
+      # Don't break in prod, breaks heroku asset precompilation.
+      exit 1 if dev_or_test
     end
   end
 
