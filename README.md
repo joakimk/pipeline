@@ -54,6 +54,7 @@ V1:
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
 * Upgrade rails and ruby. Require ruby 2.1? If so, change .travis.yml.
 * Make a new screenshot
+* Maybe: travis-ci support
 * Tell the world about it :)
 
 Later:
