@@ -66,7 +66,7 @@ module Pipeline
     config.secret_key_base = ENV['SECRET_KEY_BASE'] || default_key
 
     unless config.secret_key_base
-      Rails.logger.error "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."
+      puts "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."
 
       # Don't break in prod, breaks heroku asset precompilation.
       exit 1 if dev_or_test
