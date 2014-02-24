@@ -38,7 +38,8 @@ To run the app in production you need to set a few envs.
 TODO. Grep for ENV :).
 
 TEMP_PW (todo rename)
-SECRET_KEY_BASE (generate: rake secret)
+
+    heroku config:set SECRET_KEY_BASE=$(rake secret) 
 
 ## Running the tests
 
