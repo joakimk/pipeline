@@ -66,6 +66,15 @@ module Pipeline
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    dev_or_test = Rails.env.test? || Rails.env.development?
+    default_key = dev_or_test ? "test" : nil
+    config.secret_key_base = ENV['SECRET_KEY_BASE'] || default_key
+
+    unless config.secret_key_base
+      puts "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."
+      exit 1
+    end
   end
 
 end
