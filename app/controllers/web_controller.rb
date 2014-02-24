@@ -4,7 +4,7 @@ require 'bootstrap_forms'
 class WebController < ApplicationController
   protect_from_forgery
 
-  before_filter :temporary_security
+  before_filter :require_password
   before_filter :setup_menu
 
   private
@@ -13,12 +13,12 @@ class WebController < ApplicationController
     @active_menu_item_name = name
   end
 
-  def temporary_security
+  def require_password
     return unless Rails.env.production?
 
-    raise 'Need pw configured in prod.' unless ENV['TEMP_PW']
+    raise "Need WEB_PASSWORD configured in prod." unless ENV['WEB_PASSWORD']
 
-    if !session[:logged_in] && params[:pw] != ENV['TEMP_PW']
+    if !session[:logged_in] && params[:pw] != ENV['WEB_PASSWORD']
       render text: ''
     else
       session[:logged_in] = true
