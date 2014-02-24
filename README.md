@@ -31,6 +31,15 @@ Build status are reported to `/api/build_statuses` as a POST with the following 
 
 Normally the client would first post with the status of `building` and then either `successful` or `failed` after the build is done.
 
+## ENVs
+
+To run the app in production you need to set a few envs.
+
+TODO. Grep for ENV :).
+
+TEMP_PW (todo rename)
+SECRET_KEY_BASE (generate: rake secret)
+
 ## Running the tests
 
 You need postgres installed.
