@@ -12,4 +12,4 @@
             .form-actions
               = submit_tag "Save", class: "btn btn-primary"
         .span2
-          p= link_to("Remove project", project_path(@project), method: :delete, confirm: "Are you sure you want to remove #{@project.name}?")
+          p= link_to("Remove project", project_path(@project), method: :delete, data: { confirm: "Are you sure you want to remove #{@project.name}?" })
