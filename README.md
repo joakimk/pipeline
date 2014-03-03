@@ -77,3 +77,4 @@ Later:
 * Stats: averge build times, estimated time left, time from commit to deploy, average number of commits per deploy, ...
 * Integrate with the commit status API https://github.com/blog/1227-commit-status-api
   * Report a commit status as an aggregate of serveral builds. Ex: Green if units, integration and staging is green.
+  * Seems like it only supports showing status on pull requests though.
