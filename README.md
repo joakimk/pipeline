@@ -71,6 +71,7 @@ Later:
 * Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
 * Custom urls configurable for projects, possibly driven by custom data in build status?
 * Show fixed status for builds when a later revision fixes a build [see `fixed_status` branch]
+* Keep updates around instead of changing builds existing? Would be nice for statistics.
 * Support for custom badges, etc. Like codeclimate.
 * Explore using it do manage continous deployment pipelines better and simpler than can be done with jenkins plugins.
 * Stats: averge build times, estimated time left, time from commit to deploy, average number of commits per deploy, ...
