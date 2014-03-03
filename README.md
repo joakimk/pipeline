@@ -74,3 +74,5 @@ Later:
 * Support for custom badges, etc. Like codeclimate.
 * Explore using it do manage continous deployment pipelines better and simpler than can be done with jenkins plugins.
 * Stats: averge build times, estimated time left, time from commit to deploy, average number of commits per deploy, ...
+* Integrate with the commit status API https://github.com/blog/1227-commit-status-api
+  * Report a commit status as an aggregate of serveral builds. Ex: Green if units, integration and staging is green.
