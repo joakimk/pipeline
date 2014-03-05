@@ -9,6 +9,7 @@ require 'coffee-rails'
 require 'bootstrap-sass'
 require 'uglifier'
 require 'attr_extras'
+require 'slim'
 require_relative '../app/middleware/push_backend'
 
 I18n.enforce_available_locales = true
