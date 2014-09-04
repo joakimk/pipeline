@@ -26,7 +26,7 @@ class ProjectsController < WebController
   private
 
   def project_params
-    params.require(:project).permit(:name, :revision, :status, :status_url)
+    params.require(:project).permit(:name, :repository, :mappings, :position)
   end
 
   def setup_menu
