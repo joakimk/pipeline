@@ -1,5 +1,5 @@
 def add_load_path(path)
-  full_path = "#{ENV["HOME"]}/.rvm/gems/ruby-1.9.3-p194-falcon/#{path}"
+  full_path = "#{ENV["HOME"]}/.rvm/gems/ruby-2.1.0\@pipeline/#{path}"
   raise("load path missing: #{full_path}") unless File.exists?(full_path)
   $: << full_path
 end
@@ -10,5 +10,5 @@ unless ENV['CI']
 
   add_load_path "gems/activesupport-#{rails_version}/lib"
   add_load_path "gems/activemodel-#{rails_version}/lib"
-  add_load_path "gems/factory_girl-4.1.0/lib"
+  add_load_path "gems/factory_girl-4.4.0/lib"
 end
