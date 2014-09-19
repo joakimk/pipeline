@@ -5,7 +5,7 @@ class Api::BuildsController < ApiController
   end
 
   def unlock
-    build_lock.release
+    build_lock.release(revision)
     render nothing: true
   end
 

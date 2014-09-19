@@ -18,8 +18,12 @@ class BuildLock
     redis.get(key_name)
   end
 
-  def release
-    redis.del(key_name)
+  def release(revision)
+    locked_by_revision = redis.get(key_name)
+
+    if locked_by_revision == revision
+      redis.del(key_name)
+    end
   end
 
   private

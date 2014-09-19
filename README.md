@@ -53,6 +53,7 @@ A build is unlocked by posting to `/api/build/unlock` with the following attribu
 
 * *name*: The name of the build.
 * *repository*: The repository path (e.g. git@github...).
+* *revision*: The revision that you wish to unlock.
 
 ## ENVs
 
