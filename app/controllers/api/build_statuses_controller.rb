@@ -1,6 +1,4 @@
 class Api::BuildStatusesController < ApiController
-  before_filter :check_token
-
   def create
     project = UpdateBuildStatus.run(
       params[:name],
@@ -14,11 +12,5 @@ class Api::BuildStatusesController < ApiController
       html: render_to_string(partial: "projects/project",
                              locals: { project: project }) })
     render nothing: true
-  end
-
-  private
-
-  def check_token
-    render nothing: true, status: :unauthorized unless App.api_token == params[:token]
   end
 end

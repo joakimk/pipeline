@@ -21,6 +21,8 @@ The build names are links to the `status_url` passed in when reporting builds. A
 
 The api token is set with the `API_TOKEN` environment variable.
 
+### Build status API
+
 Build status are reported to `/api/build_statuses` as a POST with the following attributes:
 
 * *name*: The name of the build (e.g. foo_tests or foo_deploy). The app assumes that each build has a unique name. You use mappings configured for each project to display short names as in the screenshot.
@@ -30,6 +32,27 @@ Build status are reported to `/api/build_statuses` as a POST with the following 
 * *status*: Current build status, can be `building`, `successful` or `failed`.
 
 Normally the client would first post with the status of `building` and then either `successful` or `failed` after the build is done.
+
+### Build locking API
+
+**NOTE**: Experimental feature
+
+Builds can be locked so that only one build with a specific name can run at a time. This can be useful if you
+have a CI server that isn't capable of doing this by itself (like circleci) and you for example don't
+want it to try and deploy to different versions of the same app at the same time.
+
+A build is locked by posting to `/api/build/lock` with the following attributes:
+
+* *name*: The name of the build.
+* *repository*: The repository path (e.g. git@github...).
+* *revision*: The revision that you wish to lock.
+
+The response contains the revision currently holding the lock, and looks like `{ "locked_by_revision": "foo" }`. Locks will remove themselves after 30 minutes just in case something went wrong, but you should try and ensure that unlocking happens as nobody wants to wait that long.
+
+A build is unlocked by posting to `/api/build/unlock` with the following attributes:
+
+* *name*: The name of the build.
+* *repository*: The repository path (e.g. git@github...).
 
 ## ENVs
 
