@@ -19,6 +19,13 @@ namespace :app do
 
   desc "Import the downloaded dump"
   task :import_db => [:"db:drop", :"db:create"] do
-    system(%{pg_restore --no-acl --no-owner -d pipeline_development "#{DUMP_PATH}"}) || exit(1)
+    if ENV["DEVBOX"]
+      ENV["PGPASSWORD"] = "dev"
+      opts = "--host localhost --port $(service_port postgres) --user postgres"
+    else
+      opts = ""
+    end
+
+    system(%{pg_restore --no-acl --no-owner -d pipeline_development #{opts} "#{DUMP_PATH}"}) || exit(1)
   end
 end
