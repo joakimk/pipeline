@@ -1,5 +1,5 @@
 # Dependencies and docker images that can be used to setup a
-# development environment for bookie in combination with
+# development environment for this app in combination with
 # the information in Gemfile (gems, ruby version, etc).
 
 dependencies:
