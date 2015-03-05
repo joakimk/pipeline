@@ -39,16 +39,21 @@ describe UpdateBuildStatus do
 
   context "when there are more than App.builds_to_keep builds" do
     it "removes the oldest build" do
+      App.stub(revisions_to_keep: 4)
+      update_with revision: "0000000000000000000000000000000000000000"
+      update_with revision: "1111111111111111111111111111111111111111"
+      update_with revision: "2222222222222222222222222222222222222222"
+
+      # Removes old revisions if the number is changed between updates
       App.stub(revisions_to_keep: 2)
-      update_with revision: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      update_with revision: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-      update_with revision: "cccccccccccccccccccccccccccccccccccccccc"
+      update_with revision: "3333333333333333333333333333333333333333"
 
       project = Project.last
       list = project.revisions.map(&:name).to_s
-      list.should_not include("a")
-      list.should include("b")
-      list.should include("c")
+      list.should_not include("0")
+      list.should_not include("1")
+      list.should include("2")
+      list.should include("3")
 
       expect(Build.count).to eq(2)
     end

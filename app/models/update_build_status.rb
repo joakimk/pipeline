@@ -38,7 +38,7 @@ class UpdateBuildStatus
     revisions = project.revisions
 
     if revisions.count > App.revisions_to_keep
-      revisions.order("id asc").first.destroy
+      revisions.order("id asc").limit(App.revisions_to_keep).each(&:destroy)
     end
   end
 
