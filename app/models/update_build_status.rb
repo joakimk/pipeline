@@ -38,8 +38,7 @@ class UpdateBuildStatus
     revisions = project.revisions
 
     if revisions.count > App.revisions_to_keep
-      last_revision_id_to_keep = revisions.order("id DESC").limit(App.revisions_to_keep).pluck(:id).last
-      revisions.where("id < ?", last_revision_id_to_keep).each(&:destroy)
+      revisions.order("id DESC").offset(App.revisions_to_keep).each(&:destroy)
     end
   end
 
