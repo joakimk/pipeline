@@ -9,15 +9,51 @@ describe ProjectStatusSerializer do
     # Just started build
     update_with revision: "1111111111111111111111111111111111111111", name: "foo_tests", status: "building", status_url: "url-for-rev-1"
 
-    # Check the current status
+    # Set up build mappings (so that we can see pending statuses)
     project = Project.last
+    project.mappings = [
+      "foo_tests=tests",
+      "foo_deploy=deploy",
+    ].join("\r\n")
+
+    # Check the current status
     hash = ProjectStatusSerializer.new(project).serialize
     expect(hash).to eq(
       project_name: "foo",
+      latest_revisions: [
+        {
+          hash: "1111111111111111111111111111111111111111",
+          short_name: "111111",
+          builds: [
+            {
+              name: "tests",
+              status: "building",
+            },
+            {
+              name: "deploy",
+              status: "pending",
+            },
+          ]
+        },
+        {
+          hash: "0000000000000000000000000000000000000000",
+          short_name: "000000",
+          builds: [
+            {
+              name: "tests",
+              status: "successful",
+            },
+            {
+              name: "deploy",
+              status: "successful",
+            },
+          ]
+        }
+      ]
     )
-
-    # WIP
   end
+
+  private
 
   def update_with(custom = {})
     attributes = {

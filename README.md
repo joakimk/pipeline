@@ -35,8 +35,6 @@ Normally the client would first post with the status of `building` and then eith
 
 ### Project status webhook
 
-**NOTE**: Readme driven development on this feature, writing docs first, then implementing it.
-
 A webhook to receive the current project build status. Useful for displaying the current build status on dashboards.
 
 Set the `WEBHOOK_URL` config variable to the URL where you want the project build status posted (as the JSON encoded parameter "payload").
@@ -49,7 +47,6 @@ The payload looks like this:
         {
           hash: "ea75a9c817757f1ebe09be035c807b7fe23499a0",
           short_name: "ea75a9",
-          github_url: "https://github.com/barsoom/pipeline/commit/ea75a9c817757f1ebe09be035c807b7fe23499a0",
           builds: [
             {
               name: "tests",
@@ -118,7 +115,7 @@ You need postgres installed.
 
 V1:
 
-* Add webhook for build status reporting (e.g. to internal dashboards, etc)
+* Add "fixed" build handling (status "fixed" instead of "failed" when later builds are green)
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
