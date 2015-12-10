@@ -2,11 +2,13 @@ require "spec_helper"
 
 describe Project do
   it "is valid" do
-    FactoryGirl.build(:project).should be_valid
+    project = FactoryGirl.build(:project)
+    expect(project).to be_valid
   end
 
   it "requires a name" do
-    FactoryGirl.build(:project, name: nil).should_not be_valid
+    project = FactoryGirl.build(:project, name: nil)
+    expect(project).not_to be_valid
   end
 end
 
@@ -57,6 +59,6 @@ describe Project, ".all_sorted" do
     FactoryGirl.create(:project, name: "beta", position: 1)
     FactoryGirl.create(:project, name: "delta", position: 0)
 
-    Project.all_sorted.map(&:name).should == [ "delta", "alpha", "beta" ]
+    expect(Project.all_sorted.map(&:name)).to eq([ "delta", "alpha", "beta" ])
   end
 end

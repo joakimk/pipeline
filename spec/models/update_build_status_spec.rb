@@ -6,7 +6,7 @@ describe UpdateBuildStatus do
       update_with name: "pipeline_tests", repository: "git@example.com:user/bar.git"
 
       builds = Build.all
-      builds.size.should == 1
+      expect(builds.size).to eq(1)
       build = builds.first
       expect(build.name).to eq("pipeline_tests")
       expect(build.status_url).to eq("http://example.com/builds/1")
@@ -20,9 +20,9 @@ describe UpdateBuildStatus do
       update_with status: "successful", status_url: "http://example.com/updated"
 
       builds = Build.all
-      builds.size.should == 1
-      builds.first.status.should == "successful"
-      builds.first.status_url.should == "http://example.com/updated"
+      expect(builds.size).to eq(1)
+      expect(builds.first.status).to eq("successful")
+      expect(builds.first.status_url).to eq("http://example.com/updated")
     end
   end
 
@@ -37,23 +37,23 @@ describe UpdateBuildStatus do
 
   context "when there are more than App.builds_to_keep builds" do
     it "removes the builds that should not be kept" do
-      App.stub(revisions_to_keep: 4)
+      allow(App).to receive(:revisions_to_keep).and_return(4)
       update_with revision: "0000000000000000000000000000000000000000"
       update_with revision: "1111111111111111111111111111111111111111"
       update_with revision: "2222222222222222222222222222222222222222"
       update_with revision: "3333333333333333333333333333333333333333"
 
       # Removes old revisions if the number is changed between updates
-      App.stub(revisions_to_keep: 2)
+      allow(App).to receive(:revisions_to_keep).and_return(2)
       update_with revision: "4444444444444444444444444444444444444444"
 
       project = Project.last
       list = project.revisions.map(&:name).to_s
-      list.should_not include("0")
-      list.should_not include("1")
-      list.should_not include("2")
-      list.should include("3")
-      list.should include("4")
+      expect(list).not_to include("0")
+      expect(list).not_to include("1")
+      expect(list).not_to include("2")
+      expect(list).to include("3")
+      expect(list).to include("4")
 
       expect(Build.count).to eq(2)
     end
