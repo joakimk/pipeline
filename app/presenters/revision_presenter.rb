@@ -8,6 +8,6 @@ class RevisionPresenter
   end
 
   def builds
-    BuildPresenter.new(revision.builds, revision.build_mappings).list
+    BuildPresenter.new(revision).list
   end
 end

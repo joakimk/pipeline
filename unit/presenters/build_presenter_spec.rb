@@ -12,7 +12,8 @@ describe BuildPresenter, "#list" do
       Build.new(name: "deploy"),
     ]
 
-    presenter = BuildPresenter.new(builds, [])
+    revision = double(:revision, builds: builds, build_mappings: [])
+    presenter = BuildPresenter.new(revision)
 
     expect(presenter.list.map(&:name)).to eq([ "tests", "deploy" ])
   end
@@ -22,7 +23,9 @@ describe BuildPresenter, "#list" do
       Build.new(name: "tests", status: "building", status_url: "http://example.com"),
     ]
 
-    presenter = BuildPresenter.new(builds, [])
+    revision = double(:revision, builds: builds, build_mappings: [])
+    presenter = BuildPresenter.new(revision)
+
     expect(presenter.list.first.status_url).to include("example.com")
   end
 
@@ -33,7 +36,8 @@ describe BuildPresenter, "#list" do
     ]
     build_mappings = [ BuildMapping.new("foo_tests", "tests") ]
 
-    presenter = BuildPresenter.new(builds, build_mappings)
+    revision = double(:revision, builds: builds, build_mappings: build_mappings)
+    presenter = BuildPresenter.new(revision)
 
     expect(presenter.list.map(&:name)).to eq([ "tests", "foo_deploy" ])
   end
@@ -49,7 +53,8 @@ describe BuildPresenter, "#list" do
       BuildMapping.new("foo_deploy_staging", "staging")
     ]
 
-    presenter = BuildPresenter.new(builds, build_mappings)
+    revision = double(:revision, builds: builds, build_mappings: build_mappings)
+    presenter = BuildPresenter.new(revision)
 
     expect(presenter.list.map(&:name)).to eq([ "tests", "staging", "foo_deploy_production" ])
   end
@@ -63,7 +68,8 @@ describe BuildPresenter, "#list" do
       BuildMapping.new("foo_deploy_staging", "staging")
     ]
 
-    presenter = BuildPresenter.new(builds, build_mappings)
+    revision = double(:revision, builds: builds, build_mappings: build_mappings)
+    presenter = BuildPresenter.new(revision)
 
     expect(presenter.list.map(&:name)).to eq([ "tests", "staging" ])
     expect(presenter.list.map(&:status)).to eq([ "building", "pending" ])

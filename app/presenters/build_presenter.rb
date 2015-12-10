@@ -1,5 +1,5 @@
 class BuildPresenter
-  pattr_initialize :source_builds, :build_mappings
+  pattr_initialize :revision
 
   def list
     builds = add_pending(source_builds)
@@ -55,5 +55,13 @@ class BuildPresenter
     build.name = name
     build.status = status
     build
+  end
+
+  def source_builds
+    revision.builds
+  end
+
+  def build_mappings
+    revision.build_mappings
   end
 end
