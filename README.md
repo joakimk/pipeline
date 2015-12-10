@@ -66,6 +66,8 @@ The payload looks like this:
       ]
     }
 
+The webhook will only be called once and it will wait no longer than 10 seconds. It does not delay the `/api/build_statuses` call since it runs in a thread.
+
 ### Build locking API
 
 **NOTE**: Experimental feature
