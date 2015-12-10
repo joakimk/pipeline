@@ -1,3 +1,5 @@
+require "httparty"
+
 class Api::BuildStatusesController < ApiController
   def create
     project = UpdateBuildStatus.call(
