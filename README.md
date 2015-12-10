@@ -39,7 +39,7 @@ Normally the client would first post with the status of `building` and then eith
 
 A webhook to receive the current project build status. Useful for displaying the current build status on dashboards.
 
-Set the `WEBHOOK_URL` config variable to the URL where you want the project build status posted.
+Set the `WEBHOOK_URL` config variable to the URL where you want the project build status posted (as the JSON encoded parameter "payload").
 
 The payload looks like this:
 
