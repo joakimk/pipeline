@@ -1,13 +1,18 @@
+require "active_support/core_ext/module/delegation"
+
 class BuildPresenter
   pattr_initialize :revision
 
   def list
-    builds = add_pending(source_builds)
+    builds = add_pending(revision.builds)
     builds = sort_by_mappings(builds)
     map_names(builds)
   end
 
   private
+
+  delegate :build_mappings,
+    to: :revision
 
   def add_pending(builds)
     pending_mappings = build_mappings.select { |mapping|
@@ -55,13 +60,5 @@ class BuildPresenter
     build.name = name
     build.status = status
     build
-  end
-
-  def source_builds
-    revision.builds
-  end
-
-  def build_mappings
-    revision.build_mappings
   end
 end
