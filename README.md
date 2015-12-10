@@ -33,6 +33,19 @@ Build status are reported to `/api/build_statuses` as a POST with the following 
 
 Normally the client would first post with the status of `building` and then either `successful` or `failed` after the build is done.
 
+### Project status webhook
+
+**NOTE**: Readme driven development on this feature, writing docs first, then implementing it.
+
+A webhook to receive the current project build status. Useful for displaying the current build status on dashboards.
+
+Set the `WEBHOOK_URL` config variable to the URL where you want the project build status posted.
+
+The payload looks like:
+
+todo
+
+
 ### Build locking API
 
 **NOTE**: Experimental feature
