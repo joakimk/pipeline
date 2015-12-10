@@ -9,6 +9,7 @@
             = f.text_area :mappings, style: "width: 875px; height: 400px;", label: "Mappings (ordered aliases for longer build names)"
             p Syntax:
             p= "build_name1=alias1<br/>build_name2=alias2".html_safe
+            p If two builds have the same alias, then the results will be merged (e.g. one failed build and one successful build is an overall failure)
             .form-actions
               = submit_tag "Save", class: "btn btn-primary"
         .span2

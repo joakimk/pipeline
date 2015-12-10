@@ -1,4 +1,5 @@
 require "active_support/core_ext/module/delegation"
+require "merge_builds"
 
 class BuildPresenter
   pattr_initialize :revision
@@ -8,7 +9,8 @@ class BuildPresenter
     builds = add_pending(builds)
     builds = change_status_for_fixed_builds(builds)
     builds = sort_by_mappings(builds)
-    map_names(builds)
+    builds = apply_mappings(builds)
+    merge_builds_with_the_same_name(builds)
   end
 
   private
@@ -22,7 +24,7 @@ class BuildPresenter
     }
 
     pending_builds = pending_mappings.map { |mapping|
-      new_build(mapping.from, "pending")
+      new_build(mapping.from, BuildStatus::PENDING)
     }
 
     builds + pending_builds
@@ -31,7 +33,7 @@ class BuildPresenter
   def change_status_for_fixed_builds(builds)
     builds.map { |build|
       if newer_revision_fixes?(build)
-        new_build(build.name, "fixed", build)
+        new_build(build.name, BuildStatus::FIXED, build)
       else
         build
       end
@@ -46,12 +48,17 @@ class BuildPresenter
     (mapped_builds + builds).uniq
   end
 
-  def map_names(builds)
+  def apply_mappings(builds)
     builds.map { |build|
-      mapping = mapping_for_build(build)
-      name = mapping ? mapping.to : build.name
+      name = mapping_for_build(build).to
       status = build.status
       new_build(name, status, build)
+    }
+  end
+
+  def merge_builds_with_the_same_name(builds)
+    builds.group_by(&:name).flat_map { |_, builds|
+      MergeBuilds.call(builds)
     }
   end
 
@@ -64,18 +71,19 @@ class BuildPresenter
   end
 
   def mapping_for_build(build)
-    build_mappings.find { |m| m.from == build.name }
+    build_mappings.find { |m| m.from == build.name } ||
+      BuildMapping.new(build.name, build.name)
   end
 
   def newer_revision_fixes?(build)
-    return false unless build.status == "failed"
+    return false unless build.status == BuildStatus::FAILED
 
     newer_revisions = revision.newer_revisions
 
     newer_revisions.any? &&
       newer_revisions.any? { |r|
         newer_build = r.builds.find { |b| b.name == build.name }
-        newer_build && newer_build.status == "successful"
+        newer_build && newer_build.status == BuildStatus::SUCCESSFUL
       }
   end
 

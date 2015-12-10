@@ -8,8 +8,8 @@ stub_constant :Build, OpenStruct
 describe BuildPresenter, "#list" do
   it "returns builds" do
     builds = [
-      Build.new(name: "tests"),
-      Build.new(name: "deploy"),
+      Build.new(name: "tests", status: "successful"),
+      Build.new(name: "deploy", status: "successful"),
     ]
 
     revision = double(:revision, builds: builds, build_mappings: [])
@@ -90,5 +90,24 @@ describe BuildPresenter, "#list" do
     presenter = BuildPresenter.new(revision1)
     expect(presenter.list.map(&:name)).to eq([ "tests" ])
     expect(presenter.list.map(&:status)).to eq([ "fixed" ])
+  end
+
+  it "can merge builds" do
+    builds = [
+      Build.new(name: "foo_tests_0", status: "building"),
+      Build.new(name: "foo_tests_1", status: "failed"),
+      Build.new(name: "foo_deploy", status: "failed"),
+    ]
+
+    build_mappings = [
+      BuildMapping.new("foo_tests_0", "tests"),
+      BuildMapping.new("foo_tests_1", "tests")
+    ]
+
+    revision = double(:revision, builds: builds, build_mappings: build_mappings, newer_revisions: [])
+    presenter = BuildPresenter.new(revision)
+
+    expect(presenter.list.map(&:status)).to eq([ "building", "failed" ])
+    expect(presenter.list.map(&:name)).to eq([ "tests", "foo_deploy" ])
   end
 end
