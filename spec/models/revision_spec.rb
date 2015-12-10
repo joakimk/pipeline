@@ -30,3 +30,14 @@ describe Revision, "#github_url" do
     expect(revision.github_url).to be_nil
   end
 end
+
+describe Revision, "#newer_revisions" do
+  it "returns any newer revisions in the same project" do
+    project = FactoryGirl.create(:project)
+    revision1 = FactoryGirl.create(:revision, project: project, name: "1111111111111111111111111111111111111111")
+    revision2 = FactoryGirl.create(:revision, project: project, name: "2222222222222222222222222222222222222222")
+
+    expect(revision1.newer_revisions).to eq([ revision2 ])
+    expect(revision2.newer_revisions).to eq([])
+  end
+end

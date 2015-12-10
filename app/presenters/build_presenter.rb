@@ -4,7 +4,9 @@ class BuildPresenter
   pattr_initialize :revision
 
   def list
-    builds = add_pending(revision.builds)
+    builds = revision.builds
+    builds = add_pending(builds)
+    builds = change_status_for_fixed_builds(builds)
     builds = sort_by_mappings(builds)
     map_names(builds)
   end
@@ -24,6 +26,16 @@ class BuildPresenter
     }
 
     builds + pending_builds
+  end
+
+  def change_status_for_fixed_builds(builds)
+    builds.map { |build|
+      if newer_revision_fixes?(build)
+        new_build(build.name, "fixed", build)
+      else
+        build
+      end
+    }
   end
 
   def sort_by_mappings(builds)
@@ -53,6 +65,18 @@ class BuildPresenter
 
   def mapping_for_build(build)
     build_mappings.find { |m| m.from == build.name }
+  end
+
+  def newer_revision_fixes?(build)
+    return false unless build.status == "failed"
+
+    newer_revisions = revision.newer_revisions
+
+    newer_revisions.any? &&
+      newer_revisions.any? { |r|
+        newer_build = r.builds.find { |b| b.name == build.name }
+        newer_build && newer_build.status == "successful"
+      }
   end
 
   def new_build(name, status, old_build = nil)

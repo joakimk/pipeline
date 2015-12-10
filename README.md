@@ -65,6 +65,8 @@ The webhook will only be called once and it will wait no longer than 10 seconds.
 
 The `status_url` (link to your CI server) is intentionally excluded for now for security reasons (and because we haven't needed it yet). If you want this feature, ping me.
 
+The build `status:` can be one of: "pending", "building", "successful", "failed" and "fixed".
+
 ### Build locking API
 
 **NOTE**: Experimental feature
@@ -115,7 +117,6 @@ You need postgres installed.
 
 V1:
 
-* Add "fixed" build handling (status "fixed" instead of "failed" when later builds are green)
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)

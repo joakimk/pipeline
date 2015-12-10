@@ -74,4 +74,21 @@ describe BuildPresenter, "#list" do
     expect(presenter.list.map(&:name)).to eq([ "tests", "staging" ])
     expect(presenter.list.map(&:status)).to eq([ "building", "pending" ])
   end
+
+  it "marks a build as 'fixed' if it was 'failed' and a newer build is 'successful'" do
+    builds1 = [
+      Build.new(name: "tests", status: "failed"),
+    ]
+
+    builds2 = [
+      Build.new(name: "tests", status: "successful"),
+    ]
+
+    revision2 = double(:revision, builds: builds2)
+    revision1 = double(:revision, builds: builds1, build_mappings: [], newer_revisions: [ revision2 ])
+
+    presenter = BuildPresenter.new(revision1)
+    expect(presenter.list.map(&:name)).to eq([ "tests" ])
+    expect(presenter.list.map(&:status)).to eq([ "fixed" ])
+  end
 end
