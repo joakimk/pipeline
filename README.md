@@ -83,6 +83,7 @@ You need postgres installed.
 
 V1:
 
+* Add webhook for build status reporting (e.g. to internal dashboards, etc)
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
