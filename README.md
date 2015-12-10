@@ -53,13 +53,11 @@ The payload looks like this:
           builds: [
             {
               name: "tests",
-              status: "building",
-              status_url: "http://ci.example.com/pipeline_tests/build/1234"
+              status: "building"
             },
             {
               name: "deploy",
-              status: "pending",
-              status_url: null
+              status: "pending"
             }
           ]
         }
@@ -67,6 +65,8 @@ The payload looks like this:
     }
 
 The webhook will only be called once and it will wait no longer than 10 seconds. It does not delay the `/api/build_statuses` call since it runs in a thread.
+
+The `status_url` (link to your CI server) is intentionally excluded for now for security reasons (and because we haven't needed it yet). If you want this feature, ping me.
 
 ### Build locking API
 
