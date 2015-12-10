@@ -41,10 +41,30 @@ A webhook to receive the current project build status. Useful for displaying the
 
 Set the `WEBHOOK_URL` config variable to the URL where you want the project build status posted.
 
-The payload looks like:
+The payload looks like this:
 
-todo
-
+    {
+      project_name: "pipeline",
+      latest_revisions: [
+        {
+          hash: "ea75a9c817757f1ebe09be035c807b7fe23499a0",
+          short_name: "ea75a9",
+          github_url: "https://github.com/barsoom/pipeline/commit/ea75a9c817757f1ebe09be035c807b7fe23499a0",
+          builds: [
+            {
+              name: "pipeline_tests",
+              status: "building",
+              status_url: "http://ci.example.com/pipeline_tests/build/1234"
+            },
+            {
+              name: "pipeline_deploy",
+              status: "pending",
+              status_url: null
+            }
+          ]
+        }
+      ]
+    }
 
 ### Build locking API
 
