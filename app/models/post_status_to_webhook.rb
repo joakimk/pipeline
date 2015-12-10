@@ -13,6 +13,8 @@ class PostStatusToWebhook
     end
   end
 
+  private
+
   def payload
     ProjectStatusSerializer.new(project).serialize.to_json
   end
