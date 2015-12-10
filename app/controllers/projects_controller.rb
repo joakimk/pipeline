@@ -11,6 +11,7 @@ class ProjectsController < WebController
     project = Project.find(params[:id])
 
     if project.update_attributes(project_params)
+      PostStatusToWebhook.call(project)
       redirect_to root_path, notice: "Project updated."
     else
       @project = project
