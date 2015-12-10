@@ -1,5 +1,3 @@
-require "httparty"
-
 class Api::BuildStatusesController < ApiController
   def create
     project = UpdateBuildStatus.call(
@@ -14,13 +12,7 @@ class Api::BuildStatusesController < ApiController
       html: render_to_string(partial: "projects/project",
                              locals: { project: project }) })
 
-    Thread.new do
-      webhook_url = ENV.fetch("WEBHOOK_URL", nil)
-
-      if webhook_url
-        HTTParty.post(webhook_url, body: { payload: ProjectStatusSerializer.new(project).serialize.to_json }, timeout: 10)
-      end
-    end
+    PostStatusToWebhook.call(project)
 
     render nothing: true
   end
