@@ -52,12 +52,12 @@ The payload looks like this:
           github_url: "https://github.com/barsoom/pipeline/commit/ea75a9c817757f1ebe09be035c807b7fe23499a0",
           builds: [
             {
-              name: "pipeline_tests",
+              name: "tests",
               status: "building",
               status_url: "http://ci.example.com/pipeline_tests/build/1234"
             },
             {
-              name: "pipeline_deploy",
+              name: "deploy",
               status: "pending",
               status_url: null
             }
