@@ -8,13 +8,13 @@ namespace :app do
 
   desc "Dump the production DB"
   task :dump_db do
-    system("heroku pgbackups:capture --expire") || exit(1)
+    system("heroku pg:backups capture") || exit(1)
   end
 
   # https://devcenter.heroku.com/articles/heroku-postgres-import-export
   desc "Download the production dump"
   task :download_db do
-    system("curl", "--output", DUMP_PATH, `heroku pgbackups:url`) || exit(1)
+    system("curl", "--output", DUMP_PATH, `heroku pg:backups public-url`.chomp) || exit(1)
   end
 
   desc "Import the downloaded dump"

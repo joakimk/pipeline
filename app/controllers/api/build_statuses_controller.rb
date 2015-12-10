@@ -1,6 +1,6 @@
 class Api::BuildStatusesController < ApiController
   def create
-    project = UpdateBuildStatus.run(
+    project = UpdateBuildStatus.call(
       params[:name],
       params[:repository],
       params[:revision],

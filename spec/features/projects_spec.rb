@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe do
+describe "Projects", type: :feature do
   describe "Removing projects" do
     it "can be done" do
       project = Project.new(name: "the_app")

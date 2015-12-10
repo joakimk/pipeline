@@ -16,29 +16,29 @@ ActiveRecord::Schema.define(version: 20140216162823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "builds", force: true do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "status",      null: false
-    t.string   "name",        null: false
+  create_table "builds", force: :cascade do |t|
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "status",      limit: 255, null: false
+    t.string   "name",        limit: 255, null: false
     t.integer  "revision_id"
-    t.string   "status_url"
+    t.string   "status_url",  limit: 255
   end
 
-  create_table "projects", force: true do |t|
+  create_table "projects", force: :cascade do |t|
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "name",       limit: 255,             null: false
+    t.string   "repository", limit: 255
+    t.text     "mappings"
+    t.integer  "position",               default: 0
+  end
+
+  create_table "revisions", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.integer  "project_id",             null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "name",                   null: false
-    t.string   "repository"
-    t.text     "mappings"
-    t.integer  "position",   default: 0
-  end
-
-  create_table "revisions", force: true do |t|
-    t.string   "name",       null: false
-    t.integer  "project_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

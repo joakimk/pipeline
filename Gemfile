@@ -4,10 +4,9 @@ def on_heroku?
   ENV['DYNO']
 end
 
-# Don't break multiple ruby versions in travis just because heroku requires a specific one
-ruby "1.9.3" if on_heroku?
+ruby "2.2.3"
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.2.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

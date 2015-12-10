@@ -1,8 +1,6 @@
 require "spec_helper"
 
 describe UpdateBuildStatus do
-  let(:update_build_status) { described_class }
-
   context "when there are no previous builds" do
     it "adds a build, a revision and a project" do
       update_with name: "pipeline_tests", repository: "git@example.com:user/bar.git"
@@ -70,7 +68,7 @@ describe UpdateBuildStatus do
       status: "building",
     }.merge(custom)
 
-    update_build_status.run(
+    UpdateBuildStatus.call(
       attributes[:name],
       attributes[:repository],
       attributes[:revision],

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "POST /api/build_status" do
+describe "POST /api/build_status", type: :request do
   let(:attributes) {
     {
       name: "foo_tests",

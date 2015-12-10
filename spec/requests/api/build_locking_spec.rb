@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "GET /api/build_lock" do
+describe "GET /api/build_lock", type: :request do
   let(:attributes) {
     {
       token: "test-api-token", repository: "repository-url", name: "foo_tests"
