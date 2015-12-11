@@ -63,7 +63,7 @@ The payload looks like this:
 
 The webhook will only be called once and it will wait no longer than 10 seconds. It does not delay the `/api/build_statuses` call since it runs in a thread.
 
-The `status_url` (link to your CI server) is intentionally excluded for now for security reasons (and because we haven't needed it yet). If you want this feature, ping me.
+The `status_url` (link to your CI server) is intentionally excluded for now for security reasons (and because we haven't needed it yet). If you want this feature, open an issue or send a pull request.
 
 The build `status:` can be one of: "pending", "building", "successful", "failed" and "fixed".
 
