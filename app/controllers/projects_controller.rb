@@ -11,10 +11,12 @@ class ProjectsController < WebController
   end
 
   def edit
+    @projects = Project.all_sorted
     @project = Project.find(params[:id])
   end
 
   def update
+    @projects = Project.all_sorted
     project = Project.find(params[:id])
 
     if project.update_attributes(project_params)
