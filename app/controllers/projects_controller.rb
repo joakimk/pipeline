@@ -1,13 +1,16 @@
 class ProjectsController < WebController
   def index
     @projects = Project.all_sorted
-    @revision_amount = 2
+    revision_amount = 2
+    locals revision_amount: revision_amount
   end
 
   def show
     @projects = Project.all_sorted
     @project = Project.find(params[:id])
-    @revision_amount = 15
+    revision_amount = 15
+    locals :show,
+      revision_amount: revision_amount
   end
 
   def edit
