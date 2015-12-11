@@ -113,6 +113,14 @@ You need postgres installed.
 
     rake app:reset
 
+## Development notes
+
+The project controller has a before_action for projects
+
+    before_action :get_projects
+
+This is needed for the navigation.
+
 ## TODO
 
 V1:
