@@ -10,6 +10,10 @@ class PostStatusToWebhook
   def call
     return unless webhook_url
 
+    # Build payload outside of thread so that we don't leak active record connections,
+    # or some other such thing.
+    payload = build_payload
+
     Thread.new do
       HTTParty.post(webhook_url, body: { payload: payload }, timeout: TIMEOUT)
     end
@@ -17,7 +21,7 @@ class PostStatusToWebhook
 
   private
 
-  def payload
+  def build_payload
     ProjectStatusSerializer.new(project).serialize.to_json
   end
 
