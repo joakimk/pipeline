@@ -5,11 +5,13 @@ require "httparty"
 class PostStatusToWebhook
   method_object :project
 
+  TIMEOUT = 10 # seconds
+
   def call
     return unless webhook_url
 
     Thread.new do
-      HTTParty.post(webhook_url, body: { payload: payload }, timeout: 10)
+      HTTParty.post(webhook_url, body: { payload: payload }, timeout: TIMEOUT)
     end
   end
 
