@@ -2,4 +2,4 @@
   .span12
     - @projects.each do |project|
       .project id="project_#{project.id}"
-        = render "project", project: project
+        = render "project", project: project, revision_amount: revision_amount
