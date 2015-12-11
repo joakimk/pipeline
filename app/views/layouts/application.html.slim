@@ -12,8 +12,9 @@ html
         .navbar-inner
           = link_to("Pipeline", root_path, class: "brand")
           ul.nav
-            li class=menu_item_class(:projects)
-              = link_to("Projects", projects_path)
+            - @projects.each do |project|
+                li class=menu_item_class(:projects)
+                  = link_to(project.name, project_path(id: project.id))
 
 
     .container

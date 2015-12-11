@@ -9,6 +9,6 @@ Pipeline::Application.routes.draw do
     end
   end
 
-  resources :projects, except: :show
+  resources :projects
   root :to => 'projects#index'
 end

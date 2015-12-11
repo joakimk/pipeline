@@ -7,9 +7,9 @@
     = ' | '
     = link_to("Wiki", project.github_wiki_url)
 .status
-  h1= project.name
+  h1= link_to(project.name, project_path(id: project.id))
   .revisions
-    - project.latest_revisions.each do |revision|
+    - project.latest_revisions(@revision_amount).each do |revision|
       .revision
         - presenter = RevisionPresenter.new(revision)
         = link_to(presenter.name, revision.github_url, target: "_blank")
