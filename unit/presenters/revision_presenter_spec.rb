@@ -6,10 +6,10 @@ require "build_mapping"
 stub_class :Build, OpenStruct
 
 describe RevisionPresenter, "#name" do
-  it "is the first 6 characters" do
+  it "is the first 5 characters" do
     revision = double(name: "00677457465544877dc2293f724009caa9da03a4")
     presenter = RevisionPresenter.new(revision)
-    expect(presenter.name).to eq("006774")
+    expect(presenter.name).to eq("00677")
   end
 end
 

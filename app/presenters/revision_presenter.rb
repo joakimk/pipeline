@@ -4,7 +4,7 @@ class RevisionPresenter
   pattr_initialize :revision
 
   def name
-    revision.name[0, 6]
+    revision.name[0, 5]
   end
 
   def builds

@@ -23,7 +23,7 @@ describe ProjectStatusSerializer do
       latest_revisions: [
         {
           hash: "1111111111111111111111111111111111111111",
-          short_name: "111111",
+          short_name: "11111",
           builds: [
             {
               name: "tests",
@@ -37,7 +37,7 @@ describe ProjectStatusSerializer do
         },
         {
           hash: "0000000000000000000000000000000000000000",
-          short_name: "000000",
+          short_name: "00000",
           builds: [
             {
               name: "tests",
