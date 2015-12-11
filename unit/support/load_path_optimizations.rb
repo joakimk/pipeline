@@ -1,5 +1,5 @@
 def add_load_path(path)
-  full_path = ENV["DEVBOX"] ? "#{Dir.pwd}/tmp/devbox/gems" : "#{ENV["HOME"]}/.rvm/gems/ruby-4.2.5\@pipeline/#{path}"
+  full_path = ENV["DEVBOX"] ? "#{Dir.pwd}/tmp/devbox/gems" : "#{ENV["HOME"]}/.rvm/gems/ruby-2.2.3\@pipeline/#{path}"
   raise("load path missing: #{full_path}") unless File.exists?(full_path)
   $: << full_path
 end
