@@ -61,5 +61,6 @@ Pipeline::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  # Load all code upfront (faster request times)
   config.eager_load = true
 end

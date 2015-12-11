@@ -31,5 +31,6 @@ Pipeline::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
+  # Don't load all code upfront (faster app boot time)
   config.eager_load = false
 end
