@@ -6,7 +6,7 @@ end
 
 ruby "2.2.3"
 
-gem "rails", "4.2.5"
+gem "rails", "4.2.5.1"
 
 # Bundle edge Rails instead:
 # gem "rails", :git => "git://github.com/rails/rails.git"
