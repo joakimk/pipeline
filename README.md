@@ -23,8 +23,9 @@ The api token is set with the `API_TOKEN` environment variable.
 
 ### Build status API
 
-Build status are reported to `/api/build_statuses` as a POST with the following attributes:
+Build status are reported to `/api/build_status` as a POST with the following attributes:
 
+* *token*: The api token.
 * *name*: The name of the build (e.g. foo_tests or foo_deploy). The app assumes that each build has a unique name. You use mappings configured for each project to display short names as in the screenshot.
 * *repository*: The repository path (e.g. git@github...).
 * *revision*: The git revision.
@@ -61,7 +62,7 @@ The payload looks like this:
       ]
     }
 
-The webhook will only be called once and it will wait no longer than 10 seconds. It does not delay the `/api/build_statuses` call since it runs in a thread.
+The webhook will only be called once and it will wait no longer than 10 seconds. It does not delay the `/api/build_status` call since it runs in a thread.
 
 The `status_url` (link to your CI server) is intentionally excluded for now for security reasons (and because we haven't needed it yet). If you want this feature, open an issue or send a pull request.
 
