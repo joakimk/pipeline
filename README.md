@@ -68,6 +68,12 @@ The `status_url` (link to your CI server) is intentionally excluded for now for 
 
 The build `status:` can be one of: "pending", "building", "successful", "failed" and "fixed".
 
+### Project API
+
+Removing a project
+
+    DELETE /api/projects/:name?token=...
+
 ### Build locking API
 
 **NOTE**: Experimental feature
