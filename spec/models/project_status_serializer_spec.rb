@@ -20,7 +20,7 @@ describe ProjectStatusSerializer do
     hash = ProjectStatusSerializer.new(project).serialize
     expect(hash).to eq(
       project_name: "foo",
-      project_destroyed: false,
+      project_removed: false,
       latest_revisions: [
         {
           hash: "1111111111111111111111111111111111111111",
@@ -53,10 +53,10 @@ describe ProjectStatusSerializer do
       ]
     )
 
-    # Can signal that a project has been destroyed
+    # Can signal that a project has been removed
     project.destroy
     hash = ProjectStatusSerializer.new(project).serialize
-    expect(hash[:project_destroyed]).to eq(true)
+    expect(hash[:project_removed]).to eq(true)
   end
 
   private
