@@ -44,6 +44,7 @@ The payload looks like this:
 
     {
       project_name: "pipeline",
+      project_removed: false,
       latest_revisions: [
         {
           hash: "ea75a9c817757f1ebe09be035c807b7fe23499a0",
