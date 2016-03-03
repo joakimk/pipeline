@@ -4,6 +4,7 @@ class ProjectStatusSerializer
   def serialize
     {
       project_name: project.name,
+      project_destroyed: project.destroyed?,
       latest_revisions: project.latest_revisions.map { |revision| serialize_revision(revision) }
     }
   end

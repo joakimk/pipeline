@@ -1,6 +1,10 @@
 class Api::ProjectsController < ApiController
   def destroy
-    Project.find_by_name(params[:name]).destroy
+    project = Project.find_by_name(params[:name])
+    project.destroy
+
+    PostStatusToWebhook.call(project)
+
     render text: "ok"
   end
 end

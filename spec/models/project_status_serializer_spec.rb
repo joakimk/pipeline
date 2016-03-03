@@ -20,6 +20,7 @@ describe ProjectStatusSerializer do
     hash = ProjectStatusSerializer.new(project).serialize
     expect(hash).to eq(
       project_name: "foo",
+      project_destroyed: false,
       latest_revisions: [
         {
           hash: "1111111111111111111111111111111111111111",
@@ -51,6 +52,11 @@ describe ProjectStatusSerializer do
         }
       ]
     )
+
+    # Can signal that a project has been destroyed
+    project.destroy
+    hash = ProjectStatusSerializer.new(project).serialize
+    expect(hash[:project_destroyed]).to eq(true)
   end
 
   private
