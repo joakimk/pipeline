@@ -131,16 +131,13 @@ This is needed for the navigation.
 
 ## TODO
 
-V1:
+Various things we could do later.
 
+* Add CircleCI support if they [improve their webhooks](https://discuss.circleci.com/t/build-webhook-notifications-for-starting-a-build-and-for-each-step-as-it-goes/5500)
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
 * Make a new screenshot
-* Maybe: travis-ci support
-* Tell the world about it :)
-
-Later:
 * Be able to manually trigger builds in CI. Probably some kind of plugin-API.
 * Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
 * Custom urls configurable for projects, possibly driven by custom data in build status?
