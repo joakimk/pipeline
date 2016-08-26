@@ -3,7 +3,7 @@
 
 ## About
 
-This is a tool for viewing CI build status from multiple CI servers and projects. It is based on the internal tools we have been using at [barsoom](http://barsoom.se).
+This is a tool for viewing CI build status from multiple CI servers and projects. It's a second iteration of our internal tools at [auctionet](http://dev.auctionet.com) and is in daily use.
 
 It can be deployed to heroku but there are no instructions yet.
 
