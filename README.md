@@ -5,7 +5,7 @@
 
 This is a tool for viewing CI build status from multiple CI servers and projects. It's a second iteration of our internal tools at [auctionet](http://dev.auctionet.com) and is in daily use.
 
-We run it on heroku. The instructions are not complete, but it should not be hard to figure out what's needed to set up your own.
+We run it on heroku. The instructions are not complete, but it should not be hard to figure out what's needed to set up your own (this is basically just a simple rails app).
 
 ## How it looks
 
