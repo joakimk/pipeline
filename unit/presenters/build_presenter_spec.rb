@@ -2,6 +2,8 @@ require "spec_helper"
 require "build_presenter"
 require "ostruct"
 require "build_mapping"
+require "active_support"
+require "active_support/core_ext"
 
 stub_constant :Build, OpenStruct
 
@@ -73,6 +75,19 @@ describe BuildPresenter, "#list" do
 
     expect(presenter.list.map(&:name)).to eq([ "tests", "staging" ])
     expect(presenter.list.map(&:status)).to eq([ "building", "pending" ])
+  end
+
+  it "returns building status as pending if nothing has happened in a while (e.g. when you manually stopped a build)" do
+    builds = [
+      Build.new(name: "foo_tests", status: "building", updated_at: (1.hour + 1.minute).ago),
+      Build.new(name: "foo_staging", status: "building", updated_at: (1.hour - 1.minute).ago)
+    ]
+
+    revision = double(:revision, builds: builds, build_mappings: [])
+    presenter = BuildPresenter.new(revision)
+
+    expect(presenter.list.map(&:name)).to eq([ "foo_tests", "foo_staging" ])
+    expect(presenter.list.map(&:status)).to eq([ "pending", "building" ])
   end
 
   it "marks a build as 'fixed' if it was 'failed' and a newer build is 'successful'" do

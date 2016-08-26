@@ -107,6 +107,11 @@ TODO. Grep for ENV :).
     heroku config:set WEB_PASSWORD=your-password-here
     heroku config:set SECRET_KEY_BASE=$(rake secret) 
 
+    # By default builds will go from "building" to "pending" after 60 minutes
+    # as some builds may have been killed in a bad way where the final status
+    # was never reported. You can change this time like this:
+    # heroku config:set BUILD_TIMEOUT_IN_MINUTES=120
+
 ## Running the tests
 
 You need postgres installed.

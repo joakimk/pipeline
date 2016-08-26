@@ -7,6 +7,7 @@ class BuildPresenter
   def list
     builds = revision.builds
     builds = add_pending(builds)
+    builds = timeout_builds(builds)
     builds = change_status_for_fixed_builds(builds)
     builds = sort_by_mappings(builds)
     builds = apply_mappings(builds)
@@ -28,6 +29,16 @@ class BuildPresenter
     }
 
     builds + pending_builds
+  end
+
+  def timeout_builds(builds)
+    builds.map { |build|
+      if build.updated_at && build.updated_at < build_timeout.ago && build.status == BuildStatus::BUILDING
+        new_build(build.name, BuildStatus::PENDING, build)
+      else
+        build
+      end
+    }
   end
 
   def change_status_for_fixed_builds(builds)
@@ -92,5 +103,9 @@ class BuildPresenter
     build.name = name
     build.status = status
     build
+  end
+
+  def build_timeout
+    ENV.fetch("BUILD_TIMEOUT_IN_MINUTES", "60").to_i.minutes
   end
 end
