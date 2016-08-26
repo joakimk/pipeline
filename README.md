@@ -7,8 +7,6 @@ This is a tool for viewing CI build status from multiple CI servers and projects
 
 It can be deployed to heroku but there are no instructions yet.
 
-The tool used to report build status isn't part of this repo yet (but you can probably build your own quite quickly, see API docs below).
-
 ## How it looks
 
 ![how it looks](http://cl.ly/image/0r0D1C2P1I2v/Screen%20Shot%202014-02-17%20at%2013.01.15.png)
