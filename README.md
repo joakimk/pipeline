@@ -23,6 +23,8 @@ The api token is set with the `API_TOKEN` environment variable.
 
 ### Build status API
 
+[Example client for circleci](examples/build_reporting_client_for_circleci.sh)
+
 Build status are reported to `/api/build_status` as a POST with the following attributes:
 
 * *token*: The api token.
