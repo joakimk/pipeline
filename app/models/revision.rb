@@ -16,6 +16,10 @@ class Revision < ActiveRecord::Base
     end
   end
 
+  def newer_revisions
+    project.revisions.where("id > ?", id)
+  end
+
   def build_mappings
     BuildMapping.build_list(project.mappings)
   end

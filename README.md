@@ -3,11 +3,9 @@
 
 ## About
 
-This is a tool for viewing CI build status from multiple CI servers and projects. It is based on the internal tools we have been using at [barsoom](http://barsoom.se).
+This is a tool for viewing CI build status from multiple CI servers and projects. It's a second iteration of our internal tools at [auctionet](http://dev.auctionet.com) and is in daily use.
 
-It can be deployed to heroku but there are no instructions yet.
-
-The tool used to report build status isn't part of this repo yet (but you can probably build your own quite quickly, see API docs below).
+We run it on heroku. The instructions are not complete, but it should not be hard to figure out what's needed to set up your own (this is basically just a simple rails app).
 
 ## How it looks
 
@@ -21,8 +19,13 @@ The build names are links to the `status_url` passed in when reporting builds. A
 
 The api token is set with the `API_TOKEN` environment variable.
 
-Build status are reported to `/api/build_statuses` as a POST with the following attributes:
+### Build status API
 
+[Example client for circleci](examples/build_reporting_client_for_circleci.sh) (just a wrapper around curl, can easily be adapted for other CI tools as well)
+
+Build status are reported to `/api/build_status` as a POST with the following attributes:
+
+* *token*: The api token.
 * *name*: The name of the build (e.g. foo_tests or foo_deploy). The app assumes that each build has a unique name. You use mappings configured for each project to display short names as in the screenshot.
 * *repository*: The repository path (e.g. git@github...).
 * *revision*: The git revision.
@@ -30,6 +33,69 @@ Build status are reported to `/api/build_statuses` as a POST with the following 
 * *status*: Current build status, can be `building`, `successful` or `failed`.
 
 Normally the client would first post with the status of `building` and then either `successful` or `failed` after the build is done.
+
+### Project status webhook
+
+A webhook to receive the current project build status. Useful for displaying the current build status on dashboards.
+
+Set the `WEBHOOK_URL` config variable to the URL where you want the project build status posted (as the JSON encoded parameter "payload").
+
+The payload looks like this:
+
+    {
+      project_name: "pipeline",
+      project_removed: false,
+      latest_revisions: [
+        {
+          hash: "ea75a9c817757f1ebe09be035c807b7fe23499a0",
+          short_name: "ea75a9",
+          builds: [
+            {
+              name: "tests",
+              status: "building"
+            },
+            {
+              name: "deploy",
+              status: "pending"
+            }
+          ]
+        }
+      ]
+    }
+
+The webhook will only be called once and it will wait no longer than 10 seconds. It does not delay the `/api/build_status` call since it runs in a thread.
+
+The `status_url` (link to your CI server) is intentionally excluded for now for security reasons (and because we haven't needed it yet). If you want this feature, open an issue or send a pull request.
+
+The build `status:` can be one of: "pending", "building", "successful", "failed" and "fixed".
+
+### Project API
+
+Removing a project
+
+    DELETE /api/projects/:name?token=...
+
+### Build locking API
+
+**NOTE**: Experimental feature
+
+Builds can be locked so that only one build with a specific name can run at a time. This can be useful if you
+have a CI server that isn't capable of doing this by itself (like circleci) and you for example don't
+want it to try and deploy to different versions of the same app at the same time.
+
+A build is locked by posting to `/api/build/lock` with the following attributes:
+
+* *name*: The name of the build.
+* *repository*: The repository path (e.g. git@github...).
+* *revision*: The revision that you wish to lock.
+
+The response contains the revision currently holding the lock, and looks like `{ "locked_by_revision": "foo" }`. Locks will remove themselves after 30 minutes just in case something went wrong, but you should try and ensure that unlocking happens as nobody wants to wait that long.
+
+A build is unlocked by posting to `/api/build/unlock` with the following attributes:
+
+* *name*: The name of the build.
+* *repository*: The repository path (e.g. git@github...).
+* *revision*: The revision that you wish to unlock.
 
 ## ENVs
 
@@ -40,6 +106,11 @@ TODO. Grep for ENV :).
 
     heroku config:set WEB_PASSWORD=your-password-here
     heroku config:set SECRET_KEY_BASE=$(rake secret) 
+
+    # By default builds will go from "building" to "pending" after 60 minutes
+    # as some builds may have been killed in a bad way where the final status
+    # was never reported. You can change this time like this:
+    # heroku config:set BUILD_TIMEOUT_IN_MINUTES=120
 
 ## Running the tests
 
@@ -55,18 +126,23 @@ You need postgres installed.
 
     rake app:reset
 
+## Development notes
+
+The project controller has a before_action for projects
+
+    before_action :get_projects
+
+This is needed for the navigation.
+
 ## TODO
 
-V1:
+Various things we could do later.
 
+* Add CircleCI support if they [improve their webhooks](https://discuss.circleci.com/t/build-webhook-notifications-for-starting-a-build-and-for-each-step-as-it-goes/5500)
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
 * Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
 * Make a new screenshot
-* Maybe: travis-ci support
-* Tell the world about it :)
-
-Later:
 * Be able to manually trigger builds in CI. Probably some kind of plugin-API.
 * Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.
 * Custom urls configurable for projects, possibly driven by custom data in build status?

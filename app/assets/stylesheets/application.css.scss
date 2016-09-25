@@ -11,6 +11,26 @@ $bright-blue: #00A7F3;
 .container > .navbar {
   margin-top: 10px;
   margin-bottom: 10px;
+
+  .navbar-inner {
+    min-height: 80px;
+    padding: 0;
+
+    .brand {
+      margin: 20px 0;
+    }
+
+    .nav {
+      float: none;
+
+      li {
+        a {
+          padding: 10px;
+          background-color: #fbfbfb;
+        }
+      }
+    }
+  }
 }
 
 .container > .alert {
@@ -41,8 +61,26 @@ $bright-blue: #00A7F3;
 }
 
 .project {
-  padding: 5px 30px 40px 30px;
+  padding: 5px 30px 10px 30px;
   margin-bottom: 10px;
+}
+
+.index .project {
+  position: relative;
+
+  h1 {
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .actions {
+    position: absolute;
+    right: 30px;
+  }
+
+  .revision {
+    padding: 4px;
+  }
 }
 
 .page {

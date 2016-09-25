@@ -4,10 +4,10 @@ class RevisionPresenter
   pattr_initialize :revision
 
   def name
-    revision.name[0, 6]
+    revision.name[0, 5]
   end
 
   def builds
-    BuildPresenter.new(revision.builds, revision.build_mappings).list
+    BuildPresenter.new(revision).list
   end
 end

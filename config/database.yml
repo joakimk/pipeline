@@ -1,16 +1,25 @@
+default: &default
+  # Vagrant development box support
+  <% if ENV["DEVBOX"] %>
+  username: postgres
+  password: dev
+  host: localhost
+  port: <%= `service_port postgres` %>
+  <% else %>
+  username: <%= ENV['USER'] %>
+  password: <%= ENV['USER'] == "jenkins" ? 'jenkins' : nil %>
+  <% end %>
+
 development:
+  <<: *default
   adapter: postgresql
   encoding: unicode
   database: <%= ENV['JOB_NAME'] || 'pipeline' %>_development
   pool: 5
-  username: <%= ENV['USER'] %>
-  password: <%= ENV['USER'] == "jenkins" ? 'jenkins' : nil %>
 
 test:
+  <<: *default
   adapter: postgresql
   encoding: unicode
   database: <%= ENV['JOB_NAME'] || 'pipeline' %>_test
   pool: 5
-  username: <%= ENV['USER'] %>
-  password: <%= ENV['USER'] == "jenkins" ? 'jenkins' : nil %>
-

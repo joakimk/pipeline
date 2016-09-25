@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "POST /api/build_status" do
+describe "POST /api/build_status", type: :request do
   let(:attributes) {
     {
       name: "foo_tests",
@@ -11,15 +11,15 @@ describe "POST /api/build_status" do
   }
 
   it "adds or updates build status" do
-    App.stub(api_token: 'secret')
+    allow(App).to receive(:api_token).and_return("secret")
     post "/api/build_status", attributes.merge(token: "secret", status: "successful")
-    response.should be_success
-    Build.last.status.should == "successful"
+    expect(response).to be_success
+    expect(Build.last.status).to eq("successful")
   end
 
   it "fails when the api token is wrong" do
     post "/api/build_status", attributes.merge(token: "secret")
-    response.code.should == "401"
-    Build.all.should be_empty
+    expect(response.code).to eq("401")
+    expect(Build.all).to be_empty
   end
 end

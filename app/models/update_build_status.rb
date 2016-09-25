@@ -3,10 +3,9 @@ require 'attr_extras'
 
 # Intended to be used by a client within a CI server to post status to this app.
 class UpdateBuildStatus
-  method_object :run,
-    :name, :repository, :revision_hash, :status, :status_url
+  method_object :name, :repository, :revision_hash, :status, :status_url
 
-  def run
+  def call
     if known_build?
       update_build_status
     else
@@ -38,7 +37,7 @@ class UpdateBuildStatus
     revisions = project.revisions
 
     if revisions.count > App.revisions_to_keep
-      revisions.order("id asc").first.destroy
+      revisions.order("id DESC").offset(App.revisions_to_keep).each(&:destroy)
     end
   end
 

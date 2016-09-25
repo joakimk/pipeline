@@ -1,3 +1,0 @@
-# NOEXEC_DISABLE to not run bundle exec by default
-export NOEXEC_DISABLE=1
-rvm ruby-2.1.0@pipeline --create

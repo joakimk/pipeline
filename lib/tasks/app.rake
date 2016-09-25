@@ -8,17 +8,21 @@ namespace :app do
 
   desc "Dump the production DB"
   task :dump_db do
-    system("heroku pgbackups:capture --expire") || exit(1)
+    system("heroku pg:backups capture --app ci-pipeline") || exit(1)
   end
 
   # https://devcenter.heroku.com/articles/heroku-postgres-import-export
   desc "Download the production dump"
   task :download_db do
-    system("curl", "--output", DUMP_PATH, `heroku pgbackups:url`) || exit(1)
+    system("curl", "--output", DUMP_PATH, `heroku pg:backups public-url --app ci-pipeline`.chomp) || exit(1)
   end
 
   desc "Import the downloaded dump"
   task :import_db => [:"db:drop", :"db:create"] do
-    system(%{pg_restore --no-acl --no-owner -d pipeline_development "#{DUMP_PATH}"}) || exit(1)
+    if ENV["DEVBOX"]
+      system(%{PGPASSWORD=dev pg_restore --no-acl --no-owner -d pipeline_development --username postgres --host localhost --port $(service_port postgres) "#{DUMP_PATH}"}) || exit(1)
+    else
+      system(%{pg_restore --no-acl --no-owner -d pipeline_development "#{DUMP_PATH}"}) || exit(1)
+    end
   end
 end

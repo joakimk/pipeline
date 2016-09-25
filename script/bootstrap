@@ -3,4 +3,5 @@
 # Very simple bootstrap script. It should probably check if it
 # needs to do all these things.
 bundle
-rake db:create db:migrate db:test:prepare
+rake db:create db:schema:load
+RAILS_ENV=test rake db:create db:schema:load

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe do
+describe "Projects", type: :feature do
   describe "Removing projects" do
     it "can be done" do
       project = Project.new(name: "the_app")
@@ -13,9 +13,9 @@ describe do
 
       click_link "Remove"
 
-      current_path.should == root_path
-      page.should have_content("Project removed.")
-      Project.all.should be_empty
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content("Project removed.")
+      expect(Project.all).to be_empty
     end
   end
 
@@ -32,22 +32,23 @@ describe do
       fill_in "Name", with: "The app"
       click_button "Save"
 
-      current_path.should == root_path
-      page.should have_content("Project updated.")
-      Project.find(project.id).name.should == "The app"
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content("Project updated.")
+      expect(Project.find(project.id).name).to eq("The app")
     end
 
     it "when there are validation errors" do
       project = Project.new(name: "the_app")
       project.save!
+      @projects = Project.all_sorted
       visit edit_project_path(project)
 
       fill_in "Name", with: ""
       click_button "Save"
 
-      page.should have_content("Name can't be blank")
-      current_path.should == project_path(project)
-      Project.find(project.id).name.should == "the_app"
+      expect(page).to have_content("Name can't be blank")
+      expect(current_path).to eq(project_path(project))
+      expect(Project.find(project.id).name).to eq("the_app")
     end
   end
 end
